@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>框架-网易云音乐</title>
+<!-- STYLE -->
+<link rel="stylesheet" href="../../css/animate.ls.css"/>
+<link rel="stylesheet" href="../../css/base.ls.css"/>
+<link rel="stylesheet" href="../../css/grid.ls.css"/>
+<link rel="stylesheet" href="../../css/unit.ls.css"/>
+<link rel="stylesheet" href="../../css/module.ls.css"/>
+<link rel="stylesheet" href="../../css/layer.ls.css">
+<link rel="stylesheet" href="../../css/style.ls.css">
+<link rel="stylesheet" href="../../css/skin_common.ls.css">
+
+<!-- SKIN -->
+<link rel="stylesheet" href="../../skin/pub/web/css/skin.ls.css">
+
+<script src="../replace.js"></script>
+</head>
+<body>
+<div class="m-player m-player-fm">
+    <!-- 播放按钮 -->
+    <div class="btnp f-vc f-cp"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/btmbar.sp.svg#pause"></use></svg></div>
+    <div class="btnc btnc-nxt f-vc f-cp"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/btmbar.sp.svg#next"></use></svg></div>
+    <!-- 播放进度 -->
+    <time class="now">01:38</time>
+    <div class="prg prg-ply f-vc"><span class="track"></span><span class="download" style="width:80%"></span><span class="has" style="width:50%"><span class="ctrl"></span></span></div>
+    <time class="all">03:25</time>
+    <!-- 音量 -->
+    <div class="spk f-vc f-cp"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/btmbar.sp.svg#voice"></use></svg></div><!-- 静音： addClass('z-silence') -->
+    <div class="prg prg-spk f-vc">
+        <span class="track"></span>
+        <div class="hastrack">
+            <span class="has" style="width:30%"></span>
+        </div>
+        <div class="ctrlctrak" style="width:30%"><span class="ctrl"></span></div>
+        
+    </div>
+    <!-- 歌词 -->
+    <div class="word f-vc f-cp"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/btmbar.sp.svg#lrc"></use></svg></div>
+</div>
+
+<div class="m-pinfo z-show">
+    <div class="u-cover u-cover-sm f-fl"><a href="#" class="lnk"><img src="http://nec.netease.com/img/s/1.jpg"></a></div>
+    <h3><a href="#">Deep in the rolling</a></h3>
+    <p><a href="#" class="s-ffc4">Sting</a></p>
+    <!-- 喜欢图标 因图标颜色改变，不能用xlink来做切换-->
+    <span class="icn icn-first f-cp"><svg><use xlink:href="../../res/svg/btmbar.sp.svg#love"></use></span>
+    <!-- <span class="icn icn-loved icn-first f-cp"><svg><use xlink:href="../../res/svg/btmbar.sp.svg#loved"></use></span> -->
+
+    <!-- 删除图标 -->
+    <span class="icn icn-second f-cp"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/btmbar.sp.svg#delete"></use></svg></span>
+
+    <!-- 展开到播放页 -->
+    <span class="zoom"><svg class="svg f-vhc"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/btmbar.sp.svg#max"></use></svg></span>
+</div>
+</body>
+</html>

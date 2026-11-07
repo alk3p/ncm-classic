@@ -1,0 +1,12 @@
+/** Used in MiniPlayerTitle **/
+
+QLabel#title-label {
+  color: NO_LRC_TITLE_COLOR;
+  font-size: 11px;
+  padding-top: 8px;
+}
+
+QLabel#artist-label {
+  color: NO_LRC_ARTIST_COLOR;
+  font-size: 10px;
+}

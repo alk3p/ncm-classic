@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html class="p-recommend">
+
+<head>
+    <meta charset="utf-8" />
+    <title>本地音乐—有侧栏-网易云音乐</title>
+    <!-- STYLE -->
+    <link rel="stylesheet" href="../../css/base.ls.css" />
+    <link rel="stylesheet" href="../../css/grid.ls.css" />
+    <link rel="stylesheet" href="../../css/unit.ls.css" />
+    <link rel="stylesheet" href="../../css/module.ls.css" />
+    <link rel="stylesheet" href="../../css/frame.ls.css">
+    <link rel="stylesheet" href="../../css/layer.ls.css">
+    <link rel="stylesheet" href="../../css/style.ls.css">
+<link rel="stylesheet" href="../../css/skin_common.ls.css">
+    
+    <!-- SKIN -->
+    <!-- 
+<link rel="stylesheet" href="../../skin/black/web/css/skin.ls.css">
+<link rel="stylesheet" href="../../skin/black/web/css/skin_theme.ls.css">
+ -->
+    <link rel="stylesheet" href="../../skin/pub/web/css/skin.ls.css">
+    <link rel="stylesheet" href="../../skin/red/web/css/skin_theme.ls.css">
+    <style>
+    body {
+        overflow-y: auto;
+        border: 0;
+    }
+    </style>
+<script src="../replace.js"></script>
+</head>
+
+<body>
+    <!-- 本地音乐 -->
+    <div class="n-local">
+        <div class="u-header header">
+            <h2 class="f-ff2">本地音乐</h2>
+            <div class="lstinfo s-fc3">3245首音乐，<a href="#" class="s-fc2">选择目录</a></div>
+            <ul class="tab u-stab u-stab-local j-flag">
+                <li title="列表" data-id="/m/local/track/" data-action="redirect" data-log-type="song" class="z-sel"><svg><use xlink:href="../../res/svg/icon.sp.svg#local_list"></use></svg></li>
+                <li title="歌手" data-id="/m/local/artist/" data-action="redirect" data-log-type="artist"><svg><use xlink:href="../../res/svg/icon.sp.svg#local_artist"></use></svg></li>
+                <li title="专辑" data-id="/m/local/album/" data-action="redirect" data-log-type="album"><svg><use xlink:href="../../res/svg/icon.sp.svg#local_album"></use></svg></li>
+                <li class="z-osx-hide" title="文件夹" data-id="/m/local/folder/" data-action="redirect" data-log-type="folder"><svg><use xlink:href="../../res/svg/icon.sp.svg#local_folder"></use></svg></li>
+            </ul>
+            <div class="scan f-dn">
+                <div class="itm f-dn"><span class="ico u-icn-local4 u-icn-local4-scan"></span><span class="s-fc3">正在扫描...</span></div>
+                <div class="itm z-dn"><span class="ico u-icn-local4 u-icn-local4-ok2"></span><span class="s-fc3">新增1250首音乐，你可以<span class="s-fc2">获取封面歌词</span>，或<span class="s-fc2">升级音质</span></span>
+                </div>
+                <div class="itm z-show">
+                    <!-- z-first z-hide z-show -->
+                    <span class="ico u-icn-local2 u-icn-local2-match"></span><span class="s-fc3">正在匹配升级1/100</span>
+                    <div class="u-probar sep">
+                        <div class="pro" style="width:50%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wrap">
+            <div class="srch">
+                <div class="u-lcsch u-lcsch-s z-edit">
+                    <input type="text" placeholder="筛选歌手">
+                    <a class="sch-btn">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#close"></use>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="lcsd">
+                <ul class="n-sdlst">
+                    <li class="z-sel">
+                        <a href="#">
+                            <div class="u-cover u-cover-tn"><span class="lnk"><img src="http://nec.netease.com/img/s/1.jpg"></span></div>
+                            <p class="f-thide">张学友</p>
+                            <p class="s-fc4">122首</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="u-cover u-cover-tn"><span class="lnk"><img src="http://nec.netease.com/img/s/1.jpg"></span></div>
+                            <p class="f-thide">莱昂纳德.科恩</p>
+                            <p class="s-fc4">122首</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="u-cover u-cover-tn"><span class="lnk"><img src="http://nec.netease.com/img/s/1.jpg"></span></div>
+                            <p class="f-thide">Cara Dillon</p>
+                            <p class="s-fc4">56首</p>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="n-sdlst n-sdlst-alb">
+                    <li>
+                        <a href="#">
+                            <div class="u-cover u-cover-tnalb"><span class="lnk"><img src="http://nec.netease.com/img/s/1.jpg"></span></div>
+                            <p class="f-thide">ポルノグラフィティポルノグラフィティ</p>
+                            <p class="s-fc4">12首</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="u-cover u-cover-tnalb"><span class="lnk"><img src="http://nec.netease.com/img/s/1.jpg"></span></div>
+                            <p class="f-thide">莱昂纳德.科恩</p>
+                            <p class="s-fc4">122首</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="u-cover u-cover-tnalb"><span class="lnk"><img src="http://nec.netease.com/img/s/1.jpg"></span></div>
+                            <p class="f-thide">Cara Dillon</p>
+                            <p class="s-fc4">122首</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="lcsd" style="left: 200px; background:#16181c; box-shadow: 0 0 30px; z-index: 100;">
+                <div class="n-sdlst-tre">
+                    <p class="s-fc3">全部音乐(125)</p>
+                    <ul class="top">
+                        <li class="fstchld nochld">
+                            <p class="no"><a href="#">Amy Diam ond895968656巴桑巴桑巴桑巴桑巴桑巴桑</a></p>
+                        </li>
+                        <li class="haschld">
+                            <p class="has"><i><svg><use xlink:href="../../res/svg/icon.sp.svg#tree_unfold"></use></svg></i><a href="#">索良朋3333(20)</a></p>
+                            <ul>
+                                <li class="fstchld1 nochld z-sel">
+                                    <p class="no"><a href="#">Amy Diamond</a></p>
+                                </li>
+                                <li class="nochld lstchld">
+                                    <p class="no"><a href="#">巴桑</a></p>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="haschld">
+                            <p class="has"><i><svg><use xlink:href="../../res/svg/icon.sp.svg#tree_unfold"></use></svg></i><a href="#">索良朋3333(20)</a></p>
+                            <ul>
+                                <li class="fstchld1 nochld">
+                                    <p class="no"><a href="#">Amy Diamond</a></p>
+                                </li>
+                                <li class="haschld">
+                                    <p class="has"><svg><use xlink:href="../../res/svg/icon.sp.svg#tree_fold"></use></svg><a href="#">巴桑巴桑巴桑巴桑巴桑巴桑巴桑巴桑巴桑dadafda(10)</a></p>
+                                    <ul>
+                                        <li class="fstchld1 nochld">
+                                            <p class="no"><a href="#">Richard Stollz</a></p>
+                                        </li>
+                                        <li class="nochld">
+                                            <p class="no"><a href="#">东吴相对论</a></p>
+                                        </li>
+                                        <li class="nochld">
+                                            <p class="no"><a href="#">Richard Stollz</a></p>
+                                        </li>
+                                        <li class="nochld lstchld">
+                                            <p class="no"><a href="#">东吴相对论(6)</a></p>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nochld lstchld">
+                                    <p class="no"><a href="#">巴桑44</a></p>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nochld">
+                            <p class="no"><a href="#">巴桑44669696</a></p>
+                        </li>
+                        <li class="haschld expand lst">
+                            <p class="has"><i><svg><use xlink:href="../../res/svg/icon.sp.svg#tree_unfold"></use></svg></i><a href="#">巴桑dadafda(10)巴桑巴桑巴桑巴桑巴桑巴桑</a></p>
+                            <ul>
+                                <li class="fstchld1 haschld">
+                                    <p class="has"><i><svg><use xlink:href="../../res/svg/icon.sp.svg#tree_unfold"></use></svg></i><a href="#">巴桑巴桑巴桑巴桑巴桑巴桑巴桑巴桑巴桑dadafda(10)</a></p>
+                                    <ul>
+                                        <li class="fstchld1 nochld">
+                                            <p class="no"><a href="#">Richard Stollz</a></p>
+                                        </li>
+                                        <li class="nochld lstchld">
+                                            <p class="no"><a href="#">东吴相对论(6)</a></p>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nochld">
+                                    <p class="no"><a href="#">东吴相对论</a></p>
+                                </li>
+                                <li class="nochld">
+                                    <p class="no"><a href="#">Richard Stollz</a></p>
+                                </li>
+                                <li class="nochld lstchld">
+                                    <p class="no"><a href="#">东吴相对论(6)</a></p>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- 加载中 -->
+            <div class="lcsd" style="left: 400px; background:#16181c; box-shadow: 0 0 30px; z-index: 100;">
+                <div class="u-load">加载中...</div>
+            </div>
+            <!-- 未能找到 -->
+            <div class="lcsd" style="left: 600px;  background:#16181c; box-shadow: 0 0 30px; z-index: 100;">
+                <div class="empty s-fc3">
+                    <span>未能找到与</span><span class="s-fc2 f-ff1">“</span><em class="f-thide s-fc2">不透明度大不透明度大</em><span class="s-fc2 f-ff1">”</span>
+                    <br>
+                    <span>相关的任何音乐</span>
+                </div>
+            </div>
+            <div class="lclst">
+                <div class="oper f-cb">
+                    <div class="buttons">
+                        <div class="u-ibtn5b"><span class="u-ibtn5 u-ibtn5-ply"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#btn_play"></use></svg>播放全部</span><span class="u-ibtn5 u-ibtn5-only u-ibtn5-addto"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#btn_addto_list"></use></svg></span></div>
+                        <div class="u-ibtn5b"><span class="u-ibtn5 u-ibtn5-ply z-dis"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#btn_play"></use></svg>播放全部</span><span class="u-ibtn5 u-ibtn5-only u-ibtn5-addto z-dis"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#btn_addto_list"></use></svg></span></div>
+                        <button class="u-ibtn5 u-ibtn5-scan">
+                            <svg>
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#btn_scan"></use>
+                            </svg>匹配音乐</button>
+                    </div>
+                </div>
+                <!-- 列表 -->
+                <div class="m-plylist m-plylist-7col m-plylist-local">
+                    <!-- 表头 -->
+                    <div class="head f-cb">
+                        <div class="fix">
+                            <div class="th col"></div>
+                        </div>
+                        <div class="flow">
+                            <div class="th col asc">音乐标题<i></i></div>
+                            <div class="th col desc">歌手<i></i></div>
+                            <div class="th col">专辑</div>
+                            <div class="th col desc">时长<i></i></div>
+                            <div class="th col desc">大小<i></i></div>
+                        </div>
+                    </div>
+                    <ul>
+                        <li class="itm j-item  z-haslocal z-sel" draggable="true">
+                            <div class="flow">
+                                <div class="td col title"><span class="tit s-fc1" title="Welcome&nbsp;To&nbsp;New&nbsp;York">Welcome To New York</span></div>
+                                <div class="td col ellipsis" title="Taylor&nbsp;Swift"> <a class="s-fc1" href="#">Taylor Swift</a> </div>
+                                <div class="td col ellipsis"> <a class="s-fc3" href="#" title="1989">1989</a> </div>
+                                <div class="td col s-fc4">03:32</div>
+                                <div class="td col s-fc4">8.4MB</div>
+                            </div>
+                        </li>
+                        <li class="itm j-item  z-haslocal" draggable="true">
+                            <div class="flow">
+                                <div class="td col title"><span class="tit s-fc1" title="Blank&nbsp;Space">Blank Space</span></div>
+                                <div class="td col ellipsis" title="Taylor&nbsp;Swift"> <a class="s-fc1" href="#">Taylor Swift</a> </div>
+                                <div class="td col ellipsis"><a class="s-fc3" href="#" title="1989">1989</a></div>
+                                <div class="td col s-fc4">03:51</div>
+                                <div class="td col s-fc4">9.1MB</div>
+                            </div>
+                        </li>
+                        <li class="itm j-item  z-haslocal" draggable="true">
+                            <div class="flow">
+                                <div class="td col title"><span class="tit s-fc1" title="Style">Style</span></div>
+                                <div class="td col ellipsis" title="Taylor&nbsp;Swift"><a class="s-fc1" href="#">Taylor Swift</a></div>
+                                <div class="td col ellipsis"><a class="s-fc3" href="#" title="1989">1989</a></div>
+                                <div class="td col s-fc4">03:51</div>
+                                <div class="td col s-fc4">9.0MB</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

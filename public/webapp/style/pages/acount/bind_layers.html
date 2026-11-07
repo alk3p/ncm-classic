@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>绑定帐号浮层—网易云音乐</title>
+<!-- STYLE -->
+<link rel="stylesheet" href="../../css/animate.ls.css"/>
+<link rel="stylesheet" href="../../css/base.ls.css"/>
+<link rel="stylesheet" href="../../css/grid.ls.css"/>
+<link rel="stylesheet" href="../../css/unit.ls.css"/>
+<link rel="stylesheet" href="../../css/module.ls.css"/>
+<link rel="stylesheet" href="../../css/frame.ls.css">
+<link rel="stylesheet" href="../../css/layer.ls.css">
+<link rel="stylesheet" href="../../css/style.ls.css">
+<link rel="stylesheet" href="../../css/skin_common.ls.css">
+
+<!-- SKIN -->
+<link rel="stylesheet" href="../../skin/pub/web/css/skin.ls.css">
+<!-- 
+<link rel="stylesheet" href="../../skin/black/web/css/skin.ls.css">
+ -->
+<style>
+body{overflow-y:auto;border:0;}
+</style>
+<script src="../replace.js"></script>
+</head>
+<body>
+<!-- 解除手机绑定 -->
+<div class="m-layer z-show" style="left:10px;">
+	<div class="zbar"><div class="zttl">解除绑定</div></div>
+	 <div class="zcnt">
+        <div class="lyct lyct-1">
+			<p>你确定要解除对手机号<strong class="s-fc2">138****3364</strong>的绑定？</p>
+        </div>
+        <div class="lybt">
+            <button type="button" class="u-ibtn1 u-ibtnsz1">解除绑定</button><button type="button" class="u-ibtn5 u-ibtnsz1">取 消</button>
+        </div>
+    </div>
+	<span class="zcls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+</div>
+<div class="m-layer z-show" style="top:360px;left:320px;">
+    <div class="zbar"><div class="zttl">解除绑定</div></div>
+     <div class="zcnt">
+        <div class="lyct lyct-1">
+            <p>确定要解除QQ绑定？</p>
+        </div>
+        <div class="lybt">
+            <button type="button" class="u-ibtn1 u-ibtnsz1">解除绑定</button><button type="button" class="u-ibtn5 u-ibtnsz1">取 消</button>
+        </div>
+    </div>
+    <span class="zcls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+</div>
+
+<!-- 删除帐号确认 -->
+<div class="m-layer z-show" style="left:320px;">
+    <div class="zbar"><div class="zttl">删除帐号确认</div></div>
+    <div class="zcnt">
+        <div class="lyct n-lybind">
+	   		<p>为避免恶意删除他人帐号，需要验证你的注册帐号信息：</p>
+	   		<p class="s-fc4">待删除的网易邮箱帐号：leletu@126.com</p>
+	   		<div class="password"><input type="text" class="u-txt" value="" placeholder="请输入密码"></div>
+	   		<div class="iptcode"><input type="text" class="u-txt" value="" placeholder="请输入验证码"><img class="codeimg" src="http://music.163.com/captcha?id=JncModYi11Sa83pIk3B2dtAQ"></div>
+	  
+        </div>
+        <div class="lybt">
+            <button type="button" class="u-ibtn1 u-ibtnsz1">绑 定</button>
+        </div>
+    </div>
+    <span class="zcls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+</div>
+
+<!-- 删除帐号确认 -->
+<div class="m-layer z-show" style="left:640px;">
+    <div class="zbar"><div class="zttl">删除帐号确认</div></div>
+    <div class="zcnt">
+        <div class="lyct lyct-1">
+            <p>
+                <strong class="f-fwb f-fs1"><i class="u-icn u-icn-warn" style="margin-right:5px; position:relative; top:-1px;"></i>确认删除帐号？</strong>
+            </p>
+            <p style="margin-top:20px;">
+                将会删除云音乐帐号 <em class="f-fwb">Shimu</em><br>
+                <strong class="f-fwb f-fs1 s-fc6">用户数据将无法恢复</strong>
+            </p>
+        </div>
+        <div class="lybt">
+            <button type="button" class="u-ibtn12 u-ibtnsz1">删 除</button><button type="button" class="u-ibtn5 u-ibtnsz1">取 消</button>
+        </div>
+    </div>
+    <span class="zcls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+</div>
+
+<!-- 绑定网易通行证 -->
+<div class="m-layer z-show" style="left:960px;">
+    <div class="zbar"><div class="zttl">绑定网易邮箱帐号</div></div>
+    <div class="zcnt">
+        <div class="lyct n-lybind n-lybind-1">
+            <div class="acount">
+            	<div class="itm"><input type="text" class="u-txt" value="" placeholder="登录邮箱"></div>
+            	<div class="itm f-pr"><input type="text" class="u-txt" value="" placeholder="密码"><a href="#" class="fgt s-fc4">忘记密码</a></div>
+            </div>
+        </div>
+        <div class="lybt">
+            <button type="button" class="u-ibtn1 u-ibtnsz1">完 成</button>
+        </div>
+    </div>
+    <span class="zcls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+</div>
+
+<!-- 手机绑定 -->
+<div class="m-layer z-show" style="top:200px; left:10px;">
+    <div class="zbar"><div class="zttl">手机绑定</div></div>
+    <div class="zcnt">
+        <div class="lyct n-lybind">
+            <section>
+                <label class="lb">手机号：</label>
+                <div class="mobile u-mbtxt"><em class="qh f-fwb">+86</em><input type="text" value="13545258962" class="txt u-txt" placeholder="填写手机号码"></div>
+                <button class="u-ibtn5 u-ibtnst1 u-ibtnfs0">获取验证码</button>
+                <div class="err f-pa s-fc6">出错信息</div>
+            </section>
+            <!-- 安全提示 -->
+            <section class="safe">
+                <label class="lb">为了安全，我们会向你的手机发送短信校验</label>
+                <input type="text" value="" class="txt u-txt u-txt-short" placeholder="填写验证码">
+                <div class="err f-pa s-fc6">出错信息</div>
+            </section>
+            <!-- 密码 -->
+            <section class="psword">
+                <label class="lb">密码：</label>
+                <input type="text" value="" class="txt u-txt u-txt-short" placeholder="填写密码，不少于6位">
+                <div class="err f-pa s-fc6">出错信息</div>
+            </section>
+        </div>
+        <div class="lybt">
+            <button type="button" class="u-ibtn1 u-ibtnsz1">绑 定</button><button type="button" class="u-ibtn5 u-ibtnsz1">取 消</button>
+        </div>
+    </div>
+    <span class="zcls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+</div>
+<div class="m-layer z-show" style="top: 300px; left: 640px;">
+    <div class="zbar"><div class="zttl">设置密码</div></div>
+    <div class="zcnt">
+        <div class="lyct n-lybind n-lybind-1">
+            <section class="case1">
+                <p>设置密码后，可使用手机号登录</p>
+            </section>
+            <div class="acount">
+                <div class="itm"><input type="password" class="u-txt j-flag" value="" placeholder="设置登录密码，不少于6位"></div>
+                <div class="err s-fc6 j-flag"></div>
+            </div>
+        </div>
+        <div class="lybt">
+            <button type="button" class="u-ibtn1 u-ibtnsz1 j-flag">确 认</button>
+            <button type="button" class="u-ibtn5 u-ibtnsz1 j-flag">取 消</button>
+        </div>
+    </div>
+    <span class="zcls u-icn u-icn-laycls" title="关闭窗体">
+        <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#btn_close"></use></svg>
+    </span>
+</div>
+<div class="m-layer z-show" style="top: 230px; left: 960px;">
+    <div class="zbar"><div class="zttl">修改密码</div></div>
+    <div class="zcnt">
+        <div class="lyct n-lybind">
+            <section>
+                <label class="lb" style="margin-bottom:15px;">为了安全，我们会向你的手机发送短信校验</label>
+                <input type="text" value="" class="txt u-txt u-txt-short j-flag" placeholder="填写验证码">
+                <button class="u-ibtn5 u-ibtnst1 u-ibtnfs0 u-ibtnw1 z-dis">00:53</button>
+                <div class="err f-pa s-fc6 j-flag">错误信息</div>
+            </section>
+        </div>
+        <div class="lybt">
+            <button type="button" class="u-ibtn1 u-ibtnsz1 j-flag" id="auto-id-F1kdLg81alSkiquM">确 认</button>
+            <button type="button" class="u-ibtn5 u-ibtnsz1 j-flag" id="auto-id-K6CyPEOxkTNyczpo">取 消</button>
+        </div>
+    </div>
+    <span class="zcls u-icn u-icn-laycls" title="关闭窗体" id="auto-id-emTdCsuTi9TzE4Dy"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="orpheus://orpheus/style/res/svg/icon.sp.svg#btn_close"></use></svg></span>
+</div>
+<div class="m-layer z-show" style="top: 450px; left: 960px;">
+    <div class="zbar"><div class="zttl">解除绑定</div></div>
+    <div class="zcnt">
+        <div class="lyct n-lybind">
+            <p class="s-fc4">您的邮箱账号：<span class="j-flag">qatest163@126.com</span></p>
+            <div class="acount f-pr">
+                <input type="password" class="u-txt j-flag" value="" placeholder="请输入密码">
+                <a href="javascript:;" data-href2="http://reg.163.com/resetpwd/index.do" class="fgt s-fc4">忘记密码</a>
+            </div>
+            <div class="err s-fc6 j-flag"></div>
+        </div>
+        <div class="lybt">
+            <button type="button" class="u-ibtn1 u-ibtnsz1 j-flag" id="auto-id-69cZpxVwKUlMKXNL">解除绑定</button>
+        </div>
+    </div>
+    <span class="zcls u-icn u-icn-laycls" title="关闭窗体" id="auto-id-WiZeube1XL2nzbdQ"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="orpheus://orpheus/style/res/svg/icon.sp.svg#btn_close"></use></svg></span>
+</div>
+</body>
+</html>

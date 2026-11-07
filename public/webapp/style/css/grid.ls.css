@@ -1,0 +1,298 @@
+/********************************************************/
+/* GRID.CSS */
+/********************************************************/
+/* 整站/页面布局 */
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+body {
+  position: relative;
+  box-sizing: border-box;
+}
+.g-hd,
+.g-sd,
+.g-mn,
+.g-single {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+.g-hd {
+  height: 50px;
+  z-index: 150;
+  top: 0;
+}
+.g-sd,
+.g-mn,
+.g-single {
+  top: 50px;
+  bottom: 49px;
+}
+.g-single {
+  z-index: 110;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  -webkit-transform: scale(0);
+  -webkit-transform-origin: 0 100%;
+  padding: 0 0 40px;
+  overflow: hidden;
+  overflow-y: overlay;
+  -webkit-transition: opacity 0.3s ease-out, -webkit-transform 0.3s ease-out;
+}
+.g-single.z-show {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  -webkit-transition: opacity 0.3s ease-out, -webkit-transform 0.3s ease-out;
+}
+.g-singlec.z-hasmore {
+  padding-bottom: 150px;
+}
+.g-sd {
+  z-index: 100;
+  width: 199px;
+  right: auto;
+  border-right: 1px solid;
+}
+.g-mn {
+  z-index: 70;
+  left: 200px;
+  overflow: hidden;
+  overflow-y: overlay;
+}
+.g-mn.z-overlay {
+  overflow-y: overlay;
+}
+.g-mn.z-noscr {
+  overflow-y: hidden !important;
+}
+.g-bd {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  overflow-y: overlay;
+}
+/* 白色页面 */
+.g-bdmc,
+.g-bds {
+  box-sizing: border-box;
+}
+.g-bdm {
+  float: left;
+  width: 100%;
+  min-height: 100%;
+}
+.g-bdmc {
+  min-height: 100%;
+  margin-right: 235px;
+  border-right: 1px solid;
+}
+.g-bds {
+  float: right;
+  width: 236px;
+  min-height: 100%;
+  border-left: 1px solid;
+  margin-left: -236px;
+}
+.g-bd-1 {
+  margin-top: 20px;
+}
+.g-bdmc-1 {
+  margin-right: 154px;
+  padding-right: 30px;
+  border-right: 1px solid;
+}
+.g-bds-1 {
+  width: 155px;
+  right: 29px;
+}
+.g-bd2 {
+  position: relative;
+  z-index: 3;
+  width: 860px;
+  margin: 0 auto;
+}
+.g-bd3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  overflow-y: overlay;
+}
+.g-sd2 {
+  position: relative;
+  float: right;
+  width: 244px;
+}
+.g-mn2 {
+  float: left;
+  width: 100%;
+  margin-right: -270px;
+}
+.g-mn2c {
+  margin-right: 314px;
+}
+.g-mv {
+  position: absolute;
+  top: 50px;
+  bottom: 0;
+  width: 100%;
+  overflow: overlay;
+}
+.g-mv .mvwrap {
+  width: 975px;
+  padding: 27px 0;
+  margin: 0 auto;
+}
+.g-ft {
+  position: absolute;
+  z-index: 91;
+  bottom: 65px;
+  left: 200px;
+  right: 0;
+  height: 17px;
+  pointer-events: none;
+}
+.g-min {
+  max-width: 760px;
+  margin: 0 auto;
+}
+/* 设置页 */
+.g-setHd {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50px;
+  height: 50px;
+  z-index: 110;
+}
+.g-sd-set,
+.g-mn-set {
+  top: 100px;
+  z-index: 90;
+}
+.g-sd-set {
+  width: 200px;
+}
+.g-mn-set {
+  left: 200px;
+}
+/* 命名空间 */
+/* 
+	*已经有m-xx做命名空间的不作更改；
+	*没有m-xx的，增加p-xx，p-xx不一定在页面顶部定义，也可用于tab分页；
+	*p-xx或m-xx应与g-wrap和q-lrc同时出现，用于控制歌词栏; 
+	*页面上g-wrap有多个或嵌套的可特殊处理；
+*/
+.p-recmd,
+.p-songlist,
+.p-rank,
+.p-radio,
+.p-newsong,
+.p-artist,
+.p-newsong,
+.p-newdvd,
+.p-mv,
+.p-exclusive {
+  min-width: 760px;
+  max-width: 1040px;
+  margin: 0 auto;
+  -webkit-transition: 0.3s ease-out;
+  -webkit-transition-property: width, height;
+}
+/* 发现-推荐 */
+/* 发现-歌单 */
+/* 发现-主播电台 */
+/* 发现-排行榜 */
+/* 发现-歌手 */
+/* 发现-最新音乐 */
+/* 朋友-达人明星  */
+/* 粉丝和关注 */
+/* 单个动态页 */
+.p-localtrack {
+  -webkit-transform: translateZ(0px);
+}
+/* 本地-列表模式 */
+/* 我的下载 */
+/* 我的云盘 */
+.p-dtalb {
+  position: relative;
+  padding-top: 1px;
+}
+/* 详情-专辑 */
+/* 详情-MV */
+/* 详情-详细介绍 */
+/* 详情-相似歌手推荐 */
+/* 详情-电台 */
+/* 搜索结果页 */
+/* 最近常听 */
+/* 首页响应式宽度 */
+/* g-wrap 只定义内容之间的间距，不作它用 */
+.g-wrap {
+  padding: 20px 30px;
+}
+.g-wrap0 {
+  padding: 30px;
+}
+.g-wrap1 {
+  padding: 0;
+}
+.g-wrap2 {
+  padding: 0 30px 30px;
+}
+.g-wrap3 {
+  padding: 20px;
+}
+/* 【朋友】认识的人 */
+.g-wrap4 {
+  padding: 30px 30px 0 30px;
+}
+.g-wrap5 {
+  padding: 0 30px;
+}
+.m-plylist_playlist,
+.m-plylist_album {
+  padding-bottom: 30px;
+}
+.m-plylist_playlist.z-hasnote,
+.mq-lrc .m-plylist_playlist,
+.m-plylist_album.z-hasnote,
+.mq-lrc .m-plylist_album {
+  padding-bottom: 0;
+}
+/* g-wrap有词条的情况 */
+.mq-lrc .q-lrc.g-wrap {
+  padding-bottom: 40px;
+}
+.mq-lrc .q-lrc.g-wrap0 {
+  padding-bottom: 40px;
+}
+.mq-lrc .q-lrc.g-wrap1 {
+  padding-bottom: 34px;
+}
+.mq-lrc .q-lrc.g-wrap2 {
+  padding-bottom: 34px;
+}
+.mq-lrc .q-lrc.g-wrap3 {
+  padding-bottom: 34px;
+}
+.mq-lrc .q-lrc.g-wrap4 {
+  padding-bottom: 30px;
+}
+/* 特殊处理：绝对定位元素，不需要加g-wrap  */
+.mq-lrc .n-local .n-sdlst {
+  padding-bottom: 34px;
+}
+/* 本地音乐 视图类型 */
+.mq-lrc .n-local .lclst .m-plylist {
+  margin-bottom: 34px;
+}
+/* 本地音乐 视图列表 */

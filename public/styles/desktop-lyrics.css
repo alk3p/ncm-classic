@@ -1,0 +1,12 @@
+/** Used in DesktopLyrics **/
+
+QLabel#background-label {
+  border-width: 6px;
+  border-image: url(SKIN_ROOT/lrc/frame.png) 6 6 6 6 stretch;
+}
+
+/* Remove borders in FlatButtons */
+QPushButton[flat="true"] {
+  border: none;
+  outline: none;
+}

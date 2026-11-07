@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>PC歌单</title>
+<!-- STYLE -->
+<link rel="stylesheet" href="../../css/animate.ls.css"/>
+<link rel="stylesheet" href="../../css/base.ls.css"/>
+<link rel="stylesheet" href="../../css/grid.ls.css"/>
+<link rel="stylesheet" href="../../css/unit.ls.css"/>
+<link rel="stylesheet" href="../../css/module.ls.css"/>
+<link rel="stylesheet" href="../../css/frame.ls.css">
+<link rel="stylesheet" href="../../css/layer.ls.css">
+<link rel="stylesheet" href="../../css/style.ls.css">
+<link rel="stylesheet" href="../../css/skin_common.ls.css">
+
+<!-- SKIN -->
+<link rel="stylesheet" href="../../skin/pub/web/css/skin.ls.css">
+
+<style>
+body{overflow-y:auto;border:0;}
+</style>
+<script src="../replace.js"></script>
+</head>
+<body class="mq-806 mq-920 mq-990 mq-1040">
+<nav class="m-tab">
+    <li><a href="index_recmt.html">个性推荐</a></li>
+    <li class="z-selected"><a href="index_songLists.html">歌单</a></li>
+    <li><a href="index_radio.html">主播电台</a></li>
+    <li><a href="index_rank.html">排行榜</a></li>
+    <li><a href="index_artists.html">歌手</a></li>
+    <li><a href="index_new_songs.html">最新音乐</a></li>
+</nav>
+<div class="g-wrap p-songlist">
+    <div class="m-slthead">
+        <!-- 选择类型 -->
+        <div class="slttype f-pr">
+            <button class="u-ibtn5 u-ibtn5-drop">流行<svg><use xlink:href="../../res/svg/icon.sp.svg#btn_droparr"></use></svg></button>
+            <!-- 选择类型浮层 -->
+            <div class="u-arrlay m-slttypes" style="display:none;">
+                <div class="titbar f-fs1">选择标签</div>
+                <div class="tagcntwrap">
+                    <div class="tagcnt">
+                        <div class="all tag z-slt f-cp">
+                            全部歌单
+                            <svg class="slted"><use xlink:href="../../res/svg/icon.sp.svg#type_selected"></use></svg>
+                        </div>
+                        <dl class="taglist">
+                            <dt class="f-fs1">
+                                <svg class="type"><use xlink:href="../../res/svg/icon.sp.svg#type_language"></use></svg>语种
+                            </dt>
+                            <dd>
+                                <ul class="f-cb">
+                                    <li class="tag f-cp">华语</li>
+                                    <li class="tag f-cp">欧美</li>
+                                    <li class="tag f-cp">日语</li>
+                                    <li class="tag f-cp">粤语</li>
+                                    <li class="tag f-cp">小语种</li>
+                                </ul>
+                            </dd>
+                        </dl>
+                        <dl class="taglist">
+                            <dt class="f-fs1"><svg class="type"><use xlink:href="../../res/svg/icon.sp.svg#type_style"></use></svg>风格</dt>
+                            <dd>
+                                <ul class="f-cb">
+                                    <li class="tag f-cp">清晨</li>
+                                    <li class="tag f-cp">夜晚</li>
+                                    <li class="tag f-cp">工作</li>
+                                    <li class="tag f-cp">学习</li>
+                                    <li class="tag f-cp">运动</li>
+                                    <li class="tag f-cp">清晨</li>
+                                    <li class="tag f-cp">夜晚</li>
+                                    <li class="tag f-cp">工作</li>
+                                    <li class="tag f-cp">学习</li>
+                                    <li class="tag f-cp">运动</li>
+                                    <li class="tag f-cp">清晨</li>
+                                    <li class="tag f-cp">夜晚</li>
+                                    <li class="tag f-cp">工作</li>
+                                    <li class="tag f-cp">学习</li>
+                                    <li class="tag f-cp">运动</li>
+                                </ul>
+                            </dd>
+                        </dl>
+                        <dl class="taglist taglist-scence">
+                            <dt class="f-fs1"><svg class="type"><use xlink:href="../../res/svg/icon.sp.svg#type_scene"></use></svg>场景</dt>
+                            <dd>
+                                <ul class="f-cb">
+                                    <li class="tag f-cp">兴奋</li>
+                                    <li class="tag f-cp">感动</li>
+                                    <li class="tag f-cp">快乐</li>
+                                    <li class="tag f-cp">安静</li>
+                                    <li class="tag f-cp">思念</li>
+                                    <li class="tag f-cp">兴奋</li>
+                                    <li class="tag f-cp">感动</li>
+                                    <li class="tag f-cp">快乐</li>
+                                    <li class="tag f-cp">安静</li>
+                                    <li class="tag f-cp">思念<svg class="hot"><use xlink:href="../../res/svg/icon.sp.svg#type_hot"></use></svg></li>
+                                </ul>
+                            </dd>
+                        </dl>
+                        <dl class="taglist">
+                            <dt class="f-fs1"><svg class="type"><use xlink:href="../../res/svg/icon.sp.svg#type_emotion"></use></svg>情感</dt>
+                            <dd>
+                                <ul class="f-cb">
+                                    <li class="tag f-cp">流行</li>
+                                    <li class="tag f-cp">摇滚</li>
+                                    <li class="tag f-cp">民谣</li>
+                                    <li class="tag f-cp">摇滚</li>
+                                    <li class="tag f-cp">舞曲</li>
+                                    <li class="tag f-cp">流行</li>
+                                    <li class="tag f-cp">摇滚</li>
+                                    <li class="tag f-cp">民谣</li>
+                                    <li class="tag f-cp">摇滚</li>
+                                    <li class="tag f-cp">舞曲</li>
+                                </ul>
+                            </dd>
+                        </dl>
+                        <dl class="taglist">
+                            <dt class="f-fs1"><svg class="type"><use xlink:href="../../res/svg/icon.sp.svg#type_theme"></use></svg>主题</dt>
+                            <dd>
+                                <ul class="f-cb">
+                                    <li class="tag f-cp">钢琴</li>
+                                    <li class="tag f-cp">器乐</li>
+                                    <li class="tag f-cp">儿童</li>
+                                    <li class="tag f-cp">榜单</li>
+                                    <li class="tag f-cp">00后</li>
+                                    <li class="tag f-cp">钢琴</li>
+                                    <li class="tag f-cp">器乐</li>
+                                    <li class="tag f-cp">儿童</li>
+                                    <li class="tag f-cp">榜单</li>
+                                    <li class="tag f-cp">00后</li>
+                                    <li class="tag f-cp">钢琴</li>
+                                    <li class="tag f-cp">器乐</li>
+                                    <li class="tag f-cp">儿童</li>
+                                    <li class="tag f-cp">榜单</li>
+                                    <li class="tag f-cp">00后</li>
+                                    <li class="tag f-cp">钢琴</li>
+                                    <li class="tag f-cp">器乐</li>
+                                    <li class="tag f-cp">儿童</li>
+                                    <li class="tag f-cp">榜单</li>
+                                    <li class="tag f-cp">00后</li>
+                                </ul>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 热门标签： -->
+        <div class="rec">
+            <span>热门标签：</span><a href="billList.html" class="s-fc4">流行</a><span class="line">|</span><a href="billList.html" class="s-fc4">流行</a><span class="line">|</span><a href="billList.html" class="s-fc4">流行</a><span class="line">|</span><a href="billList.html" class="s-fc4">流行</a><span class="line">|</span><a href="billList.html" class="s-fc4">流行</a>
+        </div>
+    </div>
+    <!-- 歌单列表 -->
+    <ul class="m-list m-list-recmd m-list-recmd-bill m-list-flow f-flex">
+         <!-- 精品歌单 -->
+         <li>
+            <figrue class="cvr u-cover u-cover-list crown-enter">
+                <a href="index_songlists_hot.html" class="lnk">
+                    <img class="real blur" src="../../res/temp/list_temp2.jpg">
+                    <span class="crown-full f-pr"><img src="../../res/default/placeholder_cover_list.png"><svg class="f-pa"><use xlink:href="../../res/svg/cover.sp.svg#crown_enter"></use></svg><em class="f-pa">精品歌单 <i class="f-ff1">></i></em></span>
+                </a>
+            </figrue>
+            <div class="desc">
+                <h3 class="f-thide2"><a href="#">精品歌单</a></h3>
+            </div>
+        </li>
+        <!-- 普通歌单 -->
+        <li>
+            <figrue class="cvr u-cover u-cover-list">
+                <a href="#" class="lnk">
+                    <img src="../../res/default/default_disc.png">
+                    <img class="real" src="../../res/temp/list_temp1.jpg">
+                </a>
+                <div class="ci f-pa"><svg><use xlink:href="../../res/svg/cover.sp.svg#earphone"></use></svg>4106</div>
+                <div class="des f-pa">
+                    <a href="#"><i class="icn u-icn u-icn-creator"><svg><use xlink:href="../../res/svg/cover.sp.svg#creator"></use></svg></i>
+                    <span class="nam f-thide">小贴贴七夏0_0想睡的时候睡不着</span>
+                    <i class="tag u-icn u-icn-daren"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#daren_letter"></use></svg></i></a>
+                </div>
+                <span class="ply f-pa"><svg><use xlink:href="../../res/svg/cover.sp.svg#play_rb"></use></svg></span>
+                
+            </figrue>
+            <div class="desc">
+                <h3 class="f-thide2"><a href="#" class="f-fs2"> 空中音乐节香港站缤纷香港文化之空中音乐节香港站缤纷香港文化之</a></h3>
+            </div>
+        </li>
+        <li>
+            <figrue class="cvr u-cover u-cover-list">
+                <a href="#" class="lnk">
+                    <img src="../../res/default/default_disc.png">
+                    <img class="real" src="../../res/temp/list_temp2.jpg">
+                </a>
+                <div class="ci f-pa"><svg><use xlink:href="../../res/svg/cover.sp.svg#earphone"></use></svg>4106</div>
+                <div class="des f-pa">
+                    <a href="#"><i class="icn u-icn u-icn-creator"><svg><use xlink:href="../../res/svg/cover.sp.svg#creator"></use></svg></i>
+                    <span class="nam f-thide">七夏</span>
+                    <i class="tag u-icn u-icn-vip"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#v_letter"></use></svg></i></a>
+                </div>
+                <span class="ply f-pa"><svg><use xlink:href="../../res/svg/cover.sp.svg#play_rb"></use></svg></span>
+            </figrue>
+            <div class="desc">
+                <h3 class="f-thide2 f-fs2"><a href="#">空中音乐节香港站缤纷香港文化之空中音乐节香港站缤纷香港文化之</a></h3>
+            </div>
+        </li>
+        <li>
+            <figrue class="cvr u-cover u-cover-list">
+                <a href="#" class="lnk">
+                    <img src="../../res/default/default_disc.png">
+                    <img class="real" src="../../res/temp/list_temp4.jpg">
+                </a>
+                <div class="ci f-pa"><svg><use xlink:href="../../res/svg/cover.sp.svg#earphone"></use></svg>4106</div>
+                <div class="des f-pa">
+                    <a href="#"><i class="icn u-icn u-icn-creator"><svg><use xlink:href="../../res/svg/cover.sp.svg#creator"></use></svg></i>
+                    <span class="nam f-thide">小贴贴</span>
+                    <i class="tag u-icn u-icn-yyr"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#yyr_letter"></use></svg></i></a>
+                </div>
+                <span class="ply f-pa"><svg><use xlink:href="../../res/svg/cover.sp.svg#play_rb"></use></svg></span>
+            </figrue>
+            <div class="desc">
+                <h3 class="f-thide2"><a href="#">空中音乐节香港站缤纷香港文化之空中音乐节香港站缤纷香港文化之</a></h3>
+            </div>
+        </li>
+        <li>
+            <figrue class="cvr u-cover u-cover-list">
+                <a href="#" class="lnk">
+                    <img src="../../res/default/default_disc.png">
+                    <img class="real" src="../../res/temp/list_temp3.jpg">
+                </a>
+                <div class="ci f-pa"><svg><use xlink:href="../../res/svg/cover.sp.svg#earphone"></use></svg>4106</div>
+                <span class="ply f-pa"><svg><use xlink:href="../../res/svg/cover.sp.svg#play_rb"></use></svg></span>
+            </figrue>
+            <div class="desc">
+                <h3 class="f-thide2"><a href="#">空中音乐节香港站缤纷香港文化之空中音乐节香港站缤纷香港文化之</a></h3>
+            </div>
+        </li>
+        <li>
+            <figrue class="cvr u-cover u-cover-list">
+                <a href="#" class="lnk">
+                    <img src="../../res/default/default_disc.png">
+                    <img class="real" src="../../res/temp/list_temp2.jpg">
+                </a>
+                <div class="ci f-pa"><svg><use xlink:href="../../res/svg/cover.sp.svg#earphone"></use></svg>4106</div>
+                <span class="ply f-pa"><svg><use xlink:href="../../res/svg/cover.sp.svg#play_rb"></use></svg></span>
+            </figrue>
+            <div class="desc">
+                <h3 class="f-thide2"><a href="#">空中音乐节香港站缤纷香港文化之空中音乐节香港站缤纷香港文化之</a></h3>
+            </div>
+        </li>
+        <!-- 补全 -->
+        <li>
+            <figrue class="cvr u-cover u-cover-list">
+                <a href="#" class="lnk">
+                    <img src="../../res/default/default_disc.png">
+                    <img class="real" src="../../res/temp/list_temp2.jpg">
+                </a>
+                <div class="ci f-pa"><svg><use xlink:href="../../res/svg/cover.sp.svg#earphone"></use></svg>4106</div>
+                <span class="ply f-pa"><svg><use xlink:href="../../res/svg/cover.sp.svg#play_rb"></use></svg></span>
+            </figrue>
+            <div class="desc">
+                <h3 class="f-thide2"><a href="#">空中音乐节香港站缤纷香港文化之空中音乐节香港站缤纷香港文化之</a></h3>
+            </div>
+        </li>
+        <li>
+            <figrue class="cvr u-cover u-cover-list">
+                <a href="#" class="lnk">
+                    <img src="../../res/default/default_disc.png">
+                    <img class="real" src="../../res/temp/list_temp2.jpg">
+                </a>
+                <div class="ci f-pa"><svg><use xlink:href="../../res/svg/cover.sp.svg#earphone"></use></svg>4106</div>
+                <span class="ply f-pa"><svg><use xlink:href="../../res/svg/cover.sp.svg#play_rb"></use></svg></span>
+            </figrue>
+            <div class="desc">
+                <h3 class="f-thide2"><a href="#">空中音乐节香港站缤纷香港文化之空中音乐节香港站缤纷香港文化之</a></h3>
+            </div>
+        </li>
+        <li>
+            <figrue class="cvr u-cover u-cover-list">
+                <a href="#" class="lnk">
+                    <img src="../../res/default/default_disc.png">
+                    <img class="real" src="../../res/temp/list_temp2.jpg">
+                </a>
+                <div class="ci f-pa"><svg><use xlink:href="../../res/svg/cover.sp.svg#earphone"></use></svg>4106</div>
+                <span class="ply f-pa"><svg><use xlink:href="../../res/svg/cover.sp.svg#play_rb"></use></svg></span>
+            </figrue>
+            <div class="desc">
+                <h3 class="f-thide2"><a href="#">空中音乐节香港站缤纷香港文化之空中音乐节香港站缤纷香港文化之</a></h3>
+            </div>
+        </li>
+        <li class="j-leftfix"></li>
+        <li class="j-leftfix"></li>
+        <li class="j-leftfix"></li>
+        <li class="j-leftfix"></li>
+    </ul>
+    <div class="m-page">
+        <a href="#" class="zbtn zprv js-disabled"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#page_pre"></use>上一页</svg></a>
+        <a href="#" class="zpgi js-selected">1</a>
+        <a href="#" class="zpgi">2</a><a href="#" class="zpgi">3</a><a href="#" class="zpgi">4</a><a href="#" class="zpgi">5</a><a href="#" class="zpgi">6</a><a href="#" class="zpgi">7</a><a href="#" class="zpgi">8</a><span class="zdot">...</span><a href="#" class="zpgi">375</a><a href="#" class="zbtn znxt js-n-1446117625923"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#page_next"></use>下一页</svg></a> 
+    </div>
+</div>
+</body>

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>框架-网易云音乐</title>
+<!-- STYLE -->
+<link rel="stylesheet" href="../../css/animate.ls.css"/>
+<link rel="stylesheet" href="../../css/base.ls.css"/>
+<link rel="stylesheet" href="../../css/grid.ls.css"/>
+<link rel="stylesheet" href="../../css/unit.ls.css"/>
+<link rel="stylesheet" href="../../css/module.ls.css"/>
+<link rel="stylesheet" href="../../css/layer.ls.css">
+<link rel="stylesheet" href="../../css/style.ls.css">
+<link rel="stylesheet" href="../../css/skin_common.ls.css">
+
+<!-- SKIN -->
+<link rel="stylesheet" href="../../skin/pub/web/css/skin.ls.css">
+
+<script src="../replace.js"></script>
+</head>
+<body>
+<header class="g-hd s-theme-bgc1"><!-- 首页四张页面的时候加  z-noshadow  -->
+    <h1 class="m-logo"><a href="#"><svg><use xlink:href="../../res/svg/topbar.sp.svg#logo"></use></svg></a></h1>
+    <div class="m-topbox">
+        <div class="m-hst">
+           <span class="btn btn-prv">
+               <svg>
+                   <use xlink:href="../../res/svg/topbar.sp.svg#back"></use>
+               </svg>
+           </span>
+           <span class="btn btn-nxt z-dis">
+               <svg>
+                   <use xlink:href="../../res/svg/topbar.sp.svg#next"></use>
+               </svg>
+           </span>
+        </div>
+        <div class="m-sch">
+            <input type="text" placeholder="单曲/歌手/专辑/歌单/歌词/用户">
+            <a class="sch-btn">
+                <svg>
+                    <use xlink:href="../../res/svg/topbar.sp.svg#search"></use>
+                </svg>
+            </a>
+        </div>
+    </div>
+    <div class="m-tool">
+        <!-- 导入/上传/下载 -->
+        <div class="itm switch">
+            <span class="switching f-pr"></span>
+        </div>
+
+        <!-- 用户头像 -->
+        <div class="user">
+            <div class="face u-face"><img src="../../res/temp/head_temp1.jpg"></div>
+            <div class="name">
+                <p class="f-thide">C_Y_Xuaaajj</p>
+                <span class="arr">
+                    <svg class="svg">
+                        <use xlink:href="../../res/svg/topbar.sp.svg#head_arr"></use>
+                    </svg>
+                </span>
+            </div>
+            <span class="u-tip u-tip-sml"></span>
+        </div>
+        
+        <!-- 换肤 -->
+        <div class="itm skin">
+            <svg class="btn">
+                <use xlink:href="../../res/svg/topbar.sp.svg#skin"></use>
+            </svg>
+        </div>
+        <!-- 消息 -->
+        <div class="itm msg">
+            <svg class="btn">
+                <use xlink:href="../../res/svg/topbar.sp.svg#msg"></use>
+            </svg>
+            <span class="u-tip">99+</span>
+        </div>
+        <!-- 设置 -->
+        <div class="itm set">
+            <svg class="btn">
+                <use xlink:href="../../res/svg/topbar.sp.svg#set"></use>
+            </svg>
+        </div>
+    </div>
+</header>
+<section class="g-sd"><!-- 右则显示白色背景页面时加g-sd-1 -->
+    <nav class="m-nav">
+        <div class="nav">
+            <h2 class="z-first">推荐</h2>
+            <ul class="sys">
+                <li class="z-sel"><a href="#"><svg><use xlink:href="../../res/svg/sidebar.sp.svg#discover"></use></svg>发现音乐</a></li>
+                <li class=""><a href="#"><svg><use xlink:href="../../res/svg/sidebar.sp.svg#fm"></use></svg>私人FM</a></li>
+                <li class=""><a href="#"><svg><use xlink:href="../../res/svg/sidebar.sp.svg#mv"></use></svg>MV</a></li>
+                <li class=""><a href="#"><svg><use xlink:href="../../res/svg/sidebar.sp.svg#friend"></use></svg><span class="hastip">朋友<i class="u-dot"></i></span></a></li>
+            </ul>
+            <h2>我的音乐</h2>
+            <ul class="sys">
+                <li class="z-dragin z-scan"><a href="#"><svg><use xlink:href="../../res/svg/sidebar.sp.svg#local"></use></svg>本地音乐</a><i class="icn u-icn u-icn-scan"></i></li>
+                <li class=""><a href="#"><svg><use xlink:href="../../res/svg/sidebar.sp.svg#dld"></use></svg>下载管理</a></li>
+                <li>
+                    <a href="#">
+                        <svg><use xlink:href="../../res/svg/sidebar.sp.svg#cloud"></use></svg>
+                        我的音乐云盘
+                        <span class="new f-pa">
+                            <svg><use xlink:href="../../res/svg/sidebar.sp.svg#new"></use></svg>
+                            <svg class="svg-bg"><use xlink:href="../../res/svg/sidebar.sp.svg#new_bg"></use></svg>
+                        </span>
+                    </a>
+                </li>
+                <li class=""><a href="#"><svg><use xlink:href="../../res/svg/sidebar.sp.svg#artist"></use></svg>我的歌手</a></li>
+                <li class=""><a href="#"><svg><use xlink:href="../../res/svg/sidebar.sp.svg#mv"></use></svg>我的MV</a></li>
+                <li class="z-sel"><a href="#"><svg><use xlink:href="../../res/svg/sidebar.sp.svg#radio"></use></svg><span class="hastip">我的电台<i class="u-dot"></i></span></a></li>
+            </ul>
+            <h2>创建的歌单 
+                <span class="newlist f-cp f-pa">新建</span>
+                <span class="ctrl f-pa f-cp" title="收起"><svg><use xlink:href="../../res/svg/sidebar.sp.svg#down"></use></svg></span>
+            </h2>
+            <ul class="my">
+            	<li class="gd"><svg><use xlink:href="../../res/svg/sidebar.sp.svg#song"></use></svg><span class="edt"><input type="text" placeholder="未命名歌单"></span></li>
+                <li class="gd lke"><a href="#"><svg><use xlink:href="../../res/svg/sidebar.sp.svg#love"></use></svg>我喜欢的音乐</a></li>
+                <li class="gd"><a href="#"><svg><use xlink:href="../../res/svg/sidebar.sp.svg#song"></use></svg>歌单名称</a></li>
+                <li class="gd"><a href="#"><svg><use xlink:href="../../res/svg/sidebar.sp.svg#song"></use></svg>歌单名称</a><span class="state f-vc"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#list_pause"></use></svg></span></li>
+                <li class="gd z-show z-ply">
+                    <svg><use xlink:href="../../res/svg/sidebar.sp.svg#song"></use></svg>
+                    <a href="#">歌单名称</a>
+                    <!-- 正在播放：list_play，暂停：list_play -->
+                    <span class="state f-vc"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#list_pause"></use></svg></span>
+                </li>
+                <li class="gd z-show z-scan">
+                    <a href="#">歌单名称歌单名称歌单名称</a>
+                    <span class="state f-vc"><i class="u-icn u-icn-scan"></i></span>
+                </li>
+            </ul>
+            <h2>收藏的歌单
+                <span class="ctrl z-fold f-pa f-cp" title="展开"><svg><use xlink:href="../../res/svg/sidebar.sp.svg#down"></use></svg></span>
+            </h2>
+            <ul class="my z-hide">
+                <li class="gd"><a href="#">歌单名称</a></li>
+            </ul>
+        </div>
+    </nav>
+</section>
+<div class="m-guide m-guide-gedan">
+    <div class="connect">
+        <span class="spot"></span>
+        <span class="line"></span>
+    </div>
+    <div class="note f-ff2">
+        鼠标按住拖动，即可调整歌单顺序
+    </div>
+    <a href="#" class="cls"></a>
+</div>
+
+<div class="m-player">
+    <!-- 播放按钮 -->
+    <div class="btnc btnc-prv f-vc f-cp"><svg><use xlink:href="../../res/svg/btmbar.sp.svg#prev"></use></svg></div>
+    <div class="btnp f-vc f-cp"><svg><use xlink:href="../../res/svg/btmbar.sp.svg#pause"></use></svg></div>
+    <div class="btnc btnc-nxt f-vc f-cp"><svg><use xlink:href="../../res/svg/btmbar.sp.svg#next"></use></svg></div>
+    <!-- 播放进度 -->
+    <time class="now">01:38</time>
+    <div class="prg prg-ply f-vc"><span class="track"></span><span class="download" style="width:80%"></span><span class="has" style="width:40%"><span class="ctrl"></span></span></div>
+    <time class="all">03:25</time>
+    <!-- 音量 -->
+    <div class="spk z-silence f-vc f-cp"><svg><use xlink:href="../../res/svg/btmbar.sp.svg#voice"></use></svg></div><!-- 静音： addClass('z-silence') -->
+    <div class="prg prg-spk f-vc">
+    	<span class="track"></span>
+        <div class="hastrack">
+        	<span class="has" style="width:30%"></span>
+        </div>
+        <div class="ctrlctrak" style="width:30%"><span class="ctrl"></span></div>
+        
+    </div>
+    <!-- 顺序：order，随机：shuffle，循环：loop，单曲循环：one -->
+    <div class="type f-vc f-cp" title="随机播放"><svg><use xlink:href="../../res/svg/btmbar.sp.svg#shuffle"></use></svg></div>
+    <!-- 歌词 点亮歌词：z-light -->
+    <div class="word f-vc f-cp"><svg><use xlink:href="../../res/svg/btmbar.sp.svg#lrc"></use></svg></div>
+    <!-- 歌曲数 -->
+    <div class="list f-vc f-cp">
+		<span class="icon f-fl"><svg><use xlink:href="../../res/svg/btmbar.sp.svg#state_playlist"></use></svg></span>
+        <span class="num f-fl f-ff1">500</span>
+	</div>
+
+</div>
+<div class="m-playlist z-show" style="display:;">
+    <!-- tab -->
+	<div class="listhd">
+        <div class="tab f-vhc">
+            <a href="javascript:;" class="btn">播放列表</a>
+            <a href="javascript:;" class="btn z-sel">历史记录</a>
+        </div>
+        <span class="close u-icn u-icn-laycls f-fr f-cp"><svg><use xlink:href="../../res/svg/btmbar.sp.svg#close"></use></svg></span>
+    </div>
+    <!-- 共几首 -->
+    <div class="listsub">
+        <span class="f-fl s-fc3">共38首</span>
+        <!-- 右则操作 -->
+        <span class="clear f-fr f-cp s-fc3"><svg><use xlink:href="../../res/svg/btmbar.sp.svg#delete"></use></svg>清空</span>
+        <span class="fav f-fr f-cp s-fc3"><svg><use xlink:href="../../res/svg/btmbar.sp.svg#fav"></use></svg>收藏全部</span>
+    </div>
+    <!-- 列表 -->
+    <div class="listbd">
+    	<div class="m-empty m-empty-2" style="display:;">
+			<div class="emptywrap">
+				<h2 class="">你还没有添加任何歌曲！</h2>
+				<p class="s-fc3">去首页<a href="#" class="f-tdu s-fc2">发现音乐</a><br>或在<a href="#" class="f-tdu s-fc2">我的音乐</a>收听自己收藏的歌单</p>
+			</div>
+		</div>
+		<!-- 当前播放记录 -->
+        <ul class="f-cb" style="display:;">
+            <li class="">
+                <svg class="playstate"><use xlink:href="../../res/svg/btmbar.sp.svg#state_play"></use></svg>
+                <div class="col col-2 title"><span class="tit">点击】曲名歌曲歌曲</span><svg class="ico ico-sq u-icn u-icn-sq"><use xlink:href="../../res/svg/icon.sp.svg#sq"></use></svg></div>
+                <a class="col col-4 f-thide">某某某某某某某某某某某某某某某</a>
+				<a href="#" class="col col-3 src" title="来源"><svg><use xlink:href="../../res/svg/btmbar.sp.svg#src"></use></svg></a>
+                <div class="col col-5">03:36</div>
+            </li>
+            <li class="z-play">
+                <svg class="playstate"><use xlink:href="../../res/svg/btmbar.sp.svg#state_play"></use></svg>
+                <div class="col col-2 title"><span class="tit">【播放】歌曲名歌曲名歌曲名歌名歌</span><svg class="ico ico-program u-icn u-icn-program"><use xlink:href="../../res/svg/icon.sp.svg#program"></use></svg></div>
+                <div class="col col-4 f-thide"><a>周杰伦</a></div>
+				<a href="#" class="col col-3 src" title="来源"><svg><use xlink:href="../../res/svg/btmbar.sp.svg#src"></use></svg></a>
+                <div class="col col-5">03:36</div>
+            </li>
+            <li class="z-play">
+                <svg class="playstate"><use xlink:href="../../res/svg/btmbar.sp.svg#state_pause"></use></svg>
+                <div class="col col-2 title"><span class="tit">【暂停】歌曲名歌曲名歌曲名歌曲</span><svg class="ico ico-cldlocal u-icn u-icn-cldlocal"><use xlink:href="../../res/svg/icon.sp.svg#cloud"></use></svg></div>
+                <div class="col col-4 f-thide"><a>周杰伦</a></div>
+				<a href="#" class="col col-3 src" title="来源"><svg><use xlink:href="../../res/svg/btmbar.sp.svg#src"></use></svg></a>
+                <div class="col col-5">03:36</div>
+            </li>
+            <li class="z-sel">
+                <svg class="playstate"><use xlink:href="../../res/svg/btmbar.sp.svg#state_play"></use></svg>
+                <div class="col col-2 title"><span class="tit">【选中】歌曲名歌曲名歌名</span><a href="#" class="ico ico-mv"><svg class="u-icn u-icn-mv"><use xlink:href="../../res/svg/icon.sp.svg#mv"></use></svg></a><svg class="ico ico-cldlocal u-icn u-icn-cldlocal"><use xlink:href="../../res/svg/icon.sp.svg#local"></use></svg></div>
+                <div class="col col-4 f-thide"><a>周杰伦</a></div>
+				<a href="#" class="col col-3 src" title="来源"><svg><use xlink:href="../../res/svg/btmbar.sp.svg#src"></use></svg></a>
+                <div class="col col-5">03:36</div>
+            </li>
+            <li class="z-nocyr">
+                <svg class="playstate"><use xlink:href="../../res/svg/btmbar.sp.svg#state_play"></use></svg>
+                <div class="col col-2 title"><span class="tit">无版权歌曲</span><a href="#" class="ico ico-mv"><svg class="u-icn u-icn-mv"><use xlink:href="../../res/svg/icon.sp.svg#mv"></use></svg></a></div>
+                <a class="col col-4 f-thide">某某某某某某某某某某某某某某某</a>
+				<a href="#" class="col col-3 src" title="来源"><svg><use xlink:href="../../res/svg/btmbar.sp.svg#src"></use></svg></a>
+                <div class="col col-5">03:36</div>
+            </li>
+            <li class="z-nocyr z-hasdown">
+                <svg class="playstate"><use xlink:href="../../res/svg/btmbar.sp.svg#state_play"></use></svg>
+                <div class="col col-2 title"><span class="tit">无版权但有下载</span><a href="#" class="ico ico-mv"><svg class="u-icn u-icn-mv"><use xlink:href="../../res/svg/icon.sp.svg#mv"></use></svg></a></div>
+                <div class="col col-4 f-thide"><a>周杰伦</a></div>
+				<a href="#" class="col col-3 src" title="来源"><svg><use xlink:href="../../res/svg/btmbar.sp.svg#src"></use></svg></a>
+                <div class="col col-5">03:38<i class="ico ico-migu" title="歌曲来自咪咕音乐"></i></div>
+            </li>
+            <li class="z-nocyr z-cloudlocal z-haslocal">
+                <svg class="playstate"><use xlink:href="../../res/svg/btmbar.sp.svg#state_play"></use></svg>
+                <div class="col col-2 title"><span class="tit">无版权但有本地</span><a href="#" class="ico ico-mv"><svg class="u-icn u-icn-mv"><use xlink:href="../../res/svg/icon.sp.svg#mv"></use></svg></a></div>
+                <div class="col col-4 f-thide"><a>周杰伦</a></div>
+                <a href="#" class="col col-3 src" title="来源"><svg><use xlink:href="../../res/svg/btmbar.sp.svg#src"></use></svg></a>
+                <div class="col col-5">03:38<i class="ico ico-migu" title="歌曲来自咪咕音乐"></i></div>
+            </li>
+            <li class="z-nocyr z-hascloud">
+                <svg class="playstate"><use xlink:href="../../res/svg/btmbar.sp.svg#state_play"></use></svg>
+                <div class="col col-2 title"><span class="tit">无版权但有云</span><a href="#" class="ico ico-mv"><svg class="u-icn u-icn-mv"><use xlink:href="../../res/svg/icon.sp.svg#mv"></use></svg></a></div>
+                <div class="col col-4 f-thide"><a>周杰伦</a></div>
+                <a href="#" class="col col-3 src" title="来源"><svg><use xlink:href="../../res/svg/btmbar.sp.svg#src"></use></svg></a>
+                <div class="col col-5">03:38<i class="ico ico-migu" title="歌曲来自咪咕音乐"></i></div>
+            </li>
+		</ul>
+		<br>
+		<!-- 历史播放记录 -->
+		<ul class="f-cb phlst" style="display:none;">
+            <li class="z-click">
+                <svg class="playstate"><use xlink:href="../../res/svg/btmbar.sp.svg#state_play"></use></svg>
+                <div class="col col-2 title"><span class="tit">歌曲名歌曲名歌曲名歌曲名歌曲歌曲名歌曲名歌曲名歌曲名歌曲名歌曲名</span></div>
+                <div class="col col-4 f-thide"><a>周杰伦</a></div>
+				<a href="#" class="col col-3 src" title="来源"><svg><use xlink:href="../../res/svg/btmbar.sp.svg#src"></use></svg></a>
+                <div class="col col-5">03:36</div>
+            </li>
+            <li>
+                <svg class="playstate"><use xlink:href="../../res/svg/btmbar.sp.svg#state_play"></use></svg>
+                <div class="col col-2 title"><span class="tit">歌曲名歌曲名歌曲名歌名歌曲名歌曲名歌曲名名歌曲名</span></div>
+                <div class="col col-4 f-thide"><a>周杰伦</a>,<a>周杰伦</a>,<a>周杰伦</a>,<a>周杰伦</a></div>
+				<a href="#" class="col col-3 src" title="来源"><svg><use xlink:href="../../res/svg/btmbar.sp.svg#src"></use></svg></a>
+                <div class="col col-5">58分钟前</div>
+            </li>
+            <li class="z-sel">
+                <svg class="playstate"><use xlink:href="../../res/svg/btmbar.sp.svg#state_play"></use></svg>
+                <div class="col col-2 title"><span class="tit">歌曲名歌曲名歌曲名歌曲名歌曲名歌曲名歌曲名歌曲名歌曲名</span></div>
+                <div class="col col-4 f-thide"><a>周杰伦</a></div>
+				<a href="#" class="col col-3 src" title="来源"><svg><use xlink:href="../../res/svg/btmbar.sp.svg#src"></use></svg></a>
+                <div class="col col-5">1小时前</div>
+            </li>
+			<li>
+                <svg class="playstate"><use xlink:href="../../res/svg/btmbar.sp.svg#state_play"></use></svg>
+                <div class="col col-2 title"><span class="tit">歌曲名歌曲名歌曲名歌曲名歌曲名歌曲名歌曲名歌曲名歌曲名</span></div>
+                <div class="col col-4 f-thide"><a>周杰伦</a></div>
+				<a href="#" class="col col-3 src" title="来源"><svg><use xlink:href="../../res/svg/btmbar.sp.svg#src"></use></svg></a>
+                <div class="col col-5">2014-06-11<i class="ico ico-migu" title="歌曲来自咪咕音乐"></i></div>
+            </li>
+		</ul>
+    </div>
+</div>
+<div class="m-lyric z-show"><!-- z-show -->
+
+    <!-- <p class="s-ffc4">暂无歌词，<a href="#" class="s-ffc4 f-tdu">求歌词</a></p> -->
+
+	<!-- <p>正常歌词，正常歌词，正常歌词，正常歌词，正常歌词，正常歌词，</p> -->
+
+
+    <p class="f-ff1 s-ffc4">该歌词暂不支持滚动，请点击左侧歌曲封面，查看全部歌词</p>
+
+
+</div>
+<!-- 播放信息小卡片 -->
+<div class="m-pinfo z-show">
+    <div class="u-cover u-cover-sm f-fl"><a href="#" class="lnk"><img class="normal" src="http://nec.netease.com/img/s/1.jpg"></a></div>
+    <h3><a href="#">Deep in the rolling</a></h3>
+    <p><a href="#" class="s-ffc4">Sting</a></p>
+    <!-- 喜欢图标 因图标颜色改变，不能用xlink来做切换-->
+    <!-- <span class="icn icn-first f-cp"><svg><use xlink:href="../../res/svg/btmbar.sp.svg#love"></use></span> -->
+    <!-- <span class="icn icn-loved icn-first f-cp"><svg><use xlink:href="../../res/svg/btmbar.sp.svg#loved"></use></span> -->
+    
+    <!-- 赞图标 -->
+    <span class="icn icn-first f-cp"><svg><use xlink:href="../../res/svg/btmbar.sp.svg#praise"></use></span>
+    <!-- <span class="icn icn-praised icn-first f-cp"><svg><use xlink:href="../../res/svg/btmbar.sp.svg#praise"></use></span> -->
+    
+    <!-- 分享图标 -->
+    <span class="icn icn-second f-cp"><svg><use xlink:href="../../res/svg/btmbar.sp.svg#share"></use></svg></span>
+
+    <!-- 删除图标 -->
+    <!-- <span class="icn icn-second f-cp"><svg><use xlink:href="../../res/svg/btmbar.sp.svg#delete"></use></svg></span> -->
+
+    <!-- 展开到播放页 -->
+	<span class="zoom"><svg class="svg f-vhc"><use xlink:href="../../res/svg/btmbar.sp.svg#max"></use></svg></span>
+    
+</div>
+<!-- 窗口控制 -->
+<div class="m-winctrl">
+    <span class="bar"></span>
+    <span class="icn fix" title="迷你">
+        <svg>
+            <use xlink:href="../../res/svg/topbar.sp.svg#mini"></use>
+        </svg>
+    </span>
+    <span class="icn min" title="最小化">
+        <svg>
+            <use xlink:href="../../res/svg/topbar.sp.svg#zoomout"></use>
+        </svg>
+    </span>
+    <span class="icn max" title="最大化">
+        <svg>
+            <use xlink:href="../../res/svg/topbar.sp.svg#zoomin"></use>
+        </svg>
+    </span>
+    <!-- TODO 缺图标 -->
+    <span class="icn revert f-dn" title="还原">
+        <svg>
+            <use xlink:href="../../res/svg/topbar.sp.svg#zoomin"></use>
+        </svg>
+    </span>
+    <span class="icn cls" title="关闭">
+        <svg>
+            <use xlink:href="../../res/svg/topbar.sp.svg#close"></use>
+        </svg>
+    </span>
+</div>
+<!-- 右下角放大缩小 -->
+<div class="u-resize"><svg class="svg f-vhc"><use xlink:href="../../res/svg/btmbar.sp.svg#resize"></use></svg></div>
+</body>
+</html>

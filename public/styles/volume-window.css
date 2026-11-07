@@ -1,0 +1,9 @@
+/** Used in VolumeWindow **/
+
+QLabel#slide {
+  border-image: url(SKIN_ROOT/mini/volume/normal.png);
+}
+
+QLabel#slide:hover {
+  border-image: url(SKIN_ROOT/mini/volume/hover.png);
+}

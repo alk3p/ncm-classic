@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>网易云音乐</title>
+<!-- STYLE -->
+<link rel="stylesheet" href="../../css/animate.ls.css"/>
+<link rel="stylesheet" href="../../css/base.ls.css"/>
+<link rel="stylesheet" href="../../css/grid.ls.css"/>
+<link rel="stylesheet" href="../../css/unit.ls.css"/>
+<link rel="stylesheet" href="../../css/module.ls.css"/>
+<link rel="stylesheet" href="../../css/layer.ls.css">
+<link rel="stylesheet" href="../../css/style.ls.css">
+<link rel="stylesheet" href="../../css/skin_common.ls.css">
+
+<!-- SKIN -->
+<link rel="stylesheet" href="../../skin/pub/web/css/skin.ls.css">
+
+
+<script src="../replace.js"></script>
+</head>
+<body>
+<header class="g-hd">
+    <div class="m-sch"><input type="text" placeholder="搜索单曲/歌手/专辑/歌单/用户">
+    	<!-- 搜索结果 -->
+		<div class="u-arrlay m-schlist" style="display:;">
+			<p class="note f-ff1"><a href="#" class="s-fc4">搜“<mark class="s-fc2">周</mark>”相关用户 &gt;</a></p>
+			<div class="wrap s-scroll">
+				<h3 class="hd hd-1 s-fc3"><svg class="icn"><use xlink:href="../../res/svg/icon.sp.svg#search_song"></svg>单曲</h3>
+				<ul>
+					<li><a href="#">红尘客栈-<mark class="s-fc2">周</mark>杰伦</a></li>
+					<li><a href="#">明明就-<mark class="s-fc2">周</mark>杰伦</a></li>
+					<li><a href="#">哪里都是你-<mark class="s-fc2">周</mark>杰伦</a></li>
+				</ul>
+				<h3 class="hd hd-2 s-fc3"><svg class="icn"><use xlink:href="../../res/svg/icon.sp.svg#search_artist"></svg>艺人</h3>
+				<ul>
+					<li><a href="#"><mark class="s-fc2">周</mark>杰伦</a></li>
+					<li><a href="#"><mark class="s-fc2">周</mark>传雄</a></li>
+					<li><a href="#"><mark class="s-fc2">周</mark>华健</a></li>
+				</ul>
+				<h3 class="hd hd-3 s-fc3"><svg class="icn"><use xlink:href="../../res/svg/icon.sp.svg#search_alb"></svg>专辑</h3>
+				<ul>
+					<li><a href="#">十二新作-<mark class="s-fc2">周</mark>杰伦</a></li>
+					<li><a href="#">上海老歌CD04-<mark class="s-fc2">周</mark>传雄</a></li>
+				</ul>
+                <h3 class="hd hd-5 s-fc3"><svg class="icn"><use xlink:href="../../res/svg/icon.sp.svg#search_mv"></svg>MV</h3>
+                <ul>
+                    <li><a href="#"><mark class="s-fc2">周</mark>杰伦精选</a></li>
+                    <li><a href="#" class="f-thide">精品<mark class="s-fc2">周</mark>传雄100首传雄100首传雄100首</a></li>
+                    <li><a href="#">怀念<mark class="s-fc2">周</mark>华健</a></li>
+                </ul>
+				<h3 class="hd hd-4 s-fc3"><svg class="icn"><use xlink:href="../../res/svg/icon.sp.svg#search_list"></svg>歌单</h3>
+				<ul>
+					<li><a href="#"><mark class="s-fc2">周</mark>杰伦精选</a></li>
+					<li><a href="#">精品<mark class="s-fc2">周</mark>传雄100首</a></li>
+					<li><a href="#">怀念<mark class="s-fc2">周</mark>华健</a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- 热门搜索 -->
+		<div class="u-arrlay m-schlist m-schsug" style="display:;left:350px;">
+			<p class="note hot s-fc4 f-ff1">热门搜索</p>
+			<div class="wrap s-scroll">
+				<ul class="hotlst">
+					<li><a href="#">红尘客栈</a></li>
+					<li><a href="#">明明就</a></li>
+					<li><a href="#">哪里都是你</a></li>
+					<li><a href="#">红尘客栈</a></li>
+					<li><a href="#">明明就</a></li>
+					<li><a href="#">哪里都是你</a></li>
+					<li><a href="#">红尘客栈</a></li>
+					<li><a href="#">明明就</a></li>
+					<li><a href="#">哪里都是你</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+    <div class="m-tool">
+		<!-- 导入/上传/下载 -->
+        <div class="itm switch" style="right:800px;">
+        	<span class="switching f-pr"></span>
+        	<div class="u-arrlay m-switch" style="display:block;">
+  				<ul class="s-fc1">
+  					<li>
+  						<svg class="icon"><use xlink:href="../../res/svg/icon.sp.svg#transput_leadin"></svg></svg>
+  						<label>导入虾米音乐</label>
+  						<div class="progress">
+  							<div class="u-probar">
+  								<div class="pro" style="width:30%"></div>
+  							</div>
+  						</div>
+  						<div class="data f-ff1">1/100</div>
+  					</li>
+  					<li>
+  						<svg class="icon"><use xlink:href="../../res/svg/icon.sp.svg#transput_update"></svg></svg>
+  						<label>上传至云空间</label>
+  						<div class="progress">
+  							<div class="u-probar">
+  								<div class="pro" style="width:30%"></div>
+  							</div>
+  						</div>
+  						<div class="data f-ff1">9998/9999</div>
+  					</li>
+  					<li>
+  						<svg class="icon icon-loading"><use xlink:href="../../res/svg/icon.sp.svg#transput_update"></svg></svg>
+  						<label>正在下载至本地</label>
+  						<div class="progress">
+  							<div class="u-probar">
+  								<div class="pro" style="width:30%"></div>
+  							</div>
+  						</div>
+  						<div class="data f-ff1">1.5万/2.3万</div>
+  					</li>
+  				</ul>
+			</div>
+            <!-- 暂停/失败 -->
+			<div class="u-arrlay m-switch" style="top:170px;display:block;">
+				<ul class="s-fc1">
+					<li>
+						<svg class="icon icon-err"><use xlink:href="../../res/svg/icon.sp.svg#info"></svg></svg>
+						<label class="full">导入过于频繁，请10分钟后再试</label>
+						<span class="cls u-icn u-icn-laycls f-vc f-cp"><svg><use xlink:href="../../res/svg/icon.sp.svg#close"></svg></span>
+					</li>
+					<li>
+						<svg class="icon"><use xlink:href="../../res/svg/icon.sp.svg#transput_pause"></svg></svg>
+						<label class="full">上传暂停，<a href="#" class="s-fc2 f-tdu">进入页面</a></label>
+						<span class="cls u-icn u-icn-laycls f-vc f-cp"><svg><use xlink:href="../../res/svg/icon.sp.svg#close"></svg></span>
+					</li>
+					<li>
+						<svg class="icon"><use xlink:href="../../res/svg/icon.sp.svg#transput_pause"></svg></svg>
+						<label class="full">下载暂停，<a href="#" class="s-fc2 f-tdu">点击查看</a></label>
+						<span class="cls u-icn u-icn-laycls f-vc f-cp"><svg><use xlink:href="../../res/svg/icon.sp.svg#close"></svg></span>
+					</li>
+				</ul>
+			</div>
+            <!-- 完成 -->
+            <div class="u-arrlay m-switch" style="top:320px; display:block;">
+				<ul class="s-fc1">
+					<li>
+						<svg class="icon icon-err"><use xlink:href="../../res/svg/icon.sp.svg#info"></svg></svg>
+						<label class="full">导入完成</label>
+						<span class="cls u-icn u-icn-laycls f-vc f-cp"><svg><use xlink:href="../../res/svg/icon.sp.svg#close"></svg></span>
+					</li>
+					<li>
+						<svg class="icon"><use xlink:href="../../res/svg/icon.sp.svg#transput_done"></svg></svg>
+						<label class="full">上传完成，<a href="#" class="s-fc2 f-tdu">进入页面</a></label>
+						<span class="cls u-icn u-icn-laycls f-vc f-cp"><svg><use xlink:href="../../res/svg/icon.sp.svg#close"></svg></span>
+					</li>
+					<li>
+						<svg class="icon"><use xlink:href="../../res/svg/icon.sp.svg#transput_done"></svg></svg>
+						<label class="full">下载完成，<a href="#" class="s-fc2 f-tdu">点击查看</a></label>
+						<span class="cls u-icn u-icn-laycls f-vc f-cp"><svg><use xlink:href="../../res/svg/icon.sp.svg#close"></svg></span>
+					</li>
+				</ul>
+			</div>
+    	</div>
+		<!-- 头像 -->
+        <div class="itm user" style="right:400px;">
+          <div class="face u-face"><img src="../../res/temp/head_temp1.jpg"></div>
+            <p class="name f-thide">C_Y_Xuaaajj</p>
+            <span class="arr">
+                <svg class="btn">
+                    <use xlink:href="../../res/svg/topbar.sp.svg#head_arr"></use>
+                </svg>
+            </span>
+			<!-- 新好友加入提示 -->
+			<div class="u-arrlay u-arrlay-1 m-newfrd">
+				<div class="cnt">
+					<a href="" class="s-fc3">
+						 <img src="http://p4.music.126.net/p9U80ex1B1ciPFa125xV5A==/5931865232210340.jpg?param=180y180" class="pic">你的通讯录好友<em class="s-fc2 f-thide">张惠妹aMEI张惠妹aMEI张惠妹aMEI</em>也加入了，关注他共享好音乐吧
+						<span class="close u-icn u-icn-laycls"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/btmbar.sp.svg#close"></use></svg></span>
+           			</a>
+				</div>
+			</div>
+	      	<!-- 签到浮层 -->
+			<div class="u-arrlay m-userlist" style="margin-top:80px; display:;">
+				<!-- 签到和关注 -->
+				<div class="blk">
+					<a href="#" class="head">
+						<div class="u-face u-face-1 f-fl">
+							<img class="normal" src="http://p3.music.126.net/Ufw-YsSD7OHWR0TWbf9r5Q==/7952767604603949.jpg?param=40y40" onerror="nm.l.f.empty(this)">
+							<!-- vip -->
+							<i class="flag u-vip"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#v"></use></svg></i>
+							<!-- 达人 -->
+							<i class="flag u-daren"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#daren"></use></svg></i>
+	          				<!-- 音乐人 -->
+	          				<i class="flag u-yyr"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#yyr"></use></svg></i>
+						</div>
+						<div class="nam f-thide f-fs1 s-fc1">小贴贴七夏现在萌野崎君</div>
+					</a>
+					<div class="sign f-fr">
+						<div class="anima a-ani a-fadeOutUp f-fs5 s-fc8">20</div>
+						<a class="u-ibtn5 u-ibtn5-jf">
+							<svg><use xlink:href="../../res/svg/icon.sp.svg#jifen"></use></svg>
+							签到
+						</a>
+						<!-- <a class="u-ibtn5 u-ibtn5-jf z-dis">已签到</a> -->
+					</div>
+					<ul class="data s-fc3">
+						<li><strong class="s-fc0 f-fs5">324</strong>动态</li>
+						<li><strong class="s-fc0 f-fs5">278</strong>关注</li>
+						<li><strong class="s-fc0 f-fs5">1091</strong>粉丝<span class="ico u-dot"></span></li>
+					</ul>
+				</div>
+				<!-- 付费音乐包 等级，积分商城 -->
+				<ul class="blk list f-cb">
+					<li>
+						<a href="#" class="link">
+							<i class="sicn f-vc"><svg><use xlink:href="../../res/svg/icon.sp.svg#fufei"></use></svg></i>
+							<em class="s-fc1">付费音乐包</em>
+							<span class="text f-fr s-fc3"><em class="s-fc4">未订购</em></span>
+							<i class="arrow f-ff1 f-fwb f-vc">&gt;</i>
+						</a>
+					</li>
+					<li>
+						<a href="#" class="link">
+							<i class="sicn f-vc"><svg><use xlink:href="../../res/svg/icon.sp.svg#level"></use></svg></i>
+							<em class="s-fc1">等级</em>
+							<span class="text f-fr s-fc4">
+								<svg class="lv u-icn u-icn-lv"><use xlink:href="../../res/svg/icon.sp.svg#lv"></use></svg><em class="no f-fs1 f-fwb">6</em>
+							</span>
+							<i class="arrow f-ff1 f-fwb f-vc">&gt;</i>
+						</a>
+					</li>
+					<li>
+						<a href="#" class="link">
+							<i class="sicn f-vc"><svg><use xlink:href="../../res/svg/icon.sp.svg#store"></use></svg></i>
+							<em class="s-fc1">积分商城</em>
+							<i class="u-icn u-icn-new">
+								<svg class="svg svg-bg"><use xlink:href="../../res/svg/sidebar.sp.svg#new_bg"></use></svg>
+								<svg class="svg"><use xlink:href="../../res/svg/sidebar.sp.svg#new"></use></svg>
+							</i>
+							<span class="text f-fr s-fc4"><strong class="f-fwb">256</strong> 积分</span>
+							<i class="arrow f-ff1 f-fwb f-vc">&gt;</i>
+						</a>
+					</li>
+				</ul>
+				<!-- 信息，账号 -->
+				<ul class="blk list f-cb">
+					<li>
+						<a href="#" class="link">
+							<i class="sicn f-vc"><svg><use xlink:href="../../res/svg/icon.sp.svg#setting"></use></svg></i>
+							<em class="s-fc1">个人信息设置</em>
+							<i class="arrow f-ff1 f-fwb f-vc">&gt;</i>
+						</a>
+					</li>
+					<li>
+						<a href="#" class="link">
+							<i class="sicn f-vc"><svg><use xlink:href="../../res/svg/icon.sp.svg#mobile"></use></svg></i>
+							<em class="s-fc1">绑定社交账号</em>
+							<div class="logos u-logo u-logo-m f-vc">
+								<span class="sina" title="新浪微博">新浪微博</span>
+								<span class="yx" title="易信">易信</span>
+							</div>
+							<i class="arrow f-ff1 f-fwb f-vc">&gt;</i>
+						</a>
+					</li>
+					<li>
+						<a href="#" class="link">
+							<i class="sicn f-vc"><svg><use xlink:href="../../res/svg/icon.sp.svg#leading"></use></svg></i>
+							<em class="s-fc1">导入歌单</em>
+							<i class="arrow f-ff1 f-fwb f-vc">&gt;</i>
+						</a>
+					</li>
+				</ul>
+				<!-- 退出 -->
+				<div class="blk exit">
+					<a href="#" class="link">
+						<i class="sicn f-vc"><svg><use xlink:href="../../res/svg/icon.sp.svg#exit"></use></svg></i>
+						<em class="s-fc1">退出登录</em>
+						<i class="arrow f-ff1 f-fwb f-vc">&gt;</i>
+					</a>
+				</div>
+			</div>
+			<!-- 签到浮层 - 没网络的情况 -->
+			<div class="u-arrlay m-userlist" style="margin-top:500px; display:;">
+				<div class="m-off">
+					<h2 class="s-fc3">网络不给力哦<br>请检查你的网络设置~</h2>
+				</div>
+			</div>
+	    </div>
+
+	    <!-- 换肤 -->
+	    <div class="itm skin" style="position:absolute; right:50px; display:;">
+	        <svg class="btn">
+	            <use xlink:href="../../res/svg/topbar.sp.svg#skin"></use>
+	        </svg>
+	        <div class="u-arrlay u-arrlay-1 u-arrlay-opacity s-fc1">
+	        <p>可以换皮肤了哦~点击试试吧~</p>
+	    </div>
+		<div class="u-arrlay m-skswitch">
+			<div class="tab">
+				<a class="z-sel" href="javascript:;" title="主题">主题</a>
+				<a href="javascript:;" title="纯色">纯色</a>
+			</div>
+			<ul class="slist f-cb">
+				<li class="red">
+	                <img src="../img/preview.png">
+	                <span class="msk">
+	                    <em class="bg"></em>
+	                    <span class="txt">官方红</span>
+	                </span>
+					<label>
+						<input type="radio" name="skin-sel">
+						<span class="checked"><svg><use xlink:href="../../res/svg/icon.sp.svg#skin_selected"></use></svg></span>
+					</label>
+				</li>
+	            <li class="default">
+					<img src="../img/preview.png">
+	                <span class="msk">
+	                    <em class="bg"></em>
+	                    <span class="txt">酷炫黑</span>
+	                </span>
+					<label>
+						<input type="radio" checked="checked" name="skin-sel">
+						<span class="checked"><svg><use xlink:href="../../res/svg/icon.sp.svg#skin_selected"></use></svg></span>
+					</label>
+				</li>
+				<li class="pink z-sel">
+					<img src="../img/preview.png">
+	                <span class="msk">
+	                    <em class="bg"></em>
+	                    <span class="txt">可爱粉</span>
+	                </span>
+					<label>
+						<input type="radio" name="skin-sel">
+						<span class="checked"><svg><use xlink:href="../../res/svg/icon.sp.svg#skin_selected"></use></svg></span>
+					</label>
+				</li>
+	            <li class="green">
+					<img src="../img/preview.png">
+	                <span class="msk">
+	                    <em class="bg"></em>
+	                    <span class="txt">清新绿</span>
+	                </span>
+					<label>
+						<input type="radio" name="skin-sel">
+						<span class="checked"><svg><use xlink:href="../../res/svg/icon.sp.svg#skin_selected"></use></svg></span>
+					</label>
+				</li>
+	            <li class="blue">
+					<img src="../img/preview.png">
+	                <span class="msk">
+	                    <em class="bg"></em>
+	                    <span class="txt">天际蓝</span>
+	                </span>
+					<label>
+						<input type="radio" name="skin-sel">
+						<span class="checked"><svg><use xlink:href="../../res/svg/icon.sp.svg#skin_selected"></use></svg></span>
+					</label>
+				</li>
+	            <li class="golden">
+					<img src="../img/preview.png">
+	                <span class="msk">
+	                    <em class="bg"></em>
+	                    <span class="txt">土豪金</span>
+	                </span>
+					<label>
+						<input type="radio" name="skin-sel">
+						<span class="checked"><svg><use xlink:href="../../res/svg/icon.sp.svg#skin_selected"></use></svg></span>
+					</label>
+	            </li>
+			</ul>
+			<!-- 选择颜色块 -->
+			<ul class="slist slist-color f-cb">
+				<li>
+					<label class="bgcolor">
+						<input type="radio" name="skin-sel">
+						<span class="checked checked-sml"><svg><use xlink:href="../../res/svg/icon.sp.svg#skin_selected_sml"></use></svg></span>
+					</label>
+				</li>
+				<li>
+					<label class="bgcolor">
+						<input type="radio" name="skin-sel">
+						<span class="checked checked-sml"><svg><use xlink:href="../../res/svg/icon.sp.svg#skin_selected_sml"></use></svg></span>
+					</label>
+				</li>
+				<li>
+					<label class="bgcolor">
+						<input type="radio" name="skin-sel">
+						<span class="checked checked-sml"><svg><use xlink:href="../../res/svg/icon.sp.svg#skin_selected_sml"></use></svg></span>
+					</label>
+				</li>
+				<li>
+					<label class="bgcolor">
+						<input type="radio" name="skin-sel">
+						<span class="checked checked-sml"><svg><use xlink:href="../../res/svg/icon.sp.svg#skin_selected_sml"></use></svg></span>
+					</label>
+				</li>
+				<li>
+					<label class="bgcolor">
+						<input type="radio" name="skin-sel">
+						<span class="checked checked-sml"><svg><use xlink:href="../../res/svg/icon.sp.svg#skin_selected_sml"></use></svg></span>
+					</label>
+				</li>
+				<li>
+					<label class="bgcolor">
+						<input type="radio" name="skin-sel">
+						<span class="checked checked-sml"><svg><use xlink:href="../../res/svg/icon.sp.svg#skin_selected_sml"></use></svg></span>
+					</label>
+				</li>
+				<li>
+					<label class="bgcolor">
+						<input type="radio" name="skin-sel">
+						<span class="checked checked-sml"><svg><use xlink:href="../../res/svg/icon.sp.svg#skin_selected_sml"></use></svg></span>
+					</label>
+				</li>
+				<li>
+					<label class="bgcolor">
+						<input type="radio" checked="" name="skin-sel">
+						<span class="checked checked-sml"><svg><use xlink:href="../../res/svg/icon.sp.svg#skin_selected_sml"></use></svg></span>
+					</label>
+				</li>
+				<li>
+					<label class="bgcolor">
+						<input type="radio" name="skin-sel">
+						<span class="checked checked-sml"><svg><use xlink:href="../../res/svg/icon.sp.svg#skin_selected_sml"></use></svg></span>
+					</label>
+				</li>
+				<li>
+					<label class="bgcolor">
+						<input type="radio" name="skin-sel">
+						<span class="checked checked-sml"><svg><use xlink:href="../../res/svg/icon.sp.svg#skin_selected_sml"></use></svg></span>
+					</label>
+				</li>
+				<li>
+					<label class="bgcolor">
+						<input type="radio" name="skin-sel">
+						<span class="checked checked-sml"><svg><use xlink:href="../../res/svg/icon.sp.svg#skin_selected_sml"></use></svg></span>
+					</label>
+				</li>
+				<li>
+					<label class="bgcolor">
+						<input type="radio" name="skin-sel">
+						<span class="checked checked-sml"><svg><use xlink:href="../../res/svg/icon.sp.svg#skin_selected_sml"></use></svg></span>
+					</label>
+				</li>
+			</ul>
+			<!-- 自定义颜色 -->
+			<div class="custom">
+				<p class="s-fc3">自定义颜色</p>
+				<div class="gained">
+					<label>
+						<input type="radio" name="skin-sel">
+						<span class="checked checked-sml"><svg><use xlink:href="../../res/svg/icon.sp.svg#skin_selected_sml"></use></svg></span>
+					</label>
+				</div>
+                <div class="hue">
+                  	<input type="range">
+              	</div>
+              	<div class="saturation">
+                  	<input type="range" style="background:red;">
+              	</div>
+			</div>
+			
+		
+			<div class="pdot" style="display:none;"><a href="#" class="z-sel"></a><a href="#"></a><a href="#"></a></div>
+	</div>
+</div>
+
+</header>
+<section class="g-sd"><!-- 右则显示白色背景页面时加g-sd-1 --></section>
+<section class="g-mn"></section>
+
+
+
+<div class="m-player">
+    <div class="list f-vc">
+      <span class="icon f-fl"><svg><use xlink:href="../../res/svg/btmbar.sp.svg#state_playlist"></use></svg></span>
+      <span class="num f-fl f-ff1">500</span>
+      <div class="u-arrlay u-arrlay-dn u-arrlay-opacity"><span class="s-fc1">已添加到播放列表</span></div>
+    </div>
+</div>
+
+
+</body>
+</html>

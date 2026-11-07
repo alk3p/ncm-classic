@@ -1,0 +1,556 @@
+/*******************************************/
+/* 【公共样式】 SKIN_COMMON.LESS */
+/*******************************************/
+/* logos background-images 绑定页 */
+.n-binds li.mb .tit:before {
+  width: 36px;
+  height: 36px;
+  background: url(../res/logo/logo_mobile.png);
+}
+.n-binds li.sn .tit:before {
+  width: 36px;
+  height: 36px;
+  background: url(../res/logo/logo_sina.png);
+}
+.n-binds li.rr .tit:before {
+  width: 36px;
+  height: 36px;
+  background: url(../res/logo/logo_renren.png);
+}
+.n-binds li.db .tit:before {
+  width: 36px;
+  height: 36px;
+  background: url(../res/logo/logo_douban.png);
+}
+.n-binds li.wy .tit:before {
+  width: 36px;
+  height: 36px;
+  background: url(../res/logo/logo_netease.png);
+}
+.n-binds li.yx .tit:before {
+  width: 36px;
+  height: 36px;
+  background: url(../res/logo/logo_yixin.png);
+}
+.n-binds li.wx .tit:before {
+  width: 36px;
+  height: 36px;
+  background: url(../res/logo/logo_weixin.png);
+}
+.n-binds li.qq .tit:before {
+  width: 36px;
+  height: 36px;
+  background: url(../res/logo/logo_qq.png);
+}
+.n-binds li.mb .tit.z-dis:before {
+  width: 36px;
+  height: 36px;
+  background: url(../res/logo/logo_mobile_dis.png);
+}
+.n-binds li.sn .tit.z-dis:before {
+  width: 36px;
+  height: 36px;
+  background: url(../res/logo/logo_sina_dis.png);
+}
+.n-binds li.rr .tit.z-dis:before {
+  width: 36px;
+  height: 36px;
+  background: url(../res/logo/logo_renren_dis.png);
+}
+.n-binds li.db .tit.z-dis:before {
+  width: 36px;
+  height: 36px;
+  background: url(../res/logo/logo_douban_dis.png);
+}
+.n-binds li.wy .tit.z-dis:before {
+  width: 36px;
+  height: 36px;
+  background: url(../res/logo/logo_netease_dis.png);
+}
+.n-binds li.yx .tit.z-dis:before {
+  width: 36px;
+  height: 36px;
+  background: url(../res/logo/logo_yixin_dis.png);
+}
+.n-binds li.wx .tit.z-dis:before {
+  width: 36px;
+  height: 36px;
+  background: url(../res/logo/logo_weixin_dis.png);
+}
+.n-binds li.qq .tit.z-dis:before {
+  width: 36px;
+  height: 36px;
+  background: url(../res/logo/logo_qq_dis.png);
+}
+/* logos background-images 设置和签到浮层 */
+.u-logo-m2 span,
+.u-logo-m2 .ball {
+  border: 1px solid #fff;
+}
+.u-logo .rr {
+  background-image: url(../res/logo/lg_rr.png);
+}
+.u-logo .rr.z-gray {
+  background-image: url(../res/logo/lg_rr_gray.png);
+}
+.u-logo .sina {
+  background-image: url(../res/logo/lg_sina.png);
+}
+.u-logo .sina.z-gray {
+  background-image: url(../res/logo/lg_sina_gray.png);
+}
+.u-logo .db {
+  background-image: url(../res/logo/lg_db.png);
+}
+.u-logo .db.z-gray {
+  background-image: url(../res/logo/lg_db_gray.png);
+}
+.u-logo .qz {
+  background-image: url(../res/logo/logo_qzone.png);
+}
+.u-logo .qz.z-gray {
+  background-image: url(../res/logo/lg_qzone_gray.png);
+}
+.u-logo .yx {
+  background-image: url(../res/logo/lg_yixin.png);
+}
+.u-logo .yx.z-gray {
+  background-image: url(../res/logo/lg_yixin_gray.png);
+}
+.u-logo .wy {
+  background-image: url(../res/logo/lg_wy.png);
+}
+.u-logo .wy.z-gray {
+  background-image: url(../res/logo/lg_wy_gray.png);
+}
+.u-logo .sj {
+  background-image: url(../res/logo/lg_sj.png);
+}
+/* 手机  */
+.u-logo .sj.z-gray {
+  background-image: url(../res/logo/lg_sj_gray.png);
+}
+/* 手机  */
+.u-lg80 {
+  display: inline-block;
+  width: 56px;
+  height: 56px;
+}
+.u-lg80-weixin {
+  background-image: url(../res/logo/logo_weixin_big.png);
+}
+.u-lg80-qq {
+  background-image: url(../res/logo/logo_qq_big.png);
+}
+.u-lg80-qzone {
+  background-image: url(../res/logo/logo_qzone_big.png);
+}
+.u-lg80-link {
+  background-image: url(../res/logo/logo_link_big.png);
+}
+/* logos background-images 导入歌单 */
+.n-leadkugou .exp .img {
+  background: url(../res/common/leadin_kugou.png) no-repeat;
+}
+.n-leadkugou .exp.kw .img {
+  background: url(../res/common/leadin_kuwo.png) no-repeat;
+}
+.n-leadin .sellist .kugou .logo {
+  background: url(../res/logo/logo_kugou.png);
+}
+.n-leadin .sellist .kuwo .logo {
+  background: url(../res/logo/logo_kuwo.png);
+}
+.n-leadkugou .ing .icn-import {
+  background: url(../res/logo/logo_leadin_kugou.png);
+}
+.n-leadkugou .ing.kw .icn-import {
+  background: url(../res/logo/logo_leadin_kuwo.png);
+}
+.n-leadkugou .ing .icn-music {
+  background: url(../res/logo/logo_leadin_cloudmsc.png);
+}
+/* covers background-images */
+.u-cover.z-top {
+  background: url(../res/common/cover/cover_top50.png);
+}
+.u-cover-tn.z-top {
+  background-image: url(../res/common/cover/cover_top50_40.png);
+}
+.u-cover.z-rst {
+  background-image: url(../res/common/cover/cover_recent.png);
+}
+.u-cover-tn.z-rst {
+  background-image: url(../res/common/cover/cover_recent_40.png);
+}
+/* covers styles */
+.u-cover svg {
+  fill: rgba(255, 255, 255, 0.9);
+  -webkit-transform: translateZ(0);
+}
+.u-cover .ci svg,
+.u-cover .des svg {
+  -webkit-filter: drop-shadow(0 1px 0px rgba(0, 0, 0, 0.5));
+}
+.u-cover::before,
+.u-cover-light::before {
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+.u-cover .reason {
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+}
+.u-cover .ci {
+  background: -webkit-linear-gradient(right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0) 60%);
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+.u-cover .ply,
+.u-cover-exc .type {
+  background: rgba(0, 0, 0, 0.4) padding-box;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5);
+}
+.u-cover .ply:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.u-cover .barwrap {
+  text-shadow: 0 1px rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.6) padding-box;
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.15);
+  border-top: 1px solid rgba(0, 0, 0, 0.75);
+  color: #ccc;
+}
+.u-cover .time {
+  background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.36), rgba(0, 0, 0, 0));
+  color: #fff;
+}
+.u-cover-fans {
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+}
+.u-cover-mv .ci {
+  background: -webkit-linear-gradient(right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0) 90px);
+}
+.u-cover .des {
+  background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+.u-cover .des a {
+  color: #fff;
+}
+.u-cover .corner {
+  border-top-color: #e7aa5a;
+  border-right-color: transparent;
+}
+.u-cover.crown-enter {
+  background: #fff;
+}
+.u-cover .crown-full {
+  color: #e6d482;
+  background-color: rgba(0, 0, 0, 0.7);
+  background-image: -webkit-radial-gradient(50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 100%);
+}
+.u-cover .crown-full svg {
+  fill: #e6ca7d;
+  -webkit-filter: none;
+}
+.u-cover .u-tip {
+  color: #fff;
+}
+/* 封面上的数字 (收藏的电台的新节目提醒) */
+/* 头像 styles */
+.u-face:after,
+.u-artist::after {
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+/* 【发现】排行榜 banner */
+.m-drank .blk .cvr:before {
+  background: url(../res/common/rank/rank_grid.png) repeat;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.m-drank .blk .cvr:after {
+  background: url(../res/common/rank/rank_txt.png) no-repeat 0 0;
+}
+.m-drank .blk.new .cvr {
+  background-image: url(../res/common/rank/rank_new.png);
+}
+.m-drank .blk.hot .cvr {
+  background-image: url(../res/common/rank/rank_hot.png);
+}
+.m-drank .blk.org .cvr {
+  background-image: url(../res/common/rank/rank_org.png);
+}
+.m-drank .blk.elc .cvr {
+  background-image: url(../res/common/rank/rank_elc.png);
+}
+.m-drank .blk.up .cvr {
+  background-image: url(../res/common/rank/rank_up.png);
+}
+.m-drank .blk.artist .cvr {
+  background-image: url(../res/common/rank/rank_artist.png);
+}
+/* 播放页 */
+.n-single .cdbox {
+  background: url(../res/common/play/play_disc.png);
+}
+.n-single .cdrun,
+.n-single .cdin,
+.m-pinfo .preload {
+  background: url(../res/common/play/play_needle.png);
+}
+.n-single .cdimg {
+  background: url(../res/default/default_play_disc.png);
+}
+/* MV播放器 */
+.m-mvplayer {
+  color: #fff;
+  background: -webkit-linear-gradient(bottom, #444 0%, #444 43px, #000 40px, #000 100%);
+}
+.m-mvplayer .icon-bplay {
+  background: rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 255, 255, 0.5);
+  fill: #fff;
+}
+.m-mvplayer .icon-bplay:hover {
+  background: rgba(0, 0, 0, 0.6);
+  border-color: #fff;
+}
+.m-mvplayer .bottom {
+  background: rgba(0, 0, 0, 0.75);
+}
+.m-mvplayer .play-pause {
+  border-color: rgba(255, 255, 255, 0.3);
+  fill: #fff;
+}
+.m-mvplayer .play-pause:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+.m-mvplayer .playbar .tip {
+  background: rgba(0, 0, 0, 0.75);
+  border-color: #383838;
+  color: #fff;
+}
+.m-mvplayer .playbar .triangle {
+  border-color: #383838 transparent transparent;
+}
+.m-mvplayer .playbar .triangle::after {
+  border-color: rgba(0, 0, 0, 0.75) transparent transparent;
+}
+.m-mvplayer .time {
+  color: #c1c1c1;
+}
+.m-mvplayer .rightGroup {
+  fill: #686a6e;
+}
+.m-mvplayer .quality .icon {
+  color: #a5a7a8;
+}
+.m-mvplayer .qlist {
+  background: rgba(0, 0, 0, 0.75);
+  border-color: #383838;
+}
+.m-mvplayer .qlist li {
+  color: #e2e2e2;
+  border-bottom: 1px solid #383838;
+}
+.m-mvplayer .qlist .check {
+  fill: #bcbcbc;
+}
+.m-mvplayer .replay {
+  color: #a5a7a8;
+  fill: rgba(255, 255, 255, 0.9);
+}
+.m-mvplayer .member {
+  fill: #fafafc;
+}
+.m-mvplayer .member svg:first-child {
+  fill: #fd3b5e;
+}
+.m-mvplayer .quality,
+.m-mvplayer .fullscreen {
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+}
+.m-mvplayer .quality .icon:hover,
+.m-mvplayer .volume .icon:hover,
+.m-mvplayer .fullscreen:hover {
+  fill: #a5a7a8;
+}
+.m-mvplayer .oper .btn {
+  background: rgba(0, 0, 0, 0.8);
+  fill: #fff;
+  color: #dedede;
+}
+.m-mvplayer .oper .btn:hover {
+  background: #b53636;
+}
+.m-mvplayer .loading {
+  color: rgba(255, 255, 255, 0.4);
+}
+.m-mvplayer .loading .icon-loading {
+  background: url(../res/common/play/mv_loading.png) no-repeat;
+}
+.m-mvplayer .loadingbg {
+  background: url(../res/common/play/mv_bg.jpg) no-repeat center center;
+}
+.m-mvplayer .loadingmask {
+  background: rgba(0, 0, 0, 0.5);
+}
+.m-mvplayer-fs,
+.m-mvplayer-evt {
+  background: #000;
+}
+/* 口味测试layer */
+.m-layer-taste-full .cls {
+  fill: #a5a7a8;
+}
+.m-tastelay {
+  color: #a5a7a8;
+}
+.m-tastelay .warn {
+  color: #b82525;
+}
+.m-taglist li {
+  border: 1px solid #a5a7a8;
+}
+.m-taglist li.z-sel,
+.m-taglist li:hover {
+  background: #a5a7a8;
+  border-color: #a5a7a8;
+  color: #1f2133;
+}
+.m-taglist li:hover {
+  opacity: 0.7;
+}
+/* 默认图 */
+.u-cover,
+.u-face,
+.u-artist {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+.u-cover {
+  background-image: url(../res/default/cover_big.png);
+}
+.u-cover-tn,
+.u-cover-tnalb {
+  background-image: url(../res/default/cover_tn.png);
+}
+.u-cover-sm {
+  background-image: url(../res/default/cover_sm.png);
+}
+.u-cover-cmt {
+  background-image: url(../res/default/cover_cmt.png);
+}
+.u-cover-md {
+  background-image: url(../res/default/cover_md.png);
+}
+.u-cover-normal {
+  background-image: url(../res/default/cover_normal.png);
+}
+.u-cover-mix {
+  background-image: url(../res/default/cover_mix.png);
+}
+.u-cover-big,
+.u-cover-bigalb {
+  background-image: url(../res/default/cover_big.png);
+}
+.u-cover-edit {
+  background-image: url(../res/default/cover_edit.png);
+}
+.u-cover-fm {
+  background-image: url(../res/default/cover_fm.png);
+}
+.u-cover-mv,
+.u-cover-exc,
+.m-excl .topban .ban {
+  background-image: url(../res/default/cover_mv_big.png);
+}
+/* 网易出品 */
+.u-cover-tnmv {
+  background-image: url(../res/default/cover_mv_tn.png);
+}
+.u-cover-mmv {
+  background-image: url(../res/default/cover_mv_m.png);
+}
+.u-cover-mvcmt {
+  background-image: url(../res/default/cover_mv_cmt.png);
+}
+.u-cover-mvrank {
+  background-image: url(../res/default/cover_mv_rank.png);
+}
+.u-cover-mvsch {
+  background-image: url(../res/default/cover_mv_sch.png);
+}
+.m-tool .user .face {
+  background-image: url(../res/default/face_24.png);
+}
+.u-face-1 {
+  background-image: url(../res/default/face_40.png);
+}
+.u-face-2 {
+  background-image: url(../res/default/face_30.png);
+}
+.u-face-3 {
+  background-image: url(../res/default/face_36.png);
+}
+.u-face-5 {
+  background-image: url(../res/default/face_60.png);
+}
+.u-face-me {
+  background-image: url(../res/default/face_50.png);
+}
+.u-face-6 {
+  background-image: url(../res/default/face_32.png);
+}
+.u-artist-big {
+  background-image: url(../res/default/face_198.png);
+}
+.u-artist-md {
+  background-image: url(../res/default/face_160.png);
+}
+.u-artist-smlr {
+  background-image: url(../res/default/face_116.png);
+}
+.u-artist-sm {
+  background-image: url(../res/default/face_50.png);
+}
+.u-artist-tn {
+  background-image: url(../res/default/face_40.png);
+}
+.u-artist-edit {
+  background-image: url(../res/default/face_180.png);
+}
+.m-banner .pics li {
+  background: #e1e3e4 url(../res/default/default_banner.png) no-repeat;
+  background-position: center !important;
+  background-size: auto;
+}
+.p-recmd .u-cover-recmd,
+.p-recmd .u-cover-exc,
+.p-recmd .u-cover-mv-recmd {
+  background: #e1e3e4 url(../res/default/default_recmd_list.png) no-repeat;
+  background-position: center !important;
+  background-size: auto;
+}
+.m-list-artist .u-cover {
+  background-image: url(../res/default/face_160.png);
+}
+/* 发现-歌手 */
+.m-dlist .pics .pic.fail,
+.m-dlist .showpic .slide {
+  background-image: url(../res/default/act_pic_fail.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+/* 动态加载图片 失败 */
+.m-dlist-msg .pics .pic.fail {
+  background-image: url(../res/default/msg_pic_fail.png);
+}
+/* 消息加载图片 失败 */
+/* 新手引导 */
+.m-guide-fm .top {
+  background: url(../res/common/guide_fm.png) no-repeat;
+}

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html class="p-recommend">
+<head>
+<meta charset="utf-8"/>
+<title>我的云空间</title>
+<!-- STYLE -->
+<link rel="stylesheet" href="../../css/animate.ls.css"/>
+<link rel="stylesheet" href="../../css/base.ls.css"/>
+<link rel="stylesheet" href="../../css/grid.ls.css"/>
+<link rel="stylesheet" href="../../css/unit.ls.css"/>
+<link rel="stylesheet" href="../../css/module.ls.css"/>
+<link rel="stylesheet" href="../../css/frame.ls.css">
+<link rel="stylesheet" href="../../css/layer.ls.css">
+<link rel="stylesheet" href="../../css/style.ls.css">
+<link rel="stylesheet" href="../../css/skin_common.ls.css">
+
+<!-- SKIN -->
+<link rel="stylesheet" href="../../skin/pub/web/css/skin.ls.css">
+
+<style>
+body{overflow f-cb-y:auto;border:0;}
+</style>
+<script src="../replace.js"></script>
+</head>
+<body>
+<!-- 本地音乐 -->
+<div class="n-local n-local-cld">
+	<!-- header -->
+	<header class="u-header">
+		<h2 class="f-ff2">我的音乐云盘</h2>
+		<div class="cldstat f-ff1 s-fc3">
+      	云盘用量
+      	<!-- 正常 -->
+      	<div class="stat f-pr">
+      		<span class="statcurr f-pa" style="width:20%;"></span>
+      	</div>
+      	<span class="num">998.9G/2048G</span>
+      	<span>歌曲永久保存，随时随地多端畅听</span>
+      	<a class="lnk s-fc2" href="#">扩容</a>
+      	<!-- 容量已满 -->
+      	<!-- <div class="stat f-pr">
+      		<span class="statcurr z-full f-pa" style="width:50%;"></span>
+      	</div>
+      	<span class="num">998.9G/2048G</span>
+      	<span class="s-fc6">云空间已满，请清除部分文件，才能继续上传</span> -->
+      </div>
+	</header>
+	<!-- oper buttons -->
+	<div class="oper f-cb">
+	<div class="buttons">
+			<button class="u-ibtn5"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_update"></use></svg>上传音乐</button>
+			<button class="u-ibtn5"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_pause_all"></use></svg>暂停上传</button>
+			<button class="u-ibtn5"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_start"></use></svg>全部开始</button>
+			
+		</div>
+		<div class="u-lcsch">
+			<input type="text" placeholder="搜索本地音乐">
+			<span class="sch-btn"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#search"></use></svg></span>
+		</div>
+	</div>
+	<!-- the list -->
+	<!-- 带选框的list都加m-plylist-check -->
+	<!-- m-plylist-check.z-sel: if 有一行被选中 then 其他行的checkbox都出现 -->
+	<div class="m-plylist m-plylist-only m-plylist-cloud m-plylistcheck">
+		<div class="head f-cb">
+			<div class="fix">
+			<div class="th col"><span class="check u-icn u-icn-checkbox z-sel f-dn"><svg><use xlink:href="../../res/svg/icon.sp.svg#checkbox_checked"></use></svg></span></div>
+			<div class="th col"></div>
+		</div>
+		<div class="flow f-cb">
+			<div class="th col">音乐标题</div>
+			<div class="th col">歌手</div>
+			<div class="th col">专辑</div>
+			<div class="th col">格式</div>
+			<div class="th col">大小</div>
+			<div class="th col">上传时间</div>
+		</div>
+		</div>
+
+		<ul>
+			<!-- 正在上传 -->
+			<li class="itm f-cb">
+				<svg class="playstate"><use xlink:href="../../res/svg/icon.sp.svg#list_play"></use></svg>
+				<span class="ico z-first">
+					<span class="u-icn u-icn-upload z-ing">
+		            	<svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#btn_start_sml"></use></svg>
+		            </span>
+				</span>
+				<div class="flow f-cb">
+					<div class="td col title">
+						<a href="" class="tit s-fc1">【正在上传】hover显示选框，z-sel显示所有选框</a>
+						<svg class="cld u-icn u-icn-cldlocal"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#cloud"></use></svg>
+					</div>
+					<div class="td col ellipsis">
+						<a href="#" class="s-fc3 ">The following people and documentation they wrote were very useful for defining the numbering systems</a>
+					</div>
+					<div class="td col ellipsis"><a href="#" class="s-fc4">The following</a></div>
+					<div class="td col s-fc4 s-fc4">APE</div>
+					<div class="td col s-fc4 s-fc4">
+						<div class="u-probar">
+							<div class="pro" style="width:80%"></div>
+						</div>
+					</div>
+					<div class="td col s-fc4">
+						<span class="s-fc4">80%</span>
+					</div>
+				</div>
+			</li>
+			<!-- 等待上传 -->
+			<li class="itm f-cb">
+				<svg class="playstate"><use xlink:href="../../res/svg/icon.sp.svg#list_play"></use></svg>
+				<span class="ico z-first">
+					<i class="u-icn u-icn-upload">
+		            	<svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#btn_start_sml"></use></svg>
+		            </i>
+				</span>
+				<div class="flow f-cb">
+					<div class="td col title">
+						<a href="" class="tit s-fc1">【等待上传】这样你还要爱我吗</a>
+					</div>
+					<div class="td col ellipsis">
+						<a href="#" class="s-fc3">周杰伦</a>，<a href="#" class="s-fc3">张杰杰</a>
+					</div>
+					<div class="td col ellipsis">快乐男声2013 总决赛</div>
+					<div class="td col s-fc4">MOD</div>
+					<div class="td col s-fc4">
+						<div class="u-probar">
+							<div class="pro" style="width:0%"></div>
+						</div>
+					</div>
+					<div class="td col s-fc4">
+						<span class="s-fc4">等待上传</span>
+					</div>
+				</div>
+			</li>
+			<!-- 暂停 -->
+			<li class="itm f-cb">
+				<svg class="playstate"><use xlink:href="../../res/svg/icon.sp.svg#list_play"></use></svg>
+				<span class="ico z-first">
+					<i class="u-icn u-icn-upload">
+		            	<svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#download_pause"></use></svg>
+		            </i>
+				</span>
+				<div class="flow f-cb">
+					<div class="td col title">
+						<a href="" class="tit s-fc1">【暂停】这样你还要爱我吗</a>
+						<svg class="cld u-icn u-icn-cldlocal"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#local"></use></svg>
+					</div>
+					<div class="td col ellipsis">
+						<a href="#" class="s-fc3 ">The following people and documentation they wrote were very useful for defining the numbering systems</a>
+					</div>
+					<div class="td col ellipsis"><a href="#" class="s-fc3">The following</a></div>
+					<div class="td col s-fc4">MOD</div>
+					<div class="td col s-fc4">
+						<div class="u-probar">
+							<div class="pro" style="width:50%"></div>
+						</div>
+					</div>
+					<div class="td col s-fc4">
+						<span class="s-fc4">暂停</span>
+					</div>
+				</div>
+			</li>
+			<!-- 重试 -->
+			<li class="itm f-cb">
+				<svg class="playstate"><use xlink:href="../../res/svg/icon.sp.svg#list_play"></use></svg>
+				<span class="ico z-first">
+					<i class="u-icn u-icn-fail">
+		            	<svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#radio_i"></use></svg>
+		            </i>
+				</span>
+				<div class="flow f-cb">
+					<div class="td col title">
+						
+						<a href="" class="tit s-fc1">【重试】这样你还要爱我吗</a>
+					</div>
+					<div class="td col ellipsis">
+						<a href="#" class="s-fc3 ">The following people and documentation they wrote were very useful for defining the numbering systems</a>
+					</div>
+					<div class="td col ellipsis"><a href="#" class="s-fc4">The following</a></div>
+					<div class="td col s-fc4">APE</div>
+					<div class="td col s-fc4">20MB</div>
+					<div class="td col s-fc4">
+						<span class="s-fc4">上传失败</span>，<a href="#" class="s-fc2">重试</a>
+
+					</div>
+				</div>
+			</li>
+			<!-- 上传失败 -->
+			<li class="itm z-sel f-cb">
+				<svg class="playstate"><use xlink:href="../../res/svg/icon.sp.svg#list_play"></use></svg>
+				<span class="ico z-first">
+					<i class="u-icn u-icn-fail">
+		            	<svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#radio_i"></use></svg>
+		            </i>
+				</span>
+				<div class="flow f-cb">
+					<div class="td col title">
+						<a href="" class="tit s-fc1">【上传失败】这样你还要爱我吗</a>
+					</div>
+					<div class="td col ellipsis">
+						<a href="#" class="s-fc3 ">The following people and documentation they wrote were very useful for defining the numbering systems</a>
+					</div>
+					<div class="td col ellipsis"><a href="#" class="s-fc4">The following</a></div>
+					<div class="td col s-fc4">APE</div>
+					<div class="td col s-fc4">20MB</div>
+					<div class="td col s-fc4">
+						<span class="s-fc4">上传失败</span>
+						<div class="help">
+		                    <span class="icon u-icn u-icn-help s-fc4"><svg><use xlink:href="../../res/svg/icon.sp.svg#help"></use></svg></span>
+		                    <div class="tip u-sign u-sign-cloud" style="display:block;"><p>因合作方要求，歌曲无法上传</p></div>
+		                </div>
+					</div>
+				</div>
+			</li>
+			<!-- 正在转码 -->
+			<li class="itm f-cb">
+				<svg class="playstate"><use xlink:href="../../res/svg/icon.sp.svg#list_play"></use></svg>
+				<span class="ico z-first">
+					<i class="u-icn u-icn-transcoding">
+		            	<svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#transcoding"></use></svg>
+		            </i>
+				</span>
+				<div class="flow f-cb">
+					<div class="td col title">
+						<a href="" class="tit s-fc1">【正在转码】这样你还要爱我吗</a>
+					</div>
+					<div class="td col ellipsis">
+						<a href="#" class="s-fc3">The following people and documentation they wrote were very useful for defining the numbering systems</a>
+					</div>
+					<div class="td col ellipsis"><a href="#" class="s-fc4">The following</a></div>
+					<div class="td col s-fc4">APE</div>
+					<div class="td col s-fc4">20MB</div>
+					<div class="td col">
+						<span class="s-fc4">正在转码</span>
+					</div>
+				</div>
+			</li>
+			<!-- 本地已存在 -->
+			<li class="itm f-cb z-play">
+				<svg class="playstate"><use xlink:href="../../res/svg/icon.sp.svg#list_play"></use></svg>
+				<span class="ico z-first">
+					<i class="u-icn u-icn-dld_ok">
+		            	<svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#download_draw"></use></svg>
+		            </i>
+				</span>
+				<div class="flow f-cb">
+					<div class="td col title">
+						<a href="" class="tit s-fc1">【本地已存在】这样你还要爱我吗</a>
+					</div>
+					<div class="td col ellipsis">
+						<a href="#" class="s-fc3">The following people and documentation they wrote were very useful for defining the numbering systems</a>
+					</div>
+					<div class="td col ellipsis"><a href="#" class="s-fc4">The following</a></div>
+					<div class="td col s-fc4">FLAC</div>
+					<div class="td col s-fc4">39MB</div>
+					<div class="td col s-fc4"><span class="s-fc4">2014-11-03</span></div>
+				</div>
+			</li>
+			<!-- 未下载 -->
+			<li class="itm f-cb">
+				<svg class="playstate"><use xlink:href="../../res/svg/icon.sp.svg#list_play"></use></svg>
+				<span class="ico z-first">
+					<i class="u-icn u-icn-dld_ready">
+		            <svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#download_draw"></use></svg>
+		        	</i>
+		   		</span>
+				<div class="flow f-cb">
+					<div class="td col title">
+						<a href="" class="tit s-fc1">【未下载】这样你还要爱我吗</a>
+					</div>
+					<div class="td col ellipsis">
+						<a href="#" class="s-fc3 ">The following people and documentation they wrote were very useful for defining the numbering systems</a>
+					</div>
+					<div class="td col ellipsis"><a href="#" class="s-fc4">The following</a></div>
+					<div class="td col s-fc4">FLAC</div>
+					<div class="td col s-fc4">39MB</div>
+					<div class="td col s-fc4"><span class="s-fc4">2014-11-03</span></div>
+				</div>
+			</li>
+			<!-- 点击下载 -->
+			<li class="itm f-cb">
+				<svg class="playstate"><use xlink:href="../../res/svg/icon.sp.svg#list_play"></use></svg>
+				<span class="ico u-icn u-icn-dld s-fc3 z-first"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#btn_dld"></use></svg></span>
+				<div class="flow f-cb">
+					<div class="td col title">
+						<a href="" class="tit s-fc1">【未下载】这样你还要爱我吗</a>
+					</div>
+					<div class="td col ellipsis">
+						<a href="#" class="s-fc3 ">The following people and documentation they wrote were very useful for defining the numbering systems</a>
+					</div>
+					<div class="td col ellipsis"><a href="#" class="s-fc4">The following</a></div>
+					<div class="td col s-fc4">FLAC</div>
+					<div class="td col s-fc4">39MB</div>
+					<div class="td col s-fc4"><span class="s-fc4">2014-11-03</span></div>
+				</div>
+			</li>
+		</ul>
+	</div>
+    <div class="service service-list"><a href="#" class="s-fc4">《我的音乐云盘服务协议》</a></div>
+</div>
+
+<!-- 删除云盘文件 -->
+<div class="m-layer z-show" style="top:400px;left:50px;">
+    <div class="zbar"><div class="zttl">删除</div></div>
+    <div class="zcnt">
+        <div class="lyct lyct-1 m-delcloud">
+            <p>从云盘删除文件后，其他将无法同步，确认删除？</p>
+            <p class="check u-cklist">
+            	<label><input type="checkbox" class="j-flag" name="remind"/><span><svg><use xlink:href="../../res/svg/icon.sp.svg#checkbox"></use></svg></span><u class="s-fc3">同时删除已下载的音乐文件</u></label>
+            </p>
+            <p class="ps"><svg class="icon u-icn u-icn-info"><use xlink:href="../../res/svg/icon.sp.svg#radio_i"></use></svg><span class="s-fc3">歌曲由cue文件生成，不会删除本地文件</span></p>
+        </div>
+        <div class="lybt">
+            <button type="button" class="u-ibtn1 u-ibtnsz1">删 除</button><button type="button" class="u-ibtn5 u-ibtnsz1">取 消</button>
+        </div>
+    </div>
+    <span class="zcls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+</div>
+</body>
+</html>

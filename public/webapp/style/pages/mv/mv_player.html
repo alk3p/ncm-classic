@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>MV—网易云音乐</title>
+<!-- STYLE -->
+<link rel="stylesheet" href="../../css/animate.ls.css"/>
+<link rel="stylesheet" href="../../css/base.ls.css"/>
+<link rel="stylesheet" href="../../css/grid.ls.css"/>
+<link rel="stylesheet" href="../../css/unit.ls.css"/>
+<link rel="stylesheet" href="../../css/module.ls.css"/>
+<link rel="stylesheet" href="../../css/frame.ls.css">
+<link rel="stylesheet" href="../../css/layer.ls.css">
+<link rel="stylesheet" href="../../css/style.ls.css">
+<link rel="stylesheet" href="../../css/skin_common.ls.css">
+
+<!-- SKIN -->
+<link rel="stylesheet" href="../../skin/pub/web/css/skin.ls.css">
+
+<style>
+body{overflow-y:auto;border:0; background:#ccc;}
+
+</style>
+<script src="../replace.js"></script>
+</head>
+<body>
+<div id="mv-player" onselectstart="return false" style="width:690px;height:388px; margin:10px auto;">
+    <div class="m-mvplayer" style="overflow:visible">
+        <!-- 模拟video节点 -->
+        <img class="video j-flag" width=690 height=517 src="http://p4.music.126.net/SuHUUOlgodl4Zi7CY3lH_g==/3408486047613226.jpg?param=690y517&quality=100" />
+        <!-- 默认图 -->
+        <div class="loadingbg f-pa"></div>
+        <!-- 重新播放 -->
+        <div class="replay f-ff2 f-vhc j-flag" data-action="replay"><a class="icon icon-replay"><svg><use xlink:href="../../res/svg/icon.sp.svg#mv_replay"></use></svg></a>&nbsp;重播</div>
+        <!-- 暂停，播放 -->
+        <a data-action="play" class="icon icon-bplay f-vhc j-flag"><svg><use xlink:href="../../res/svg/icon.sp.svg#mv_play_l"></use></svg></a>
+        <!-- 下载进度 图标待补充 -->
+        <div class="loading j-flag f-vhc"><span class="icon icon-loading">&nbsp;</span>&nbsp;60%</div>
+        <!-- 播放条 -->
+        <div class="bottom j-flag" style="bottom:;">
+            <div class="playbar jj-flag">
+                <div class="bar bar-loaded" style="width:60%;">&nbsp;</div>
+                <div class="bar bar-played" style="width:30%;"><span class="thumb">&nbsp;</span></div>
+                <div class="tip">00:51</div>
+                <div class="triangle"></div>
+            </div>
+            <div class="group f-cb">
+                <div class="play-pause f-pr"><svg>
+                    <use xlink:href="../../res/svg/icon.sp.svg#mv_play"></use>
+                </svg></div>
+                <div class="time f-ff1"><span class="ptime">01:14</span> / <span class="jj-flag">03:09</span></div>
+                <div class="rightGroup">
+                    <!-- 动态中用icon-big -->
+                    <a class="fullscreen"><svg><use xlink:href="../../res/svg/icon.sp.svg#mv_full"></use></svg></a>
+                    <!-- MV质量 动态中不出现 -->
+                    <div class="quality f-pr">
+                        <a class="icon"><svg><use xlink:href="../../res/svg/icon.sp.svg#mv_quality"></use></svg>1080P</a>
+                        <ul class="qlist jj-flag">
+                            <li>1080 <i class="member"><svg><use xlink:href="../../res/svg/icon.sp.svg#list_member_b"></use></svg><svg><use xlink:href="../../res/svg/icon.sp.svg#list_member_f"></use></svg></i></li>
+                            <li><svg class="check"><use xlink:href="../../res/svg/icon.sp.svg#list_check"></use></svg>超 清 <i class="member"><svg><use xlink:href="../../res/svg/icon.sp.svg#list_member_b"></use></svg><svg><use xlink:href="../../res/svg/icon.sp.svg#list_member_f"></use></svg></i></li>
+                            <li>高&nbsp;&nbsp;&nbsp;清</li>
+                            <li>标 清 <i class="member"><svg><use xlink:href="../../res/svg/icon.sp.svg#list_member_b"></use></svg><svg><use xlink:href="../../res/svg/icon.sp.svg#list_member_f"></use></svg></i></li>
+                        </ul>
+                    </div>
+                    <!-- 音量 -->
+                    <div class="volume jj-flag">
+                        <a class="icon z-silence"><svg><use xlink:href="../../res/svg/btmbar.sp.svg#voice"></use></svg></a><span class="track">
+                            <span class="vol" style="width:80%;"><span class="thumb f-pa">&nbsp;</span></span>
+                        </span>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

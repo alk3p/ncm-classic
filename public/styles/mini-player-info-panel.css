@@ -1,0 +1,25 @@
+/** Used in MiniPlayerInfoPanel **/
+
+QFrame#info-panel-left-bg {
+  border-width: 0px 0px 0px 12px;
+  border-image: url(SKIN_ROOT/mini/bar/left.png);
+}
+
+QFrame#info-panel-mid-bg {
+  background-image: url(SKIN_ROOT/mini/bar/mid.png) stretch;
+}
+
+QFrame#info-panel-right-bg {
+  border-width: 0px 12px 0px 0px;
+  border-image: url(SKIN_ROOT/mini/bar/right.png);
+}
+
+QLabel#title-label {
+  padding-top: 5px;
+  color: INFO_PANEL_TITLE_COLOR;
+}
+
+QLabel#artist-label {
+  padding-top: 5px;
+  color: INFO_PANEL_ARTIST_COLOR;
+}

@@ -1,0 +1,222 @@
+/* reset */
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+p,
+blockquote,
+pre,
+hr,
+figure,
+table,
+caption,
+th,
+td,
+form,
+fieldset,
+legend,
+input,
+button,
+textarea,
+menu {
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+header,
+footer,
+section,
+article,
+aside,
+nav,
+hgroup,
+address,
+figure,
+figcaption,
+menu,
+details {
+  display: block;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+caption,
+th {
+  text-align: left;
+  font-weight: normal;
+}
+html,
+body,
+fieldset,
+img,
+iframe,
+abbr {
+  border: 0;
+}
+i,
+cite,
+em,
+var,
+address,
+dfn {
+  font-style: normal;
+}
+summary {
+  outline: 0;
+}
+li {
+  list-style: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+small {
+  font-size: 100%;
+}
+sup,
+sub {
+  font-size: 83%;
+}
+pre,
+code,
+kbd,
+samp {
+  font-family: inherit;
+}
+q:before,
+q:after {
+  content: none;
+}
+textarea {
+  overflow: auto;
+  resize: none;
+}
+label,
+summary {
+  cursor: default;
+}
+a,
+button {
+  cursor: pointer;
+}
+button,
+input {
+  box-sizing: content-box;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+em,
+strong,
+b {
+  font-weight: normal;
+}
+/* layout */
+.m-install {
+  color: #333;
+  width: 440px;
+  height: 211px;
+  padding-top: 1px;
+  background: url(../res/install/install.png) no-repeat;
+  font-size: 12px;
+}
+.m-install .barbg {
+  width: 400px;
+  height: 6px;
+  background: #e5e5e5;
+  margin: 0 auto;
+  margin-top: 161px;
+}
+.m-install .bar {
+  width: 0%;
+  height: 6px;
+  background: #ee453b;
+}
+.m-install .note {
+  margin-top: 8px;
+  text-align: center;
+  color: #333;
+}
+.m-install .fbox,
+.m-install .note1 {
+  display: none;
+}
+/* 数据升级失败 */
+.m-dataFail .note {
+  display: none;
+}
+.m-dataFail .note1 {
+  display: block!important;
+}
+.m-updateFail .barbg,
+.m-updateFail .note {
+  display: none;
+}
+.m-updateFail .fbox {
+  display: block;
+  position: relative;
+  margin: 145px 0 0 18px;
+}
+.m-updateFail .fbox p:before,
+.m-updateFail .fbox input + span {
+  background: url(../res/install/install_icon.png) no-repeat;
+}
+.m-updateFail .fbox p {
+  height: 17px;
+  line-height: 17px;
+  padding-bottom: 10px;
+}
+.m-updateFail .fbox p:before {
+  display: inline-block;
+  content: '';
+  vertical-align: middle;
+  margin: 0 5px 4px 0;
+  width: 17px;
+  height: 17px;
+  background-position: 0 0;
+}
+.m-updateFail .fbox label input {
+  visibility: hidden;
+  position: absolute;
+}
+.m-updateFail .fbox label input + span {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 6px;
+  width: 17px;
+  height: 17px;
+  background-position: 0 -22px;
+}
+.m-updateFail .fbox input:checked + span {
+  background-position: 0 -42px;
+}
+.m-updateFail .fbox button {
+  position: absolute;
+  top: 22px;
+  right: 20px;
+  color: #2b2b2b;
+  border-radius: 4px;
+  border: 1px solid;
+  border-color: #ceced3 #bfc1c6 #b2b4bb;
+  box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.48), 0 1px 0 rgba(133, 137, 147, 0.2);
+  background: -webkit-linear-gradient(#f0f2f9, #dddfe7);
+  padding: 5px 15px;
+}

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html class="p-recommend">
+<head>
+<meta charset="utf-8"/>
+<title>本地音乐 + 我下载的音乐</title>
+<!-- STYLE -->
+<link rel="stylesheet" href="../../css/animate.ls.css"/>
+<link rel="stylesheet" href="../../css/base.ls.css"/>
+<link rel="stylesheet" href="../../css/grid.ls.css"/>
+<link rel="stylesheet" href="../../css/unit.ls.css"/>
+<link rel="stylesheet" href="../../css/module.ls.css"/>
+<link rel="stylesheet" href="../../css/frame.ls.css">
+<link rel="stylesheet" href="../../css/layer.ls.css">
+<link rel="stylesheet" href="../../css/style.ls.css">
+<link rel="stylesheet" href="../../css/skin_common.ls.css">
+
+<!-- SKIN -->
+<link rel="stylesheet" href="../../skin/pub/web/css/skin.ls.css">
+
+<style>
+body{overflow-y:auto;border:0;}
+</style>
+<script src="../replace.js"></script>
+</head>
+<body>
+<div class="n-local">
+	<!-- 已下载MV -->
+    <div class="u-header header">
+		<div class="u-tabbtn u-tabbtn-head u-tabbtn-dld">
+            <a href="#" class="btn btn-l">
+                <span>已下载单曲</span><span class="num f-dn">(10)</span>
+            </a>
+            <a href="#" class="btn">
+                <span>已下载电台节目</span><span class="num f-dn">(10)</span>
+            </a>
+            <a  href="#" class="btn z-sel">
+                <span>已下载MV</span><span class="num f-dn">(20)</span>
+            </a>
+            <a  href="#" class="btn btn-r">
+                <span>正在下载</span><span class="num f-dn">(20)</span>
+            </a>
+        </div>
+	</div>
+    <div class="m-list-mv m-list-mv-fav">
+	    <ul class="f-flex">
+	    	<li>
+	            <div class="itm u-cover u-cover-mvrank">
+	                <a href="#" class="lnk">
+	                    <img src="http://nec.netease.com/img/s/1.jpg">
+	                    <div class="ci f-pa"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/cover.sp.svg#video_mv"></use></svg>4106</div>
+	                    <span class="time">04:38</span>
+	                </a>
+	            </div>
+	            <div class="tit">
+	                <a class="f-thide s-fc1">山河故人</a>
+	                <a class="f-thide s-fc4">李宇春</a>
+	            </div>
+	        </li>
+	        <li>
+	            <div class="itm u-cover u-cover-mvrank">
+	                <a href="#" class="lnk">
+	                    <img src="http://nec.netease.com/img/s/1.jpg">
+	                    <div class="ci f-pa"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/cover.sp.svg#video_mv"></use></svg>4106</div>
+	                    <span class="time">04:38</span>
+	                </a>
+	            </div>
+	            <div class="tit">
+	                <a class="f-thide s-fc1">山河故人</a>
+	                <a class="f-thide s-fc4">李宇春</a>
+	            </div>
+	        </li>
+	        <li>
+	            <div class="itm u-cover u-cover-mvrank">
+	                <a href="#" class="lnk">
+	                    <img src="http://nec.netease.com/img/s/1.jpg">
+	                    <div class="ci f-pa"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/cover.sp.svg#video_mv"></use></svg>4106</div>
+	                    <span class="time">04:38</span>
+	                </a>
+	            </div>
+	            <div class="tit">
+	                <a class="f-thide s-fc1">山河故人</a>
+	                <a class="f-thide s-fc4">李宇春</a>
+	            </div>
+	        </li>
+	        <li>
+	            <div class="itm u-cover u-cover-mvrank">
+	                <a href="#" class="lnk">
+	                    <img src="http://nec.netease.com/img/s/1.jpg">
+	                    <div class="ci f-pa"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/cover.sp.svg#video_mv"></use></svg>4106</div>
+	                    <span class="time">04:38</span>
+	                </a>
+	            </div>
+	            <div class="tit">
+	                <a class="f-thide s-fc1">山河故人</a>
+	                <a class="f-thide s-fc4">李宇春</a>
+	            </div>
+	        </li>
+	    </ul>
+	</div>
+    <!-- /loaded mv end -->
+	<!-- 正在下载 -->
+	<div class="u-header header">
+		<div class="u-tabbtn u-tabbtn-head u-tabbtn-dld">
+            <a href="#" class="btn btn-l">
+                <span>已下载</span><span class="num f-dn">(10)</span>
+            </a>
+             <a href="#" class="btn">
+                <span>已下载的节目</span><span class="num f-dn">(10)</span>
+            </a>
+             <a  href="#" class="btn">
+                <span>已下载MV</span><span class="num f-dn">(20)</span>
+            </a>
+            <a  href="#" class="btn btn-r z-sel">
+                <span>正在下载</span><span class="num f-dn">(20)</span>
+            </a>
+        </div>
+	</div>
+	<div class="oper f-cb">
+		<div class="buttons">
+			<button class="u-ibtn5"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_start"></use></svg>全部开始</button>
+			<button class="u-ibtn5"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_pause_all"></use></svg>全部暂停</button>
+		</div>
+        <button class="clear u-ibtn5"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_delete"></use></svg>清空</button>
+		<div class="open1">
+		    <a href="javascript:;" data-action="folder">
+                <span class="txt f-thide s-fc3">存储目录：E:\CloudMusic</span>
+            </a>
+            <a href="javascript:;" class="lnk s-fc2" data-action="update">打开目录</a>
+		</div>
+	</div>
+	<div class="m-plylist m-plylist-prs m-plylist-only">
+		<div class="head sort f-cb">
+			<div class="fix">
+				<div class="th col">
+					<span title="还原默认排序" class="icn-sort-btn">
+						<a class="j-flag f-dn" data-res-action="sort" data-res-type="4" data-res-data="8704969" data-res-from="1" data-res-field="default"><i></i>
+						</a>
+						<a class="j-default z-def"><i></i></a>
+				  </span>
+				</div>
+				<div class="th col asc"><i></i></div>
+			</div>
+			<div class="flow f-cb">
+				<div class="th col asc">进度<i></i></div>
+				<div class="th col asc">音乐标题<i></i></div>
+			</div>
+		</div>
+		<ul>
+			<li class="itm">
+				<svg class="playstate"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#list_play"></use></svg>
+				<span class="ico z-first">
+					<i class=" u-icn u-icn-download">
+		            	<svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#btn_start_sml"></use></svg>
+		            </i>
+				</span>
+				<div class="flow">
+					<div class="td col">
+						<div class="u-probar">
+							<div class="pro" style="width:30%"></div>
+						</div>
+						<span>32k/s</span>
+					</div>
+					<!-- 单曲，无损 -->
+					<div class="td title col">
+						<span class="tit s-fc1">
+							<svg class="tag u-icn-titicn"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#song_sml"></svg>
+							这张表缺图标
+						</span>
+						<i class="member u-icn u-icn-member"></i><i class="member u-icn u-icn-memsq"></i>
+						<svg class="cld u-icn u-icn-cldlocal"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#cloud"></use></svg>
+						
+					</div>
+				</div>
+			</li>
+			<li class="itm">
+				<svg class="playstate"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#list_play"></use></svg>
+				<span class="ico z-first">
+					<i class=" u-icn u-icn-download z-ing">
+		            	<svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#btn_start_sml"></use></svg>
+		            </i>
+				</span>
+				<div class="flow">
+					<div class="td col">
+						<div class="u-probar">
+							<div class="pro" style="width:30%"></div>
+						</div>
+						<span>排队中</span>
+					</div>
+					<!-- 电台 -->
+					<div class="td title col">
+						<span class="tit s-fc1"><svg class="tag u-icn u-icn-titicn"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#rdi_sml"></use></svg>天狗舞踏会</span>
+					</div>
+				</div>
+			</li>
+			<li class="itm">
+				<svg class="playstate"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#list_play"></use></svg>
+				<span class="ico z-first">
+					<i class="u-icn u-icn-fail">
+		            	<svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#radio_i"></use></svg>
+		            </i>
+				</span>
+				<div class="flow">
+					<div class="td col">
+						<div class="u-probar">
+							<div class="pro" style="width:30%"></div>
+						</div>
+						<span>排队中</span>
+					</div>
+					<!-- 电台 -->
+					<div class="td title col">
+						<span class="tit s-fc1"><svg class="tag u-icn u-icn-titicn"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#mv_sml"></use></svg>木漏れ日の散歩道</span>
+					</div>
+				</div>
+			</li>
+			<li class="itm">
+				<svg class="playstate"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#list_play"></use></svg>
+				<span class="ico z-first">
+					<i class="u-icn u-icn-transcoding">
+		            	<svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#transcoding"></use></svg>
+		            </i>
+				</span>
+				<div class="flow">
+					<div class="td col">
+						<div class="u-probar">
+							<div class="pro"></div>
+						</div>
+						<span>下载失败</span> 
+						<div class="why f-pr">
+							<span class="u-icn u-icn-help">
+								<svg><use xlink:href="../../res/svg/icon.sp.svg#help"></use></svg>
+							</span>
+							<!-- 下载失败提示 -->
+							<div class="u-arrlay m-help s-fc3" style="display:block;">
+								<div class="txtcnt">
+									<p class="p">为支持歌手，该歌曲须付费下载</p>
+									<p class="p f-tr"><a href="" class="s-fc2 f-tdu">现在去订购</a></p>
+								</div>
+							</div>
+							<!-- <div class="u-arrlay m-help s-fc3">
+								<div class="txtcnt">
+									<p class="p f-tc">下载失败，本月会员下载量已满</p>
+								</div>
+							</div>
+							<div class="u-arrlay m-help s-fc3">
+								<div class="txtcnt">
+									<p class="p f-tc">空间溢出（等其它）</p>
+								</div>
+							</div> -->
+						</div>
+					</div>
+					<div class="td title col">
+						<span class="tit s-fc1"><svg class="tag u-icn u-icn-titicn"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#song_sml"></use></svg>时の薫り</span>
+						<!-- 标清 -->
+						<i class="qt u-icn u-icn-biaoqing"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#biaoqing"></use></svg></i>
+						<!-- 超清 -->
+						<i class="qt u-icn u-icn-biaoqing"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#chaoqing"></use></svg></i>
+						<!-- 高清 -->
+						<i class="qt u-icn u-icn-biaoqing"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#gaoqing"></use></svg></i>
+						<!-- 1080p -->
+						<i class="qt u-icn u-icn-1080p"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#1080p"></use></svg></i>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<!-- /loading  -->
+	<br>
+	<br>
+	<br>
+	<br>
+	<!-- 已下载 -->
+	<div class="u-header header">
+		<div class="u-tabbtn u-tabbtn-head u-tabbtn-dld">
+            <a href="#" class="btn btn-l z-sel">
+                <span>已下载单曲</span><span class="num f-dn">(10)</span>
+            </a>
+             <a href="#" class="btn">
+                <span>已下载电台节目</span><span class="num f-dn">(10)</span>
+            </a>
+            <a  href="#" class="btn">
+                <span>已下载MV</span><span class="num f-dn">(20)</span>
+            </a>
+            <a  href="#" class="btn btn-r">
+                <span>正在下载</span><span class="num f-dn">(20)</span>
+            </a>
+        </div>
+	</div>
+	<div class="oper f-cb">
+		<div class="buttons">
+			<div class="u-ibtn5b"><span class="u-ibtn5 u-ibtn5-ply"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_play"></use></svg>播放全部</span><span class="u-ibtn5 u-ibtn5-only u-ibtn5-addto"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_addto_list"></use></svg></span></div>
+		</div>
+		<div class="u-lcsch">
+			<input type="text" placeholder="搜索本地音乐">
+			<span class="sch-btn"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#search"></use></svg></span>
+		</div>
+		<div class="open1 open2">
+		    <a href="javascript:;" data-action="folder">
+                <span class="txt f-thide s-fc3">存储目录：E:\CloudMusic</span>
+            </a>
+            <a href="javascript:;" class="lnk s-fc2" data-action="update">打开目录</a>
+		</div>
+	</div>
+	<div class="m-plylist m-plylist-7col m-plylist-only m-plylist-song-dld s-fc4">
+		<div class="head f-cb">
+			<div class="fix">
+				<div class="th col"></div>
+				<div class="th col"><i></i></div>
+			</div>
+			<div class="flow">
+				<div class="th col asc">音乐标题</div>
+				<div class="th col asc">歌手</div>
+				<div class="th col desc">专辑</div>
+				<div class="th col">时长</div>
+				<div class="th col desc">大小</div>
+			</div>
+		</div>
+		<ul style="counter-reset:tlistorder 0;">
+    		<li class="itm">
+    			<svg class="playstate"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#list_play"></use></svg>
+            	<div class="trbg f-cb">
+                    <span class="ico z-first u-icn u-icn-love s-fc3"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_love"></use></svg></span>
+                    <div class="flow f-cb">
+                        <div class="td col title">
+                            <a href="#" class="tit s-fc1">大声大声告诉你大声告诉你告诉你大声告诉你大声告诉你大声告诉你大声告诉你</a>
+                        </div>
+                        <div class="td col ellipsis"><a href="#" class="s-fc1 ">The following people and documentation they wrote were very useful for defining the numbering systems</a></div>
+                        <div class="td col ellipsis"><a href="#" class="s-fc3">The following</a> , <a href="#" class="s-fc3">The following</a> , <a href="#" class="s-fc3">The following</a> , <a href="#" class="s-fc3">The following</a> , <a href="#" class="s-fc3">The following</a> </div>
+                        <div class="td col">03:31</div>
+                        <div class="td col">10.8MB</div>
+                    </div>
+                 </div>
+    		</li>
+    		<li class="itm">
+    			<svg class="playstate"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#list_play"></use></svg>
+            	<div class="trbg f-cb">
+                    <span class="ico z-first u-icn u-icn-loved z-dis"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_loved"></use></svg></span>
+                    <div class="flow f-cb">
+                        <div class="td col title">
+                            <a href="#" class="tit s-fc1">大声大声告诉你大声告诉你大声告诉</a>
+                        </div>
+                        <div class="td col ellipsis"><a href="#" class="s-fc1 ">The follo</a></div>
+                        <div class="td col ellipsis"><a href="#" class="s-fc3">The following</a></div>
+                        <div class="td col">03:31</div>
+                        <div class="td col">10.8MB</div>
+                    </div>
+                 </div>
+    		</li>
+    	</ul>
+	</div>
+	
+    <!-- 已下载的节目 -->
+    <div class="u-header header">
+		<div class="u-tabbtn u-tabbtn-head u-tabbtn-dld">
+            <a href="#" class="btn btn-l">
+                <span>已下载单曲</span><span class="num f-dn">(10)</span>
+            </a>
+            <a href="#" class="btn z-sel">
+                <span>已下载电台节目</span><span class="num f-dn">(10)</span>
+            </a>
+            <a  href="#" class="btn">
+                <span>已下载MV</span><span class="num f-dn">(20)</span>
+            </a>
+            <a  href="#" class="btn btn-r">
+                <span>正在下载</span><span class="num f-dn">(20)</span>
+            </a>
+        </div>
+	</div>
+    <div class="oper f-cb">
+		<div class="buttons">
+			<div class="u-ibtn5b"><span class="u-ibtn5 u-ibtn5-ply"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_play"></use></svg>播放全部</span><span class="u-ibtn5 u-ibtn5-only u-ibtn5-addto"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_addto_list"></use></svg></span></div>
+		</div>
+		<div class="u-lcsch">
+			<input type="text" placeholder="搜索本地音乐">
+			<span class="sch-btn"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#search"></use></svg></span>
+		</div>
+		<div class="open1 open2">
+		    <a href="javascript:;" data-action="folder">
+                <span class="txt f-thide s-fc3">存储目录：E:\CloudMusic</span>
+            </a>
+            <a href="javascript:;" class="lnk s-fc2" data-action="update">打开目录</a>
+		</div>
+	</div>
+    <div class="m-plylist m-plylist-rdi m-plylist-rdi-dld s-fc4">
+		<div class="head f-cb">
+			<div class="fix">
+				<div class="th col"></div>
+			</div>
+			<div class="flow f-cb">
+				<div class="th col">节目标题</div>
+				<div class="th col">主播</div>
+				<div class="th col">电台</div>
+				<div class="th col">大小</div>
+				<div class="th col">下载时间</div>
+			</div>
+		</div>
+         <ul>
+            <li class="itm">
+            	<svg class="playstate"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#list_play"></use></svg>
+                <div class="flow f-cb">
+                    <div class="td col">
+                       <div class="cvr u-cover u-cover-tn"><a href="#" class="lnk"><img src="http://imgcache.qq.com/music/photo/singer/43/150_singerpic_143_0.jpg"></a></div>
+                       <h4 class="s-fc1 f-thide">听好声音3强 谈音乐之旅</h4>
+                    </div>
+                    <div class="td col f-thide">此时此刻许巍英伦行</div>
+                    <div class="td col f-thide">你妹电台</div>
+                    <div class="td col f-thide">25MB</div>
+                    <div class="td col f-thide">4天前</div>
+                </div>
+            </li>
+             <li class="itm z-play">
+             	<svg class="playstate"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#list_play"></use></svg>
+                <div class="flow f-cb">
+                	<svg class="playstate"><use xlink:href="../../res/svg/icon.sp.svg#list_play"></use></svg>
+                    <div class="td col">
+                       <div class="cvr u-cover u-cover-tn"><a href="#" class="lnk"><img src="http://imgcache.qq.com/music/photo/singer/43/150_singerpic_143_0.jpg"></a></div>
+                       <h4 class="s-fc1 f-thide">听好声音3强 谈音乐之旅</h4>
+                    </div>
+                    <div class="td col f-thide">此时此刻许巍英伦行 </div>
+                    <div class="td col f-thide">你妹电台</div>
+                    <div class="td col f-thide">25MB</div>
+                    <div class="td col f-thide">4天前</div>
+                </div>
+            </li>
+         </ul>
+	</div>
+   <!-- /loaded program end -->
+</div>
+</body>
+</html>

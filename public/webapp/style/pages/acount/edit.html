@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>编辑歌单—网易云音乐</title>
+<!-- STYLE -->
+<link rel="stylesheet" href="../../css/animate.ls.css"/>
+<link rel="stylesheet" href="../../css/base.ls.css"/>
+<link rel="stylesheet" href="../../css/grid.ls.css"/>
+<link rel="stylesheet" href="../../css/unit.ls.css"/>
+<link rel="stylesheet" href="../../css/module.ls.css"/>
+<link rel="stylesheet" href="../../css/frame.ls.css">
+<link rel="stylesheet" href="../../css/layer.ls.css">
+<link rel="stylesheet" href="../../css/style.ls.css">
+<link rel="stylesheet" href="../../css/skin_common.ls.css">
+<!-- SKIN -->
+<link rel="stylesheet" href="../../skin/pub/web/css/skin.ls.css">
+
+<style>
+body{overflow-y:auto;border:0;}
+</style>
+<script src="../replace.js"></script>
+</head>
+<body>
+<div class="g-wrap">
+   <!-- 编辑个人信息 -->
+   <div class="u-head1">
+		<h2 class="u-tit f-ff2">编辑个人信息</h2>
+	</div>
+   <div class="m-form">
+		<div class="fmitm">
+			<label class="s-fc4">昵称：</label>
+			<div class="fmcnt">
+				<input type="text" class="u-txt txt" value="昵称" placeholder="昵称" />
+				<div class="error s-fc6">该用户名已被占用！</div>
+			</div>
+		</div>
+		<div class="fmitm">
+			<label class="s-fc4">介绍：</label>
+			<div class="fmcnt">
+				<div class="u-txt u-txt-area area"><textarea placeholder="亲，这是要写作文咩？作文嘛~~作文呀！！！">亲，这是要写作文咩？作文嘛~~作文呀！！！</textarea><span class="remain s-fc3 z-over">140</span></div>
+			</div>
+		</div>
+		<div class="fmitm">
+			<label class="s-fc4">性别：</label>
+			<div class="fmcnt">
+				<ul class="u-cklist u-cklist-auto">
+					<li><label class="s-fc4"><input type="radio" name="sex" checked="checked"><span><svg><use xlink:href="../../res/svg/icon.sp.svg#radio"></use></svg></span>男</label></li>
+					<li><label class="s-fc4"><input type="radio" name="sex"><span><svg><use xlink:href="../../res/svg/icon.sp.svg#radio"></use></svg></span>女</label></li>
+				</ul>
+			</div>
+		</div>
+		<div class="fmitm fmitm-fete">
+			<label class="s-fc4">性别：</label>
+			<div class="fmcnt j-flag" id="auto-id-cKqxG5FnvEvAfOE7">
+				<div class="u-select">
+					<div class="value" id="auto-id-UO6mhSKDu7WnRUq2">1982年</div>
+				</div>
+				<div class="u-select">
+					<div class="value" id="auto-id-GGAHtOkuknWS8Ffm">7月</div>
+				</div>
+				<div class="u-select">
+					<div class="value" id="auto-id-MaTaursQ7JJQxpLl">4日</div>
+				</div>
+			</div>
+		</div>
+		<div class="fmitm fmitm-city">
+			<label class="s-fc4">城市：</label>
+			<div class="fmcnt">
+				<div class="u-select">
+					<div class="value">浙江</div>
+					<div class="sltwrap">
+						<div class="select"><div class="option">江苏</div><div class="option">上海</div></div>
+					</div>
+				</div>
+				<div class="u-select z-open">
+					<div class="value value-none">请选择...</div>
+					<div class="sltwrap">
+						<div class="select"><div class="option">江苏</div><div class="option">上海</div></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="fmitm fmitm-btns">
+			<label class="s-fc4">&nbsp;</label>
+			<div class="fmcnt">
+				<button class="u-ibtn1 u-ibtnsz1">保&nbsp;&nbsp;存</button><button class="u-ibtn5 u-ibtnsz1">取&nbsp;&nbsp;消</button>
+			</div>
+		</div>
+		<div class="cover">
+			<div class="cvr u-artist u-artist-edit"><img src="http://nec.netease.com/img/m/1.jpg"></div>
+			<div class="bar">
+				<button class="u-ibtn5 u-ibtnw3">修改头像</button>
+			</div>
+		</div>
+	</div>
+
+
+
+
+   <!-- 编辑歌单 -->
+   <div class="u-head1">
+		<h2 class="u-tit f-ff2">编辑歌单信息</h2>
+	</div>
+
+	<div class="m-form m-form-md">
+		<div class="fmitm">
+			<label class="s-fc4">歌单名：</label>
+			<div class="fmcnt">
+				<input type="text" class="u-txt txt" value="歌单名" placeholder="歌单名" />
+			</div>
+		</div>
+		<div class="fmitm fmitm-tag">
+			<label class="s-fc4">标签：</label>
+			<div class="fmcnt">
+				<span class="tags">
+					<span class="u-tag">电影</span>
+					<span class="u-tag">原声带</span>
+					<span class="u-tag">多情</span>
+				</span>
+				<a href="#" class="f-tdu">选择标签</a>
+			</div>
+		</div>
+		<div class="fmitm">
+			<label class="s-fc4">介绍：</label>
+			<div class="fmcnt">
+				<div class="u-txt u-txt-area area"><textarea placeholder="介绍">2008年出道的日本歌手松下優也，隶属于日本SONY MUSIC 旗下的EPIC RECORD唱片公司。曾为男子组合SUGER的一员，单飞后以单曲「foolish foolish」正式出道。之后还先后多次参演音乐舞台剧，电影以及电视剧。</textarea><span class="remain s-fc3">140</span></div>
+			</div>
+		</div>
+		<div class="fmitm fmitm-btns fmitm-btns-pl">
+			<label class="s-fc4">&nbsp;</label>
+			<div class="fmcnt">
+				<button class="u-ibtn1 u-ibtnsz1 z-dis">保&nbsp;&nbsp;存</button><button class="u-ibtn5 u-ibtnsz1">取&nbsp;&nbsp;消</button>
+			</div>
+		</div>
+		<div class="cover">
+			<div class="cvr u-cover u-cover-edit"><img src="http://nec.netease.com/img/m/1.jpg"></div>
+			<div class="bar">
+				<button class="u-ibtn5 u-ibtnw3">编辑封面</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="m-layer m-layer-edt z-show"  style="top:950px;">
+    <div class="zbar"><div class="zttl">歌单封面</div></div>
+    <div class="zcnt">
+        <div class="lyct">
+            <div class="m-edtimg f-cb">
+                <div class="left">
+                    <div class="img f-pr">
+                        <span class="cov"></span>
+                        <div class="u-load">载入中...</div>
+                        <p class="tip s-fc6">请选择不大于3M的图片!</p><!--没有出错时不加 f-hide-->
+                        <img/>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="covb f-pr">
+                        <span class="cov"></span>
+                        <div class="bpre"><img/></div>
+                    </div>
+                    <p class="s-fc4">大尺寸封面</p>
+                    <div class="covs f-pr">
+                        <span class="cov"></span>
+                        <div class="spre"><img/></div>
+                    </div>
+                    <p class="s-fc4">小尺寸封面</p>
+                </div>
+            </div>
+        </div>
+        <div class="lybt">
+            <button type="button" class="u-ibtn5 u-ibtnsz1">重新选择</button><button type="button" class="u-ibtn1 u-ibtnsz1">保存并关闭</button>
+        </div>
+    </div>
+    <span class="zcls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+</div>
+
+<div class="m-layer m-layer-tag z-show" style="top:1500px;">
+	 <div class="zbar"><div class="zttl">选择标签</div></div>
+	 <div class="zcnt">
+        <div class="lyct lyct-2 m-chtag">
+			<h4 class="s-fc4">选择合适的标签，最多可选<strong class="s-fc6">3</strong>个</h4>
+			<dl class="f-cb">
+				<dt>风格：</dt>
+				<dd>
+					<ul class="f-cb">
+						<li><span class="u-tag u-tag-ch f-cp">流 行</span></li>
+						<li><span class="u-tag u-tag-ch f-cp">乡 村</span></li>
+						<li><span class="u-tag u-tag-ch f-cp">流 行</span></li>
+						<li><span class="u-tag u-tag-ch f-cp">乡 村</span></li>
+						<li><span class="u-tag u-tag-ch f-cp">流 行</span></li>
+						<li><span class="u-tag u-tag-ch f-cp">乡 村</span></li>
+						<li><span class="u-tag u-tag-ch f-cp">流 行</span></li>
+						<li><span class="u-tag u-tag-ch f-cp">乡 村</span></li>
+						<li><span class="u-tag u-tag-ch f-cp">流 行</span></li>
+						<li><span class="u-tag u-tag-ch f-cp">乡 村</span></li>
+					</ul>
+				</dd>
+			</dl>
+			<dl>
+				<dt>场景：</dt>
+				<dd>
+					<ul class="f-cb">
+						<li><span class="u-tag u-tag-ch f-cp">流 行</span></li>
+						<li><span class="u-tag u-tag-ch f-cp">乡 村</span></li>
+						<li><span class="u-tag u-tag-ch f-cp">流 行</span><span class="icn u-icn u-icn-smlslt z-slt"><svg><use xlink:href="../../res/svg/icon.sp.svg#selected_sml"></use></svg></span></li></li>
+						<li><span class="u-tag u-tag-ch f-cp">乡 村</span></li>
+						<li><span class="u-tag u-tag-ch f-cp">流 行</span></li>
+						<li><span class="u-tag u-tag-ch f-cp">乡 村</span></li>
+						<li><span class="u-tag u-tag-ch f-cp">流 行</span></li>
+						<li><span class="u-tag u-tag-ch f-cp">乡 村</span></li>
+						<li><span class="u-tag u-tag-ch f-cp">流 行</span></li>
+						<li><span class="u-tag u-tag-ch f-cp">乡 村</span></li>
+					</ul>
+				</dd>
+			</dl>
+		</div>
+		 <div class="lybt">
+			 <button type="button" class="u-ibtn1 u-ibtnsz1">保存并关闭</button>
+		 </div>
+	 </div>
+	 <span class="zcls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+</div>
+</body>
+</html>

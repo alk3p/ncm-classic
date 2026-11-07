@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>单曲播放-网易云音乐</title>
+<!-- STYLE -->
+<link rel="stylesheet" href="../../css/animate.ls.css"/>
+<link rel="stylesheet" href="../../css/base.ls.css"/>
+<link rel="stylesheet" href="../../css/grid.ls.css"/>
+<link rel="stylesheet" href="../../css/unit.ls.css"/>
+<link rel="stylesheet" href="../../css/module.ls.css"/>
+<link rel="stylesheet" href="../../css/frame.ls.css">
+<link rel="stylesheet" href="../../css/layer.ls.css">
+<link rel="stylesheet" href="../../css/style.ls.css">
+<link rel="stylesheet" href="../../css/skin_common.ls.css">
+
+<!-- SKIN -->
+<link rel="stylesheet" href="../../skin/pub/web/css/skin.ls.css">
+
+<script src="../replace.js"></script>
+</head>
+<body>
+<header class="g-hd"> <h1 class="m-logo">网易云音乐</h1></header>
+<section class="g-sd"></section>
+<section class="g-mn"></section>
+
+<!-- 播放单面 -->
+<section class="g-single z-show">
+	<div class="g-singlec">
+		<div class="n-single">
+			<div class="bg z-default">
+				<div class="dftbg z-default"></div>
+				<div class="bgimg bgimg-local z-show" style="background-image:url(temp.jpg);"></div>
+			</div><!-- url(../../../../skin/s0/img/single_default.jpg) -->
+			<div class="wrap" style="display:;">
+				<div class="sd">
+					<div class="cd z-play">
+						<div class="cdbg"></div>
+						<div class="cdwrap q-anioff">
+							<div class="cdin"></div>
+							<div class="cdimg z-show"><img src="../../res/temp/list_temp3.jpg"></div>
+							<div class="cdbox"></div>
+						</div>
+						<div class="cdrun"></div>
+					</div>
+					<!-- <div class="btns" style="top:482px">
+						<button class="u-ibtn5"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_love"></use></svg>喜欢</button>
+						<button class="u-ibtn5"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_fav"></use></svg>收藏(257)</button>
+						<button class="u-ibtn5"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_dld"></use></svg>下载</button>
+						<button class="u-ibtn5"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_share"></use></svg>分享(257)</button>
+					</div> -->
+					<div class="btns">
+						<button class="u-ibtn5 u-ibtn5-inplay u-ibtn5-loved z-did"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_loved"></use></svg>喜欢</button>
+						<button class="u-ibtn5 u-ibtn5-inplay"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_fav"></use></svg>收藏(257)</button>
+						<button class="u-ibtn5 u-ibtn5-inplay"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_dld"></use></svg>下载</button>
+						<button class="u-ibtn5 u-ibtn5-inplay"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_share"></use></svg>分享(257)</button>
+					</div>
+				</div>
+				<div class="mn">
+					<div class="cnt m-playlrc">
+						<!-- 普通单曲 -->
+						<div class="inf">
+							<!-- 字和图要换行  -->
+							<div class="title">
+								<h1 class="f-ff2">爱如潮水爱如潮水爱如潮水爱如潮水爱如潮</h1>
+								<!-- tag start -->
+								<a href="#" class="tag u-cicn-mv"><svg><use xlink:href="../../res/svg/icon.sp.svg#play_mv"></use></svg></a>
+								<div class="tag u-cicn-cloud"><svg><use xlink:href="../../res/svg/icon.sp.svg#play_cloud"></use></svg></div> 
+								<div class="tag u-cicn-local"><svg><use xlink:href="../../res/svg/icon.sp.svg#play_local"></use></svg></div>
+								<div class="tag u-cicn-tsq z-slt f-pr"><svg><use xlink:href="../../res/svg/icon.sp.svg#play_tsq"></use></svg></div>
+								<div class="tag u-cicn-128 z-normal"><svg><use xlink:href="../../res/svg/icon.sp.svg#play_128"></use></svg></div>
+								<div class="tag u-cicn-128 f-cp"><svg><use xlink:href="../../res/svg/icon.sp.svg#play_128arr"></use></svg></div>
+								<div class="tag u-cicn-192 z-normal"><svg><use xlink:href="../../res/svg/icon.sp.svg#play_192"></use></svg></div>
+								<div class="tag u-cicn-192 f-cp"><svg><use xlink:href="../../res/svg/icon.sp.svg#play_192arr"></use></svg></div>
+								<div class="tag u-cicn-320 z-normal"><svg><use xlink:href="../../res/svg/icon.sp.svg#play_320"></use></svg></div>
+								<div class="tag u-cicn-320 f-cp">
+									<svg><use xlink:href="../../res/svg/icon.sp.svg#play_320arr"></use></svg>
+									<div class="m-sltlay m-hqslt f-pa" style="display:;"> 
+										<ol>
+											<li>
+												<i class="slt u-icn u-icn-slt"></i>
+												<span class="f-fl s-fc1">标准<em class="s-fc4">（128kbit/s）</em></span>
+											</li>
+											<li class="z-slt">
+												<i class="slt u-icn u-icn-slt"><svg><use xlink:href="../../res/svg/icon.sp.svg#play_sq_slt"></use></svg></i>
+												<span class="f-fl s-fc1">较高<em class="s-fc4">（192kbit/s）</em></span>
+												<i class="member u-icn u-icn-member"></i>
+											</li>
+											<li>
+												<i class="slt u-icn u-icn-slt"></i>
+												<span class="f-fl s-fc1">极高<em class="s-fc4">（320kbit/s）</em></span>
+												<i class="member u-icn u-icn-memsq"></i>
+											</li>
+											<li>
+												<i class="slt u-icn u-icn-slt"></i>
+												<span class="f-fl s-fc1">无损音质</span>
+											</li>
+										</ol>
+									</div>
+								</div>
+								
+								<!-- end tag -->
+							</div>
+
+							<h2 class="alias u-tit f-ff2 f-thide f-ust f-ust-1"><b>电视剧《兰陵王》主题曲</b><b>；</b></h2>
+							<ul class="f-cb">
+								<li><label>专辑：</label><a href="#">John Bayless</a></li>
+								<li><label>歌手：</label><a href="#">John Bayless</a></li>
+								<li><label>来源：</label><a href="#">John Bayless</a></li>
+							</ul>
+						</div>
+						<div class="migu"><i class="icon u-icn2 u-icn2-migubig" title="歌曲来自咪咕音乐"></i>咪咕音乐</div>
+						<div class="word">
+							<div class="noword f-dn s-fc1">
+								<p><span class="icn u-icn u-icn-false"></span>还没有歌词哦~</p>
+								<p><a href="#" class="f-tdu s-fc2">求歌词</a></p>
+							</div>
+							<div class="text">
+								<p>想说却还没有说的 还狠毒</p>
+								<p>我的爱如潮水</p>
+								<p class="trans"> <!-- 翻译歌词 -->
+									im in love with a monster<br/>我爱上了一个怪物
+								</p>
+								<p class="trans">
+									im in love with a monster<br/>我爱上了一个怪物
+								</p>
+								<p class="trans z-crt">
+									im in love with a monster<br/>我爱上了一个怪物
+								</p>
+								<p class="trans">
+									im in love with a monster<br/>我爱上了一个怪物
+								</p>
+								<p>想说却还没有说的 还狠毒</p>
+								<p>我的爱如潮水</p>
+								<p>想说却还没有说的 还狠毒</p>
+								<p class="z-crt">我的爱如潮水</p>
+								<p>On Butler Street out in the dark</p>
+								<p>Remember when we lost the keys when we</p>
+								<p>Hou lost more than that my backseat</p>
+								<p>Remember how we used to talk</p>
+								<p>The night about to end</p>
+								<p>About busting out we'd break their hearts</p>
+								<p>As I sit in this smokey room</p>
+								<p>The night about to end</p>
+								<p>Lpass my time with strangers more than</p>
+								<p>But this bottle's my only friend</p>
+								<p>Remember when we used to park when we</p>
+								<p class="z-crt">On Butler Street out in the dark</p>
+								<p>Remember when we lost the keys when we</p>
+								<p>Hou lost more than that my backseat</p>
+								<p>Remember how we used to talk</p>
+								<p>The night about to end</p>
+								<p>About busting out we'd break their hearts</p>
+								<p class="supplier">歌词贡献者：<a href="#" class="f-tdu">水煮海参</a></p>
+							</div>
+							<span class="btn icn up" title="后退0.2s"><svg><use xlink:href="../../res/svg/icon.sp.svg#lrc_speed"></use></svg></span>
+							<span class="btn icn down" title="前进0.2s"><svg><use xlink:href="../../res/svg/icon.sp.svg#lrc_speed"></use></svg></span>
+							<div class="btn help" title="报错">
+								<div class="icn">
+		                            <svg>
+		                                <use xlink:href="../../res/svg/icon.sp.svg#lrc_help"></use>
+		                            </svg>
+		                        </div>
+								<div class="helptip f-hc">
+									<a>上传歌单</a>
+									<a>翻译歌单</a>
+									<a>歌曲报错</a>
+									<i class="arr"><svg><use xlink:href="../../res/svg/icon.sp.svg#help_arr"></use></svg></i>
+								</div>
+							</div>
+						</div>
+						
+						<!-- 节目 -->
+						<!--
+						<div class="inf">
+							<h1 class="u-tit f-ff2"><a href="#">节目名称</a><span class="u-icn u-icn-mv"></span></h1>
+							<div class="djinf"><a href="#" class="s-fc3">某某某的节目<span class="djno">第29期</span></a><span class="djicn u-icn2 u-icn2-dj"></span></div>
+						</div>
+						<div class="word">
+							<div class="djwrap">
+								<div class="user">
+									<a href="#" class="u-face u-face-2"><img src="http://nec.netease.com/img/s/1.jpg"></a>
+									<a href="#" class="">某某某</a>
+								</div>
+								<div class="djinf2">
+									<label class="s-fc3">创建时间：</label>2013-06-25
+									<label class="s-fc3">已播放：</label>2456次
+								</div>
+							</div>
+							<div class="intro f-brk">
+								<label>介绍：</label>
+								<p>还记得那时的阳光很好，我却觉得你比那阳光还耀眼。掉落在你的陷阱里就再也爬不起来了，无法挣扎在凌乱的黑夜，逃不出想念你的牢房，突然想你了，想你两年前在人群里那灿烂的笑颜，想念那时候青涩的我们，可如今，短短两年，却什么都变了，我知道现在的你过得很好，那我呢？</p>
+							</div>
+						</div>
+						-->
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="g-bd2 f-cb">
+			<!-- 包含此音乐歌单 -->
+			<div class="g-sd2">
+				<div class="n-shead">
+					<h2 class="u-tit f-ff2">包含此音乐歌单</h2>
+				</div>
+				<ul class="m-slist1">
+					<li>
+						<a href="#">
+							<span class="u-cover u-cover-tn"><span class="lnk"><img src="http://nec.netease.com/img/s/1.jpg"></span></span>
+							<h5>歌单名称</h5>
+							<p class="s-fc4">播放：289</p>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<span class="u-cover u-cover-tn"><span class="lnk"><img src="http://nec.netease.com/img/s/1.jpg"></span></span>
+							<h5>歌单名称歌单名称歌单名称歌单名称歌单名称</h5>
+							<p class="s-fc4">播放：289</p>
+						</a>
+					</li>
+				</ul>
+				<!-- 相似的歌曲 -->
+				<div class="n-shead">
+					<h2 class="u-tit f-ff2">相似的歌曲</h2>
+				</div>
+				<ul class="m-slist2">
+					<li>
+						<a href="#" class="s-fc1">
+							<h5>
+								<span class="tit">Tuesday</span>
+								<svg class="cld u-icn u-icn-cldlocal"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#cloud"></use></svg>
+							</h5>
+							<p class="s-fc3">iLoveMakonnen / Drake</p>
+						</a>
+					</li>
+					<li>
+						<a href="#" class="s-fc1">
+							<h5>
+								<span class="tit">Dangerous <em class="s-fc4">(feat. Sam Martin)</em></span>
+								<svg class="cld u-icn u-icn-cldlocal"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#local"></use></svg>
+							</h5>
+							<p class="s-fc3">David Guetta</p>
+						</a>
+					</li>
+				</ul>
+				<!-- 喜欢这首歌的人 -->
+				<div class="g-box g-box-1">
+					<div class="n-shead">
+						<h2 class="u-tit f-ff2">喜欢这首歌的人</h2>
+					</div>
+					<ul class="m-slist3">
+						<li>
+							<a href="#" class="s-fc1">
+								<span class="u-face u-face-2"><img src="http://nec.netease.com/img/s/1.jpg"></span>
+								<time class="s-fc3">2小时前分享过</time>
+								<div class="name">
+									<div class="namec">某某某<svg class="u-icn u-icn-boysml"><use xlink:href="../../res/svg/icon.sp.svg#sex_boy_sml"></use></svg></div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="#" class="s-fc1">
+								<span class="u-face u-face-2"><img src="http://nec.netease.com/img/s/1.jpg"></span>
+								<time class="s-fc3">22小时前分享过</time>
+								<div class="name">
+									<div class="namec">某某某某某某某某某某某某<svg class="u-icn u-icn-girlsml"><use xlink:href="../../res/svg/icon.sp.svg#sex_girl_sml"></use></svg></div>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="g-mn2">
+				<div class="g-mn2c">
+					<div class="g-box">
+						<div class="n-shead">
+							<h2 class="u-tit f-ff2">听友评论</h2>
+							<span class="hdinfo s-fc4">（已有20条评论）</span>
+						</div>
+						<div class="m-comment m-comment-play">
+			                <div class="m-editor m-editor-sm">
+			                    <div class="wrap f-pr">
+			                        <div class="copy">
+			                            <div class="copytxt"></div>
+			                        </div>
+			                        <div class="u-txt u-txt-area textarea z-over">
+			                            <div class="place"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#cmt_pen"></use></svg>发表评论<span class="icn at"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#cmt_at"></use></svg></span><span class="icn emt"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#cmt_emt"></use></svg></span></div>                            
+			                        </div>
+			                    </div>
+			                </div>
+			                <h3 class="title s-fc4">精彩评论（5）</h3>
+			                <ul>
+			                    <li class="citm f-cb">
+			                        <div class="cface">
+			                            <a href="#" class="u-face u-face-3"><img src="http://nec.netease.com/img/s/1.jpg"></a>
+			                        </div>
+			                        <div class="cwrap">
+			                            <p class="f-ust"><a href="#" class="s-fc2">7音乐:</a> 在外饰套件<span class="emoji emoji1f414" title=""></span>方面，新一代宝马7系统同样提供了M系列运动套装，相比于普通版本，M套件两侧进气口尺寸更大，同时整车造型也要来得更加激进<img src="../../res/emt/emoji_0.png">。</p>
+			                            <div class="reply s-fc3 f-ust">
+			                                <p><a href="#" class="s-fc2">@我不是小小的说:</a> 配置方面，新一代宝马7系装备了全液晶<span class="emoji emoji1f46c" title=""></span>仪表盘、第四代iDrive互联网驾驶功能。</p>
+			                            </div>
+			                            <div class="opers f-cb s-fc4">
+			                                <span class="time s-fc4">28秒前</span>
+			                                <span class="comment">回复</span>
+			                                <span class="sep">|</span>
+			                                <span class="praise z-did"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#cmt_like"></use></svg>(12)</span>
+			                                <span class="report">举报<span class="sep">|</span></span>
+			                            </div>
+			                        </div>
+			                    </li>
+			                    <li class="citm f-cb">
+			                        <div class="cface">
+			                            <a href="#" class="u-face u-face-3"><img src="http://nec.netease.com/img/s/1.jpg"></a>
+			                        </div>
+			                        <div class="cwrap">
+			                            <p><a href="#" class="s-fc2">7音乐:</a> 在外饰套件方面，新一代宝马7系统同样提供了M系列运动套装</p>
+			                            <div class="opers f-cb s-fc4">
+			                                <span class="time s-fc4">28秒前</span>
+			                                <span class="comment">回复</span>
+			                                <span class="sep">|</span>
+			                                <span class="praise"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#cmt_like"></use></svg>(12)</span>
+			                                <span class="report">举报<span class="sep">|</span></span>
+			                            </div>
+			                        </div>
+			                    </li>
+			                </ul>
+			                <h3 class="title s-fc4">最新评论（5）</h3>
+			                <ul>
+			                    <li class="citm f-cb">
+			                        <div class="cface">
+			                            <a href="#" class="u-face u-face-3"><img src="http://nec.netease.com/img/s/1.jpg"></a>
+			                        </div>
+			                        <div class="cwrap">
+			                            <p><a href="#" class="s-fc2">7音乐:</a> 在外饰套件<span class="emoji emoji1f414" title=""></span>方面，新一代宝马7系统同样提供了M系列运动套装，相比于普通版本，M套件两侧进气口尺寸更大，同时整车造型也要来得更加激进<img src="../../res/emt/emoji_0.png">。</p>
+			                            <div class="reply s-fc3">
+			                                <p><a href="#" class="s-fc2">@我不是小小的说:</a> 配置方面，新一代宝马7系装备了全液晶<span class="emoji emoji1f46c" title=""></span>仪表盘、第四代iDrive互联网驾驶功能。</p>
+			                            </div>
+			                            <div class="opers f-cb s-fc4">
+			                                <span class="time s-fc4">28秒前</span>
+			                                <span class="comment">回复</span>
+			                                <span class="sep">|</span>
+			                                <span class="praise z-did"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#cmt_like"></use></svg>(12)</span>
+			                                <span class="report">举报<span class="sep">|</span></span>
+			                            </div>
+			                        </div>
+			                    </li>
+			                    <li class="citm f-cb">
+			                        <div class="cface">
+			                            <a href="#" class="u-face u-face-3"><img src="http://nec.netease.com/img/s/1.jpg"></a>
+			                        </div>
+			                        <div class="cwrap">
+			                            <p><a href="#" class="s-fc2">7音乐:</a> 在外饰套件方面，新一代宝马7系统同样提供了M系列运动套装，相比于普通版本，M套件两侧进气口尺寸更大，同时整车造型也要来得更加激进。</p>
+			                            <div class="opers f-cb s-fc4">
+			                                <span class="time s-fc4">28秒前</span>
+			                                <span class="comment">回复</span>
+			                                <span class="sep">|</span>
+			                                <span class="praise"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#cmt_like"></use></svg>(12)</span>
+			                                <span class="report">举报<span class="sep">|</span></span>
+			                            </div>
+			                        </div>
+			                    </li>
+			                </ul>
+			                <div class="m-page">
+			                    <a href="#" class="zbtn zprv js-disabled"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#page_pre"></use>上一页</svg></a>
+			                    <a href="#" class="zpgi js-selected">1</a>
+			                    <a href="#" class="zpgi">2</a><a href="#" class="zpgi">3</a><a href="#" class="zpgi">4</a><a href="#" class="zpgi">5</a><a href="#" class="zpgi">6</a><a href="#" class="zpgi">7</a><a href="#" class="zpgi">8</a><span class="zdot">...</span><a href="#" class="zpgi">375</a><a href="#" class="zbtn znxt js-n-1446117625923"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#page_next"></use>下一页</svg></a> </div>
+			                <div class="m-empty m-empty-3">
+			                    <h2 class="s-fc4">还没有评论哦，快来抢沙发~</h2>
+			                </div>
+			            </div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- /播放单页 -->
+
+<div class="m-player z-shadow"></div>
+<div class="u-icn-sf z-show" title="收起音乐详情页"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#btn_zoom"></use>下一页</svg></div>
+
+</body>
+</html>

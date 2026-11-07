@@ -1,0 +1,18 @@
+<html>
+  <head></head>
+  <body>
+  <script>
+  	(function(){
+  		//"orpheus://native/start.html?action=migrate&src=D%3A%5CCloudMUsic&dest=D%3A%5CTest"
+		var _ls   = location.search,
+		  	_reg  = /^\?action=migrate&src=.*&dest=.*&require/g,
+        _rel  = 'pub',
+		  	_href = 'orpheus://orpheus/'+_rel+'/checkdata.html?G_PATH='+encodeURIComponent('orpheus://orpheus/'+_rel+'/');
+		if(_reg.test(_ls)){
+			 _href = "orpheus://orpheus/"+_rel+"/move.html" + _ls;
+		}
+		window.location.href = _href;
+  	})();
+  </script>
+  </body>
+</html>

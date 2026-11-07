@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>主播节目分类—网易云音乐</title>
+    <!-- STYLE -->
+    <link rel="stylesheet" href="../../css/base.ls.css" />
+    <link rel="stylesheet" href="../../css/grid.ls.css" />
+    <link rel="stylesheet" href="../../css/unit.ls.css" />
+    <link rel="stylesheet" href="../../css/module.ls.css" />
+    <link rel="stylesheet" href="../../css/frame.ls.css">
+    <link rel="stylesheet" href="../../css/layer.ls.css">
+    <link rel="stylesheet" href="../../css/style.ls.css">
+<link rel="stylesheet" href="../../css/skin_common.ls.css">
+    
+    <!-- SKIN -->
+    <!-- 
+<link rel="stylesheet" href="../../skin/black/web/css/skin.ls.css">
+<link rel="stylesheet" href="../../skin/black/web/css/skin_theme.ls.css">
+ -->
+    <link rel="stylesheet" href="../../skin/pub/web/css/skin.ls.css">
+    <link rel="stylesheet" href="../../skin/red/web/css/skin_theme.ls.css">
+    <style>
+    body {
+        overflow-y: auto;
+        border: 0;
+    }
+    </style>
+<script src="../replace.js"></script>
+</head>
+
+<body>
+    <nav class="m-tab">
+        <li class="z-selected"><a href="index.html">个性推荐</a></li>
+        <li><a href="index_songLists.html">歌单</a></li>
+        <li><a href="index_radio.html">主播电台</a></li>
+        <li><a href="index_rank.html">排行榜</a></li>
+        <li><a href="index_artists.html">歌手</a></li>
+        <li><a href="index_new_songs.html">最新音乐</a></li>
+    </nav>
+    <div class="m-radio g-wrap p-radio q-lrc" style="width:760px;">
+        <div class="top">
+            <!-- 主播电台分类 -->
+            <ul class="type f-flex">
+                <li>
+                    <a class="f-mcd rank s-fc2" href="index_radio_rank.html">
+                        <span class="icon"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#rank"></use></svg></span>
+                        <em>排行榜</em>
+                    </a>
+                </li>
+                <li class="z-slt">
+                    <a href="index_radio_cat.html" class="f-mcd">
+                        <span class="icon" style="background-image: url(http://p3.music.126.net/UFbFUVljukcOyXkFtFl9qg==/3426078232645171.jpg)"></span>
+                        <em class="f-thide">分类页面</em>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="f-mcd">
+                        <span class="icon" style="background-image: url(http://p4.music.126.net/OJRswLWwMRl8pqS7Oc1TNw==/3382097767442388.jpg)"></span>
+                        <em class="f-thide">创作|翻唱</em>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="f-mcd">
+                        <span class="icon" style="background-image: url(http://p4.music.126.net/RqL67ph3brVJO19Kx-jE_Q==/3426078232645174.jpg)"></span>
+                        <em class="f-thide">脱口秀</em>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="f-mcd">
+                        <span class="icon" style="background-image: url(http://p3.music.126.net/GTZidAbgsUnTR3b2JlifMQ==/3439272372168985.jpg)"></span>
+                        <em class="f-thide">有声读物</em>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="f-mcd">
+                        <span class="icon" style="background-image: url(http://p4.music.126.net/7VoXDVs3UAPWau-bBA6E8A==/3426078232645170.jpg)"></span>
+                        <em class="f-thide">音乐故事</em>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="f-mcd">
+                        <span class="icon" style="background-image: url(http://p4.music.126.net/OEEKUDgTha8fXMD-Djf10g==/3439272372168982.jpg)"></span>
+                        <em class="f-thide">情感调频</em>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="f-mcd">
+                        <span class="icon" style="background-image: url(http://p4.music.126.net/NT3v33HysnlvafyHgvoVJA==/3382097767442387.jpg)"></span>
+                        <em class="f-thide">人文历史</em>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="f-mcd">
+                        <span class="icon" style="background-image: url(http://p4.music.126.net/Fi_7ATRDWUj0YK3jY-QJfA==/3426078232645178.jpg)"></span>
+                        <em class="f-thide">二次元</em>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="f-mcd">
+                        <span class="icon" style="background-image: url(http://p3.music.126.net/5FnwTjea250IzgBB2Vre9Q==/3426078232645180.jpg)"></span>
+                        <em class="f-thide">人在旅途</em>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="f-mcd">
+                        <span class="icon" style="background-image: url(http://p4.music.126.net/Mmqv8Fkwd1UjzXbhG2Gm2A==/3441471395426231.jpg)"></span>
+                        <em class="f-thide">外语世界</em>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="f-mcd">
+                        <span class="icon" style="background-image: url(http://p3.music.126.net/-edsneK1m1b0ClcIw5JgkQ==/3426078232645173.jpg)"></span>
+                        <em class="f-thide">娱乐八卦</em>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="f-mcd">
+                        <span class="icon" style="background-image: url(http://p4.music.126.net/0AdknO6eFN9l3AYIo3PmSg==/3420580674456444.jpg)"></span>
+                        <em class="f-thide">偶像后援团</em>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="f-mcd">
+                        <span class="icon" style="background-image: url(http://p3.music.126.net/XQx8_aiFkQKp3Yrun67oyg==/3441471395426232.jpg)"></span>
+                        <em class="f-thide">影视周边</em>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="f-mcd">
+                        <span class="icon" style="background-image: url(http://p4.music.126.net/NofL5QVm8dIAQMLCvL3KDA==/3382097767442380.jpg)"></span>
+                        <em class="f-thide">校园</em>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="f-mcd">
+                        <span class="icon" style="background-image: url(http://p4.music.126.net/cWQFgxAWJWccT6_JBetXwg==/3440371883796914.jpg)"></span>
+                        <em class="f-thide">亲子宝贝</em>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="f-mcd">
+                        <span class="icon" style="background-image: url(http://p4.music.126.net/ypowLkr_WYDY8SsiPZMGsw==/3382097767442392.jpg)"></span>
+                        <em class="f-thide">广播剧</em>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="f-mcd">
+                        <span class="icon" style="background-image: url(http://p4.music.126.net/3uBFIC0lWKCdHC09zflH2Q==/3426078232645181.jpg)"></span>
+                        <em class="f-thide">相声曲艺</em>
+                    </a>
+                </li>
+                <li class="j-leftfix"></li>
+                <li class="j-leftfix"></li>
+                <li class="j-leftfix"></li>
+                <li class="j-leftfix"></li>
+                <li class="j-leftfix"></li>
+                <li class="j-leftfix"></li>
+                <li class="j-leftfix"></li>
+                <li class="j-leftfix"></li>
+                <li class="j-leftfix"></li>
+                <li class="j-leftfix"></li>
+                <li class="j-leftfix"></li>
+                <li class="j-leftfix"></li>
+            </ul>
+            <a class="note s-fc2" href="#">
+                <span class="icn"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#radio_i"></use></svg></span>
+                <em class="s-fc2">我要做主播</em>
+            </a>
+        </div>
+        <section class="">
+            <div class="u-head1">
+                <h2 class="u-tit f-ff2">优秀新电台</h2>
+            </div>
+            <ul class="m-list m-list-recmd m-list-flow f-flex">
+                <li>
+                    <figure class="cvr u-cover u-cover-rdi2">
+                        <a href="#" class="lnk"><img src="../../res/default/default_disc.png"></a>
+                    </figure>
+                    <div class="desc">
+                        <h3 class="f-thide"><a href="#">陈楚生电台台台台台台台台台台台</a></h3>
+                        <div class="rcmd f-thide2 s-fc4">陈楚生个人音乐分享类节目</div>
+                    </div>
+                </li>
+                <li>
+                    <figure class="cvr u-cover u-cover-rdi2">
+                        <a href="#" class="lnk"><img src="../../res/default/default_disc.png"></a>
+                    </figure>
+                    <h3 class="f-thide"><a href="#" class="f-thide2">李健的电台</a></h3>
+                    <div class="rcmd f-thide2 s-fc4">在他的世界里，活成了诗</div>
+                </li>
+                <li>
+                    <figure class="cvr u-cover u-cover-rdi2">
+                        <a href="#" class="lnk"><img src="../../res/default/default_disc.png"></a>
+                    </figure>
+                    <h3 class="f-thide"><a href="#" class="f-thide2">盧廣人中的电台</a></h3>
+                    <div class="rcmd f-thide2 s-fc4">小隊長!!!!!!!!!!!!!</div>
+                </li>
+                <li>
+                    <figure class="cvr u-cover u-cover-rdi2">
+                        <a href="#" class="lnk"><img src="../../res/default/default_disc.png"></a>
+                    </figure>
+                    <h3 class="f-thide"><a href="#" class="f-thide2">周傳雄的电台</a></h3>
+                    <div class="rcmd f-thide2 s-fc4">台湾歌手周传雄的电台</div>
+                </li>
+                <li>
+                    <figure class="cvr u-cover u-cover-rdi2">
+                        <a href="#" class="lnk"><img src="../../res/default/default_disc.png"></a>
+                    </figure>
+                    <h3 class="f-thide"><a href="#" class="f-thide2">郑钧电台</a></h3>
+                    <div class="rcmd f-thide2 s-fc4">郑钧，且把悲歌欢唱</div>
+                </li>
+                <li>
+                    <figure class="cvr u-cover u-cover-rdi2">
+                        <a href="#" class="lnk"><img src="../../res/default/default_disc.png"></a>
+                    </figure>
+                    <h3 class="f-thide"><a href="#" class="f-thide2">李泉的电台</a></h3>
+                    <div class="rcmd f-thide2 s-fc4">李泉讲述十年心路生活</div>
+                </li>
+                <li class="j-leftfix"></li>
+                <li class="j-leftfix"></li>
+                <li class="j-leftfix"></li>
+                <li class="j-leftfix"></li>
+                <li class="j-leftfix"></li>
+            </ul>
+        </section>
+        <section class="blk">
+            <div class="u-head1">
+                <h2 class="u-tit f-ff2">全部电台</h2>
+                <div class="rtab">
+                    <a href="#" class="z-sel">上升最快</a>
+                    <span class="line"></span>
+                    <a href="#">最热电台</a>
+                </div>
+            </div>
+            <ul class="m-list m-list-recmd m-list-flow f-flex">
+                <li>
+                    <figure class="cvr u-cover u-cover-radio">
+                        <a href="#" class="lnk">
+                            <img src="../../res/default/default_disc.png">
+                        </a>
+                        <div class="ci f-pa">
+                            <svg>
+                                <use xlink:href="../../res/svg/cover.sp.svg#subscribe"></use>
+                            </svg>4106</div>
+                    </figure>
+                    <article class="desc">
+                        <h3><a href="#/m/djradio/?id=467015" class="f-thide2 s-fc1">维吾尔歌曲،&nbsp;ئۇيغۇرچە&nbsp;ناخشا</a></h3>
+                        <p class="by s-fc4">by <a href="#/m/personal/?uid=2087746" class="nam f-thide s-fc3">DJ程一</a></p>
+                    </article>
+                </li>
+                <li>
+                    <figure class="cvr u-cover u-cover-radio">
+                        <a href="#" class="lnk">
+                            <img src="../../res/default/default_disc.png">
+                        </a>
+                        <div class="ci f-pa">
+                            <svg>
+                                <use xlink:href="../../res/svg/cover.sp.svg#subscribe"></use>
+                            </svg>4106</div>
+                    </figure>
+                    <article class="desc">
+                        <h3><a href="#/m/djradio/?id=3223004" class="f-thide2 s-fc1">♬小黄人专属电台♪</a></h3>
+                        <p class="by s-fc4">by <a href="#/m/personal/?uid=2087746" class="nam f-thide s-fc3">DJ程一</a></p>
+                    </article>
+                </li>
+                <li>
+                    <figure class="cvr u-cover u-cover-radio">
+                        <a href="#" class="lnk">
+                            <img src="../../res/default/default_disc.png">
+                        </a>
+                        <div class="ci f-pa">
+                            <svg>
+                                <use xlink:href="../../res/svg/cover.sp.svg#subscribe"></use>
+                            </svg>4106</div>
+                    </figure>
+                    <article class="desc">
+                        <h3><a href="#/m/djradio/?id=101009" class="f-thide2 s-fc1">程一电台</a></h3>
+                        <p class="by s-fc4">by <a href="#/m/personal/?uid=2087746" class="nam f-thide s-fc3">DJ程一</a></p>
+                    </article>
+                </li>
+                <li>
+                    <figure class="cvr u-cover u-cover-radio">
+                        <a href="#" class="lnk">
+                            <img src="../../res/default/default_disc.png">
+                        </a>
+                        <div class="ci f-pa">
+                            <svg>
+                                <use xlink:href="../../res/svg/cover.sp.svg#subscribe"></use>
+                            </svg>4106</div>
+                    </figure>
+                    <article class="desc">
+                        <h3><a href="#/m/djradio/?id=989041" class="f-thide2 s-fc1">一席</a></h3>
+                        <p class="by s-fc4">by <a href="#/m/personal/?uid=56910296" class="nam f-thide s-fc3">一席YiXi</a></p>
+                    </article>
+                </li>
+                <li>
+                    <figure class="cvr u-cover u-cover-radio">
+                        <a href="#" class="lnk">
+                            <img src="../../res/default/default_disc.png">
+                        </a>
+                        <div class="ci f-pa">
+                            <svg>
+                                <use xlink:href="../../res/svg/cover.sp.svg#subscribe"></use>
+                            </svg>4106</div>
+                    </figure>
+                    <article class="desc">
+                        <h3><a href="#/m/djradio/?id=318011" class="f-thide2 s-fc1">夜袭则舞</a></h3>
+                        <p class="by s-fc4">by <a href="#/m/personal/?uid=42604840" class="nam f-thide s-fc3">Kasey-On-Air</a></p>
+                    </article>
+                </li>
+                <li>
+                    <figure class="cvr u-cover u-cover-radio">
+                        <a href="#" class="lnk">
+                            <img src="../../res/default/default_disc.png">
+                        </a>
+                        <div class="ci f-pa">
+                            <svg>
+                                <use xlink:href="../../res/svg/cover.sp.svg#subscribe"></use>
+                            </svg>4106</div>
+                    </figure>
+                    <article class="desc">
+                        <h3><a href="#/m/djradio/?id=1208033" class="f-thide2 s-fc1">饮鸩不止渴</a></h3>
+                        <p class="by s-fc4">by <a href="#/m/personal/?uid=59676134" class="nam f-thide s-fc3">NJ农药</a></span> </p>
+                    </article>
+                </li>
+                <li class="j-leftfix"></li>
+                <li class="j-leftfix"></li>
+                <li class="j-leftfix"></li>
+                <li class="j-leftfix"></li>
+                <li class="j-leftfix"></li>
+            </ul>
+        </section>
+    </div>
+</body>
+
+</html>

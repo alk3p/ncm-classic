@@ -1,0 +1,447 @@
+/* Background */
+.n-login,
+.n-login .chos:after,
+.n-login .min,
+.n-login .cls,
+.n-login .opt,
+.n-login .iptwrap .itm:before,
+.n-login .auto input ~ span:before,
+.n-login .others-login .logo,
+.n-login .iptwrap-sigle .itm:before,
+.n-login .err::before {
+  background-image: url(../res/login/login.png);
+  background-repeat: no-repeat;
+}
+/* LAYOUT */
+.n-login {
+  position: absolute;
+  width: 350px;
+  height: 500px;
+  background-position: 0 0;
+}
+.n-login-phone {
+  background-position-x: -350px;
+}
+.n-login-reg {
+  background-position-x: -700px;
+}
+.n-login-mail {
+  background-position-x: -1050px;
+}
+.n-login .iner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+.n-login .iner .zcls {
+  float: right;
+  margin: 7px 7px 0 0;
+  cursor: pointer;
+}
+.n-login .iner .zcls:hover {
+  background-position: -412px -19px;
+}
+.n-login .iner .back {
+  float: left;
+  font-size: 12px;
+  line-height: 12px;
+  margin: 14px 0 0 15px;
+}
+.n-login.z-noback .iner .back {
+  display: none;
+}
+.n-login .cnt {
+  position: relative;
+  z-index: 2;
+  width: 260px;
+  margin: 0 auto;
+  margin-top: 250px;
+}
+.n-login .cnt-1 {
+  margin-top: 203px;
+}
+.n-login .cnt-2 {
+  margin-top: 203px;
+}
+.n-login .cnt-3 {
+  margin-top: 196px;
+}
+.n-login .cnt-4 {
+  margin-top: 192px;
+}
+.n-login .cnt-5 {
+  margin-top: 190px;
+}
+.n-login .others-login {
+  position: fixed;
+  width: 260px;
+  top: 380px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.n-login .others-login ul {
+  position: relative;
+  margin: 0 -10px;
+}
+.n-login .others-login .tit {
+  height: 43px;
+  line-height: 43px;
+}
+.n-login .others-login .line {
+  position: absolute;
+  top: 21px;
+  height: 1px;
+  width: 100%;
+  z-index: -1;
+}
+.n-login .others-login .itm {
+  float: left;
+  width: 50px;
+  margin: 0 10px;
+}
+.n-login .others-login .itm .text {
+  margin-top: 6px;
+}
+.n-login .others-login .logo {
+  width: 38px;
+  height: 38px;
+  margin: 0 auto;
+}
+.n-login .others-login .wx .logo {
+  background-position-x: -1400px;
+}
+.n-login .others-login .qq .logo {
+  background-position-x: -1450px;
+}
+.n-login .others-login .sn .logo {
+  background-position-x: -1500px;
+}
+.n-login .others-login .wy .logo {
+  background-position-x: -1550px;
+}
+.n-login .others-login .itm .logo {
+  background-position-y: 0px;
+}
+.n-login .others-login .itm:hover .logo {
+  background-position-y: -50px;
+}
+.n-login .others-login-reg {
+  margin-top: 30px;
+}
+.n-login .iptwrap-sigle {
+  width: calc(100% - 2px);
+  border-radius: 4px;
+  border: 1px solid;
+}
+.n-login .iptwrap-sigle .itm {
+  height: 16px;
+  margin: 11px 7px;
+}
+.n-login .iptwrap-sigle .itm:before {
+  float: left;
+  content: '';
+  width: 16px;
+  height: 16px;
+}
+.n-login .iptwrap-sigle .itm input {
+  float: left;
+  width: calc(100% - 23px);
+  height: 16px;
+  margin-left: 7px;
+  padding: 0;
+  border: none;
+  font-size: 12px;
+  line-height: 16px;
+}
+.n-login .iptwrap-sigle .itm-nick:before {
+  background-position: -1477px -100px;
+}
+.n-login .iptwrap-sigle .itm-phone:before {
+  content: '+86';
+  width: 20px;
+  padding-left: 21px;
+  font-size: 12px;
+  line-height: 16px;
+  background-position: -1400px -101px;
+}
+.n-login .iptwrap-sigle .itm-phone input {
+  width: calc(100% - 58px);
+}
+.n-login .iptwrap-sigle .itm-capt:before {
+  background-position: -1460px -100px;
+}
+.n-login .capt .iptwrap-sigle {
+  float: left;
+  width: calc(50% - 7px);
+}
+.n-login .capt .btn-dark {
+  float: right;
+  width: calc(50% - 5px);
+}
+.n-login .iptwrap {
+  position: relative;
+  border-radius: 4px;
+  border: 1px solid;
+}
+.n-login .iptwrap .itm {
+  height: 28px;
+  padding: 10px 0 0 10px;
+}
+.n-login .iptwrap .itm input {
+  float: left;
+  width: 214px;
+  height: 23px;
+  margin: -2px 0 0;
+  border: none;
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: bold;
+  font-family: microsoft yahei, Tahoma, arial;
+}
+.n-login input::-webkit-input-placeholder {
+  font-size: 12px;
+  font-weight: normal;
+  font-family: arial;
+}
+.n-login .iptwrap .itm:before {
+  float: left;
+  content: '';
+  width: 24px;
+  height: 24px;
+}
+.n-login .iptwrap .itm-1:before {
+  background-position: -1430px -131px;
+}
+.n-login .iptwrap .itm-1-1:before {
+  content: '+86';
+  width: 27px;
+  padding-left: 23px;
+  line-height: 20px;
+  background-position: -1400px -100px;
+}
+.n-login .iptwrap .itm-1-1 input {
+  width: 188px;
+}
+.n-login .iptwrap .itm-2:before {
+  background-position: -1400px -130px;
+}
+.n-login .iptwrap .itm-3:before {
+  background-position: -391px -358px;
+}
+.n-login .iptwrap .itm-2 input {
+  width: 145px;
+  font-weight: normal;
+}
+.n-login .iptwrap .itm-2 .fgt {
+  float: right;
+  margin-right: 15px;
+  line-height: 18px;
+}
+.n-login .fill {
+  position: absolute;
+  top: 39px;
+  left: -1px;
+  width: 258px;
+  overflow: hidden;
+  border: 1px solid;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+}
+.n-login .fill li {
+  height: 33px;
+  padding-left: 34px;
+  line-height: 33px;
+  cursor: pointer;
+}
+.n-login .auto {
+  height: 20px;
+  margin: 10px 0;
+  line-height: 20px;
+}
+.n-login .auto input {
+  position: absolute;
+  left: 0px;
+  visibility: hidden;
+}
+.n-login .auto input ~ span:before {
+  float: left;
+  content: '';
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  margin-top: 2px;
+  background-position: -1550px -100px;
+  vertical-align: middle;
+}
+.n-login .auto input:checked ~ span:before {
+  background-position: -1530px -100px;
+}
+.n-login .auto .err {
+  width: 180px;
+}
+.n-login .err::before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 13px;
+  vertical-align: middle;
+  margin-top: -2px;
+  background-position: -1500px -100px;
+}
+.n-login .err-div {
+  padding: 6px 0 14px;
+  line-height: 20px;
+  float: right;
+  text-align: left;
+}
+.n-login .jump-div {
+  position: fixed;
+  width: 260px;
+  margin: 0 auto;
+  top: 473px;
+  text-align: center;
+}
+.n-login .btnwrap {
+  clear: both;
+}
+.n-login .btn {
+  display: block;
+  width: calc(100% - 2px);
+  height: 38px;
+  font-size: 16px;
+  line-height: 38px;
+  border: 1px solid;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+.n-login .btn.z-dis,
+.n-login .btn.z-dis:hover,
+.n-login .btn.z-dis:active {
+  cursor: default;
+}
+.n-login .btn-tag {
+  height: 38px;
+  border-radius: 20px;
+}
+.n-login .stip {
+  margin: 0 0 29px;
+  line-height: 12px;
+  text-align: center;
+}
+.n-login .cnt-4 .stip {
+  margin: 0 0 33px;
+}
+.n-login .cnt-5 .stip {
+  line-height: 24px;
+  margin: 0 0 24px;
+}
+.j-selected {
+  cursor: pointer;
+}
+/***** SKIN *****/
+/* styles */
+body {
+  border-color: #555;
+  background: #fafafa;
+}
+.u-icn-laycls svg {
+  fill: #999;
+}
+.u-icn-laycls:hover svg {
+  fill: #666;
+}
+.n-login .iptwrap,
+.n-login .iptwrap-sigle {
+  background: #fff;
+  border-color: rgba(0, 0, 0, 0.15);
+}
+/* 登录框和输入框 */
+.n-login .iptwrap .itm-1 {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+/* 登录框分隔线投影 */
+.n-login .fill {
+  background: #fff;
+  border-color: rgba(0, 0, 0, 0.15);
+}
+/* 补全框 */
+.n-login .fill li {
+  color: #333;
+}
+/* 补全框字色 */
+.n-login .fill li:hover {
+  background: #e4e5e7;
+}
+/* 补全框背景hover */
+.j-selected {
+  background-color: #e3e5e7;
+}
+/* button */
+.n-login .btn-tag {
+  color: #ea4848;
+  border-color: #ea4848;
+}
+.n-login .btn-tag:hover {
+  background: rgba(234, 72, 72, 0.4);
+}
+.n-login .btn-dark {
+  color: #fff;
+  background: #ea4848;
+  border-color: #ea4848;
+}
+.n-login .btn-dark:hover {
+  background: #c72e2e;
+  border-color: #c72e2e;
+}
+.n-login .btn.z-dis {
+  background: #dedede;
+  border-color: #dedede;
+  color: #999;
+}
+/* font */
+.n-login,
+.n-login a {
+  color: #666;
+}
+/* 默认色 and 链接色 */
+.n-login .iner .back:hover {
+  color: #4d4d4d;
+}
+.n-login .iptwrap,
+.n-login .iptwrap-sigle,
+.n-login .iptwrap .itm input {
+  color: #333;
+}
+/* 一级 */
+.n-login .iptwrap .itm-2 .fgt {
+  color: #b3b3b3;
+}
+/* 三级 */
+.n-login .err {
+  color: #c72e2e;
+}
+/* 出错提示 */
+.n-login .others-login .line {
+  background-image: -webkit-gradient(linear, 0 0, 100% 0, color-stop(0, #eeeff1), color-stop(0.327, #dbdbdb), color-stop(0.327, transparent), color-stop(0.673, transparent), color-stop(0.673, #dbdbdb), color-stop(1, #eeeff1));
+}
+.n-login .others-login .itm .text {
+  color: #999;
+}
+.n-login .others-login .itm:hover .text {
+  color: #666;
+}
+.n-login .iptwrap-sigle .itm-phone:before {
+  color: #333;
+}
+.n-login .stip {
+  color: #333;
+}
+.n-login .jump-div a {
+  color: #2875ce;
+  text-decoration: underline;
+}
+.n-login .jump-div a:hover {
+  color: #0a65cf;
+}

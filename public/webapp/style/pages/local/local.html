@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html class="p-recommend">
+<head>
+<meta charset="utf-8"/>
+<title>本地音乐—网易云音乐</title>
+<!-- STYLE -->
+<link rel="stylesheet" href="../../css/animate.ls.css"/>
+<link rel="stylesheet" href="../../css/base.ls.css"/>
+<link rel="stylesheet" href="../../css/grid.ls.css"/>
+<link rel="stylesheet" href="../../css/unit.ls.css"/>
+<link rel="stylesheet" href="../../css/module.ls.css"/>
+<link rel="stylesheet" href="../../css/frame.ls.css">
+<link rel="stylesheet" href="../../css/layer.ls.css">
+<link rel="stylesheet" href="../../css/style.ls.css">
+<link rel="stylesheet" href="../../css/skin_common.ls.css">
+
+<!-- SKIN -->
+<link rel="stylesheet" href="../../skin/pub/web/css/skin.ls.css">
+
+<style>
+body{overflow-y:auto;border:0;}
+</style>
+<script src="../replace.js"></script>
+</head>
+<body>
+<!-- 本地音乐 -->
+<div class="n-local">
+	<div class="u-header header">
+		<h2 class="f-ff2">本地音乐</h2>
+		<div class="lstinfo s-fc3">3245首音乐，
+			<div class="folderSlt">
+				<a href="#" class="s-fc2">选择目录</a>
+				<div class="m-guide m-guide-local">
+					<span class="rect"></span>
+					<div class="connect">
+						<span class="spot"></span>
+						<span class="line"></span>
+					</div>
+					<div class="note f-ff2">将自动扫描您勾选的目录。<br>所有歌曲都可加入歌单，手机也能同步听！</div>
+					<a href="#" class="cls"></a>
+				</div>
+			</div>
+		</div>
+		<ul class="tab u-stab u-stab-local">
+			<li title="列表" class="z-sel"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#local_list"></use></svg></li>
+			<li title="歌手"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#local_artist"></use></svg></li>
+			<li title="专辑"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#local_album"></use></svg></li>
+			<li title="文件夹"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#local_folder"></use></svg></li>
+		</ul>
+		<div class="scan">
+			<div class="itm"><span class="icn icn-scan"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#btn_scan"></use></svg></span><span class="s-fc3">正在扫描...</span></div>
+			<div class="itm"><span class="icn icn-ok"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#local_ok"></use></svg></span><span class="s-fc3">新增1250首音乐，你可以<span class="s-fc2">获取封面歌词</span>，或<span class="s-fc2">升级音质</span></span></div>
+			<div class="itm z-show"><!-- z-first z-hide z-show -->
+				<span class="icn icn-scan"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#btn_scan"></use></svg></span><span class="s-fc3">正在匹配升级1/100</span>
+				<div class="u-probar sep"><div class="pro" style="width:50%"></div></div></div>
+		</div>
+	</div>
+
+	<div class="p-localtrack g-wrap1">
+			<div class="oper f-cb">
+				<div class="buttons">
+					<div class="u-ibtn5b"><span class="u-ibtn5 u-ibtn5-ply"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#btn_play"></use></svg>播放全部</span><span class="u-ibtn5 u-ibtn5-only u-ibtn5-addto"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#btn_addto_list"></use></svg></span></div>
+					<div class="u-ibtn5b"><span class="u-ibtn5 u-ibtn5-ply z-dis"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#btn_play"></use></svg>播放全部</span><span class="u-ibtn5 u-ibtn5-only u-ibtn5-addto z-dis"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#btn_addto_list"></use></svg></span></div>
+					<button class="u-ibtn5 u-ibtn5-scan"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#btn_scan"></use></svg>匹配音乐</button>
+				</div>
+				<div class="u-lcsch">
+                    <input type="text" placeholder="搜索本地音乐">
+                    <span class="sch-btn"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#search"></use></svg></span>
+                </div>
+                <div class="u-lcsch z-edit">
+                    <input type="text" placeholder="搜索本地音乐" value="我是正文">
+                    <span class="sch-btn">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#close"></use>
+                        </svg>
+                    </span>
+                </div>
+			</div>
+			<!-- 列表 -->
+			<div class="m-plylist m-plylist-7col m-plylist-local">
+				<!-- 表头 -->
+				<div class="head f-cb">
+					<div class="fix">
+						<div class="th col"></div>
+					</div>
+					<div class="flow">
+						<div class="th col asc">音乐标题<i></i></div>
+						<div class="th col desc">歌手<i></i></div>
+						<div class="th col">专辑</div>
+						<div class="th col desc">时长<i></i></div>
+						<div class="th col desc">大小<i></i></div>
+					</div>
+				</div>
+				
+			</div>
+
+			<!-- -->
+			<div class="m-404">
+				<span class="icon u-icn u-icn-content s-fc4"><svg><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../../res/svg/icon.sp.svg#empty_content"></use></svg></span>
+				<h2 class="s-fc1">很抱歉，内容已经不存在！</h2>
+			</div>
+	</div>
+</div>
+
+<!-- 选择本地文件夹 -->
+<div class="m-layer z-show" style="top:200px; left:300px;">
+    <div class="zbar"><div class="zttl">选择本地音乐文件夹</div></div>
+    <div class="zcnt">
+        <div class="lyct m-localfolder f-pr">
+        	<div class="note s-fc3">
+        		将自动扫描您勾选的目录，文件增删实时同步。
+        	</div>
+            <ul class="u-cklist u-cklist-h1 s-scroll">
+                <li><label><input type="checkbox"><span><svg><use xlink:href="../../res/svg/icon.sp.svg#checkbox"></use></svg></span>windows music library</label></li>
+                <li><label><input type="checkbox"><span><svg><use xlink:href="../../res/svg/icon.sp.svg#checkbox"></use></svg></span>下载</label></li>
+                <li><label><input type="checkbox"><span><svg><use xlink:href="../../res/svg/icon.sp.svg#checkbox"></use></svg></span>音乐文件夹</label></li>
+                <li><label><input type="checkbox"><span><svg><use xlink:href="../../res/svg/icon.sp.svg#checkbox"></use></svg></span>windows media player</label></li>
+                <li><label><input type="checkbox"><span><svg><use xlink:href="../../res/svg/icon.sp.svg#checkbox"></use></svg></span>文件夹01</label></li>
+            </ul>
+        </div>
+        <div class="lybt">
+            <button type="button" class="u-ibtn1 u-ibtnsz1">确 认</button><button type="button" class="u-ibtn5 u-ibtnsz1">添加文件夹</button>
+        </div>
+    </div>
+    <span class="zcls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+</div>
+
+</body>
+</html>

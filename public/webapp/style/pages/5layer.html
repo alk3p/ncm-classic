@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>弹窗浮层</title>
+<!-- STYLE -->
+<link rel="stylesheet" href="../css/animate.ls.css"/>
+<link rel="stylesheet" href="../css/base.ls.css"/>
+<link rel="stylesheet" href="../css/grid.ls.css"/>
+<link rel="stylesheet" href="../css/unit.ls.css"/>
+<link rel="stylesheet" href="../css/module.ls.css"/>
+<link rel="stylesheet" href="../css/layer.ls.css">
+<link rel="stylesheet" href="../css/style.ls.css">
+<link rel="stylesheet" href="../css/skin_common.ls.css">
+<!-- SKIN -->
+<!--
+<link rel="stylesheet" href="../skin/black/web/css/skin.ls.css">
+<link rel="stylesheet" href="../skin/black/web/css/skin_theme.ls.css">
+ -->
+<link rel="stylesheet" href="../skin/pub/web/css/skin.ls.css">
+
+<style>
+body{overflow-y:auto;border:0;}
+/*h1{font-size:30px; margin:20px 0; font-weight:bold; text-align:center; color:#333;}*/
+.whitebg{margin:10px 0;padding:10px; background:#fff; }
+.whitebg h1{ color:#333; }
+.g-bd{position:static;min-height:0;padding:30px;}
+.m-menu,.m-dragmdl{position:relative;top:auto;left:auto;}
+.m-dragmdl{margin:20px;}
+.m-center{z-index:0;}
+.u-atsuggest,.u-dragtip{position:relative;top:0;left:0;margin:10px;}    
+div.m-layer{margin:20px 15px 0 5px; position:relative; float:left;}
+
+</style>
+<script src="replace.js"></script>
+</head>
+<body>
+<!-- 全局提示 -->
+<div class="f-cb" style="pointer-events:;">
+    <!-- 保存成功 -->
+    <div class="u-result f-vhc" style="margin-top:-100px;"><i class="icon u-icn u-icn-feedback"><svg><use xlink:href="../res/svg/icon.sp.svg#feedback_ok"></use></svg></i><span class="u-tit f-ff2">保存成功！</span></div>
+    <!-- 保存失败 -->
+    <div class="u-result f-vhc" style=""><i class="icon u-icn u-icn-feedback"><svg><use xlink:href="../res/svg/icon.sp.svg#feedback_err"></use></svg></i><span class="u-tit f-ff2">保存失败！</span></div>
+    <!-- 居中菊花 -->
+    <div class="u-result f-vhc" style="margin-top:100px;"><i class="icon u-icn u-icn-loading"></i></div>
+    <!-- 切换播放模式 -->
+    <div class="u-result u-result-play"><span class="u-tit f-ff2">循环模式</span></div>
+</div>
+
+<!-- 调整首页模块顺序 -->
+<div class="m-layer m-layer-adjust z-show">
+    <div class="zbar"><div class="zttl">调整栏目顺序</div></div>
+    <div class="zcnt">
+        <div class="lyct m-adjustlay">
+            <p class="info"><svg class="svg"><use xlink:href="../res/svg/icon.sp.svg#lamp"></use></svg>想调整首页栏目的顺序？按住右边的按钮拖动即可</p>
+            <ul>
+                <li>每日推荐<span class="dragger"></span></li>
+                <li>独家放送<span class="dragger"></span></li>
+                <li>新歌速递<span class="dragger"></span></li>
+                <li>推荐MV<span class="dragger"></span></li>
+                <li>主播电台<span class="dragger"></span></li>
+            </ul>
+            <a class="lnk" href="#">恢复默认排序</a>
+        </div>
+        <div class="lybt">
+            <button type="button" class="u-ibtn1 u-ibtnsz1">确定</button>
+            <button type="button" class="u-ibtn5 u-ibtnsz1">取消</button>
+        </div>
+    </div>
+    <span class="zcls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+</div>
+
+<!-- 付费提示 -->
+<div class="m-notelay m-paynote" style="position:static; -webkit-transform:translate(0,0); float:left;">
+    <div class="pic"></div>
+   <article>
+        <p class="f-fs1" style="color:#666;">唱片公司要求，当前MV须付费使用订购付费音乐包即可自由畅享</p>
+   </article>
+    <div class="btns">
+        <button class="btn btn-red f-ff2">包月购买</button>
+        <div class="byone"><a href="#" class="s-fc2 f-tdu">单首购买</a></div>
+    </div>
+    <span class="cls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+</div>
+
+<!-- 专辑付费提示 -->
+<div class="m-notelay m-paynote" style="position:static; -webkit-transform:translate(0,0); float:left;">
+    <div class="albcover"></div>
+    <div class="pic pic-alb"></div>
+   <article>
+        <p class="f-fs1" style="color:#666;">唱片公司要求，当前MV须付费使用订购付费音乐包即可自由畅享</p>
+   </article>
+    <div class="btns">
+        <button class="btn btn-red f-ff2">包月购买</button>
+    </div>
+    <span class="cls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+</div>
+
+<!-- 腾讯微博强制弹框 -->
+<div class="m-layer z-show">
+    <div class="zbar"><div class="zttl">重要提示</div></div>
+    <div class="zcnt">
+        <div class="lyct n-lybind">
+            <p class="">由于腾讯微博不稳定，云音乐即将不支持该方式登录。绑定手机号或网易邮箱帐号，即可使用该绑定帐号登录。</p>
+            <div class="u-logo choose">
+                <div class="itm">
+                    <a href="#">
+                        <span class="wy logo"></span>
+                        <em class="tit f-fs1 s-wfc1">使用网易邮箱帐号绑定</em>
+                        <i class="gt f-ff1">&gt;</i>
+                    </a>
+                </div>
+                <div class="itm">
+                    <a href="#">
+                        <span class="sj logo"></span>
+                        <em class="tit f-fs1 s-wfc1">使用手机号绑定</em>
+                        <i class="gt f-ff1">&gt;</i>
+                    </a>
+                </div>
+           </div>
+        </div>
+    </div>
+</div>
+
+<!-- 歌词报错 -->
+<div class="m-layer m-report z-show ">
+    <div class="zbar"><div class="zttl"></div></div>
+    <div class="zcnt">
+        <nav class="u-tab3 u-tab3-lg">
+            <ul>
+                <li class="z-sel">歌曲错误</li>
+                <li>歌曲报错</li>
+            </ul>
+        </nav>
+        <div class="lyct">
+            <!-- 选项 -->
+            <div class="options">
+                <ul class="u-cklist">        
+                    <li><label><input type="checkbox" name="lrc-time-error" value="3" data-value="歌词时间错误"><span><svg><use xlink:href="../../res/svg/icon.sp.svg#checkbox"></use></svg></span>歌词时间错误</label></li>
+                    <li><label><input type="checkbox" name="lrc-content-error" value="2" data-value="歌词文字错误"><span><svg><use xlink:href="../../res/svg/icon.sp.svg#checkbox"></use></svg></span>歌词文字错误</label></li>
+                </ul>
+            </div>
+            <!-- 输入 -->
+            <div class="j-flag detail">
+                <form class="cmtform">
+                    <div class="m-editor m-editor-simple">
+                        <div class="u-txt u-txt-area textarea">
+                        <textarea class="edttxt j-flag" data-res-menu="true" data-res-type="16" placeholder="请描述歌曲错误内容"></textarea>
+                      </div>
+                        </div>
+                </form>
+            </div>
+            
+            <!-- 歌曲信息 -->
+            <div class="brief">
+                <p>曲名：安河桥</p>
+                <p><p>专辑：安河桥</p>
+                <p>歌手：宋冬野</p>
+            </div>
+        </div>
+        <div class="lybt">
+            <button type="button" class="u-ibtn1 u-ibtnsz1">发 送</button><button type="button" class="u-ibtn5 u-ibtnsz1 z-dis">取 消</button>
+        </div>
+    </div>
+    <span class="zcls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+</div>
+
+<!-- @ suggest -->
+<div class="u-atsuggest z-show" style="position:absolute; top:10px; right:10px; left:auto;">
+    <div class="des">选择最近@的人或直接输入</div>
+    <ul class="s-scroll">
+        <li>某某某</li>
+        <li class="z-sel">某某某</li>
+        <li>某某某某某某某某某某某某某某某某某某</li>
+        <li>某某某</li>
+        <li>某某某</li>
+        <li>某某某</li>
+        <li>某某某</li>
+        <li>某某某某某某某某某某某某某某某某某某</li>
+        <li>某某某</li>
+        <li>某某某</li>
+        <li>某某某</li>
+    </ul>
+</div>
+
+<!-- 选择音质/清晰度选择 -->
+<div class="m-layer z-show">
+    <div class="zbar">
+        <div class="zttl">选择音质 / 选择下载清晰度</div>
+    </div>
+    <div class="zcnt">
+         <div class="lyct m-hqchoose">
+           <ul class="hq u-cklist">
+                <li>
+                    <label>
+                        <input type="radio" name="type" value="3">
+                        <span><svg><use xlink:href="../../res/svg/icon.sp.svg#radio"></use></svg></span>标准（128 kbit/s）</label>
+                </li>
+                 <li>
+                    <label>
+                        <input type="radio" name="type" value="2">
+                        <span><svg><use xlink:href="../../res/svg/icon.sp.svg#radio"></use></svg></span>较高（192 kbit/s）</label>
+                </li>
+                <li>
+                    <label>
+                        <input type="radio" name="type" value="2">
+                        <span><svg><use xlink:href="../../res/svg/icon.sp.svg#radio"></use></svg></span>极高（320 kbit/s）&nbsp;&nbsp;<i class="u-cicn u-cicn-member"></i></label>
+                </li>
+                <li>
+                    <label>
+                        <input type="radio" name="type" value="3">
+                        <span><svg><use xlink:href="../../res/svg/icon.sp.svg#radio"></use></svg></span>无损品质&nbsp;&nbsp;<i class="u-cicn u-cicn-sq"></i></label>
+                </li>
+
+            </ul>
+            <ul class="hq u-cklist f-dn">
+                 <li>
+                    <label>
+                        <input type="radio" name="type" value="2">
+                        <span><svg><use xlink:href="../../res/svg/icon.sp.svg#radio"></use></svg></span>流畅（240P）</label>
+                </li>
+                <li>
+                    <label>
+                        <input type="radio" name="type" value="2">
+                        <span><svg><use xlink:href="../../res/svg/icon.sp.svg#radio"></use></svg></span>标清（480P，需要400积分）</label>
+                </li>
+                <li>
+                    <label>
+                        <input type="radio" name="type" value="3">
+                        <span><svg><use xlink:href="../../res/svg/icon.sp.svg#radio"></use></svg></span>高清（720P，需要600积分）</label>
+                </li>
+                <li>
+                    <label>
+                        <input type="radio" name="type" value="3">
+                        <span><svg><use xlink:href="../../res/svg/icon.sp.svg#radio"></use></svg></span>超清（1080P，需要1000积分）</label>
+                </li>
+            </ul>
+         </div>
+         <div class="lybt">
+            <button type="button" class="j-flag u-ibtn1 u-ibtnsz1">确定</button>
+            <button type="button" class="j-flag u-ibtn5 u-ibtnsz1" >取消</button>
+        </div>
+    </div>
+    <span class="zcls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+</div>
+
+
+<!-- 选择反馈类型  -->
+<div class="auto-1403056544442 m-layer m-layer-feedback">
+    <div class="zbar">
+        <div class="zttl">意见反馈</div>
+    </div>
+    <div class="zcnt">
+        <div tabindex="100">
+            <div class="lyct">
+                <div class="m-lytxt j-flag">
+                    <h4 class="s-fc3 f-fwb">选择反馈类型</h4>
+                    <ul class="u-cklist u-cklist-horizontal f-cb">
+                         <li>
+                            <label>
+                                <input type="radio" name="type" value="2">
+                                <span><svg><use xlink:href="../../res/svg/icon.sp.svg#radio"></use></svg></span>产品建议</label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="radio" name="type" value="2">
+                                <span><svg><use xlink:href="../../res/svg/icon.sp.svg#radio"></use></svg></span>程序错误</label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="radio" name="type" value="3">
+                                <span><svg><use xlink:href="../../res/svg/icon.sp.svg#radio"></use></svg></span>歌曲错误</label>
+                        </li>
+                    </ul>
+                    <div class="u-txt u-txt-area area f-pr">
+                        <textarea class="j-flag" name="content" data-res-menu="true" data-res-type="16"></textarea>
+                        <div class="remain s-fc3 j-flag">1000</div>
+                    </div>
+                    <input class="phone u-txt j-flag" name="contact" data-res-menu="true" data-res-type="16" placeholder="你的联系方式（QQ/邮箱/手机）">
+                    <div class="j-flag err s-fc6">err</div>
+                </div>
+            </div>
+            <div class="lybt">
+                <button type="button" class="j-flag u-ibtn1 u-ibtnsz1">发送</button>
+                <button type="button" class="j-flag u-ibtn5 u-ibtnsz1">取消</button>
+            </div>
+        </div>
+    </div>
+    <span class="zcls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+</div>
+
+
+<!-- 收藏到歌单 -->
+<div class="m-layer m-layer-md z-show">
+    <div class="zbar">
+        <div class="zttl">收藏到歌单<!-- <span class="migu s-fc3">（ <i class="icn u-icn5 u-icn5-migu"></i>咪咕音乐下载）</span>--> </div>
+    </div>
+    <div class="zcnt">
+         <div class="lyct m-addto">
+            <div class="newLst">
+                <a href="#" class="create"><svg><use xlink:href="../res/svg/cover.sp.svg#newalist"></use></svg></a>
+                <span>新建歌单</span>
+            </div>
+            <div class="list s-scroll">
+                <ul>
+                    <li class="z-sel">
+                        <div class="mylove"><a href="#" class="lnk"><svg class=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../res/svg/cover.sp.svg#love"></use></svg></a></div>
+                        <div class="tit">
+                            <h3>我喜欢的音乐</h3>
+                            <p class="s-fc3">11首音乐</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="u-cover u-cover-tn"><a href="#" class="lnk"><img src="http://imgcache.qq.com/music/photo/mid_album_150/r/H/003XNmUT4YczrH.jpg"></a></div>
+                        <div class="tit">
+                            <h3>我喜欢的音乐</h3>
+                            <p class="s-fc3"><span class="u-icn u-icn-selected"><svg><use xlink:href="../res/svg/icon.sp.svg#selected"></use></svg></span>321首音乐，300首已下载</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="u-cover u-cover-tn"><a href="#" class="lnk"><img src="http://imgcache.qq.com/music/photo/mid_album_150/G/l/000QCAMK3B0DGl.jpg"></a></div>
+                        <div class="tit">
+                            <h3>我喜欢的音乐</h3>
+                            <p class="s-fc3">32首音乐，已下载</p>
+                        </div>
+                    </li>
+                    <li class="z-sel">
+                        <div class="u-cover u-cover-tn"><a href="#" class="lnk"><img src="http://imgcache.qq.com/music/photo/mid_album_150/l/9/000qqOLi2XvSl9.jpg"></a></div>
+                        <div class="tit">
+                            <h3>我喜欢的音乐</h3>
+                            <p class="s-fc3">11首音乐</p>
+                        </div>
+                    </li>
+                    <li class="z-dis">
+                        <div class="u-cover u-cover-tn"><a href="#" class="lnk"><img src="http://imgcache.qq.com/music/photo/mid_album_150/r/H/003XNmUT4YczrH.jpg"></a></div>
+                        <div class="tit">
+                            <h3>我喜欢的音乐</h3>
+                            <p class="s-fc3">321首音乐，300首已下载</p>
+                        </div>
+                        <p class="fulltip s-fc3">歌单已满 </p>
+                    </li>
+                    <li>
+                        <div class="u-cover u-cover-tn"><a href="#" class="lnk"><img src="http://imgcache.qq.com/music/photo/mid_album_150/G/l/000QCAMK3B0DGl.jpg"></a></div>
+                        <div class="tit">
+                            <h3>我喜欢的音乐</h3>
+                            <p class="s-fc3">32首音乐，已下载</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="u-cover u-cover-tn"><a href="#" class="lnk"><img src="http://imgcache.qq.com/music/photo/mid_album_150/G/l/000QCAMK3B0DGl.jpg"></a></div>
+                        <div class="tit">
+                            <h3>我喜欢的音乐</h3>
+                            <p class="s-fc3">32首音乐，已下载</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+         </div>
+    </div>
+    <div class="lybt">
+        <button type="button" class="j-flag u-ibtn1 u-ibtnsz1">添加收藏</button>
+        <button type="button" class="j-flag u-ibtn5 u-ibtnsz1">取消</button>
+    </div>
+    <span class="zcls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+</div>
+
+
+<!-- 分享给大家 第一步 -->
+<div class="m-layer m-layer-share z-show">
+    <div class="zbar">
+         <div class="zttl"></div>
+    </div>
+    <div class="zcnt">
+        <nav class="u-tab3 u-tab3-lg">
+            <ul>
+                <li class="z-sel">分享给大家</li>
+                <li>私信分享</li>
+                <li>其它分享</li>
+            </ul>
+        </nav>
+        <div class="lyct m-editor">
+            <div class="box f-pr blacklay">
+                <textarea class="area" placeholder="一起聊聊音乐吧~"></textarea>
+                <div class="info z-dis">
+                    <div class="text f-thide f-fl">
+                        <span class="f-fs1">单曲：稻香 - <span class="s-fc3">周杰伦</span>
+                     </div>
+                </div>
+                <div class="remain f-pa s-fc4">140</div>
+            </div>
+            <div class="f-cb">
+                <div class="insert f-fl f-pr f-cb">
+                    <span class="icn emt">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../res/svg/icon.sp.svg#cmt_emt"></use>
+                        </svg>
+                    </span>
+                    <span class="icn at">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../res/svg/icon.sp.svg#cmt_at"></use>
+                        </svg>
+                    </span>
+                    <span class="icn pic">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../res/svg/icon.sp.svg#cmt_pic"></use>
+                        </svg>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="lybt f-cb">
+            <div class="shareto">
+                <span class="s-fc3 f-fl">同时分享到：</span>
+                <ul class="sns u-logo f-fl f-cb">
+                    <li><span class="sina" title="新浪微博">新浪微博</span></li>
+                    <li><span class="rr" title="人人网">人人网</span></li>
+                    <li><span class="db" title="豆瓣">豆瓣</span></li>
+                    <li><span class="yx z-gray" title="易信">易信</span></li>
+                </ul>
+            </div>
+            <button class="u-ibtn1 u-ibtnsz1 f-fr">分 享</button>
+        </div>
+    </div>
+    <span class="zcls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+</div> 
+<!-- 私信分享 第一步 -->
+<div class="m-layer m-layer-share z-show">
+    <div class="zbar">
+         <div class="zttl"></div>
+    </div>
+    <div class="zcnt">
+        <nav class="u-tab3 u-tab3-lg">
+            <ul>
+                <li>分享给大家</li>
+                <li class="z-sel">私信分享</li>
+                <li>其它分享</li>
+            </ul>
+        </nav>
+        <div class="lyct m-editor">
+            <div class="taget s-fc3 f-mgb10 j-flag">分享给：falfan_括弧笑</div>
+            <div class="box box-mail f-pr blacklay">
+                <textarea class="area" placeholder="一起聊聊音乐吧~"></textarea>
+                <div class="info z-dis">
+                    <div class="text f-thide f-fl">
+                        <span class="f-fs1">单曲：稻香 - <span class="s-fc3">周杰伦</span>
+                     </div>
+                </div>
+                <div class="remain f-pa s-fc4">140</div>
+            </div>
+            <div class="f-cb">
+                <div class="insert f-fl f-pr f-cb">
+                    <span class="icn emt">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../res/svg/icon.sp.svg#cmt_emt"></use>
+                        </svg>
+                    </span>
+                    <span class="icn at">
+                        <svg>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../res/svg/icon.sp.svg#cmt_at"></use>
+                        </svg>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="lybt f-cb">
+            <button class="u-ibtn1 u-ibtnsz1 f-fr">分 享</button>
+        </div>
+    </div>
+    <span class="zcls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+</div> 
+
+
+<!-- 其它分享 -->
+<div class="m-layer m-layer-share z-show">
+    <div class="zbar">
+         <div class="zttl"></div>
+    </div>
+    <div class="zcnt">
+        <nav class="u-tab3 u-tab3-lg">
+            <ul>
+                <li>分享给大家</li>
+                <li>私信分享</li>
+                <li class="z-sel">其它分享</li>
+            </ul>
+        </nav>
+        <div class="lyct">
+            <div class="other">
+                <ul>
+                    <li class="f-pr">
+                        <i class="logo u-lg80 u-lg80-weixin"></i>
+                        <p>微信</p>
+                        <div class="u-arrlay u-arrlay-left code">
+                            <canvas></canvas>
+                            <p class="s-fc3">用微信“扫一扫”</p>
+                        </div>
+                    </li>
+                    <li class="f-pr">
+                        <i class="logo u-lg80 u-lg80-qq"></i>
+                        <p>复制链接</p>
+                    </li>
+                    <li class="f-pr">
+                        <i class="logo u-lg80 u-lg80-qzone"></i>
+                        <p>复制链接</p>
+                    </li>
+                    <li class="f-pr">
+                        <i class="logo u-lg80 u-lg80-link"></i>
+                        <p>复制链接</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    <span class="zcls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+</div>   
+
+<!-- 私信分享  第二步 -->
+<div class="m-layer m-layer-share z-show">
+    <div class="zbar">
+         <div class="zttl"></div>
+    </div>
+    <div class="zcnt">
+        <nav class="u-tab3 u-tab3-lg">
+            <ul>
+                <li>分享给大家</li>
+                <li class="z-sel">私信分享</li>
+                <li>其它分享</li>
+            </ul>
+        </nav>
+        <div class="lyct">
+            <div class="m-seluser">
+                <div class="ipt">
+                    <span class="sch"><svg><use xlink:href="../res/svg/icon.sp.svg#search"></use></svg></span>
+                    <div class="placeholder s-fc4">请选择要分享的人</div>
+                    <div class="wrap s-scroll f-cb">
+                        <div class="itm">我不是某某某<span class="name-del"><svg><use xlink:href="../res/svg/icon.sp.svg#name_delete"></use></svg></span></div>
+                        <div class="itm">某某某<span class="name-del"><svg><use xlink:href="../res/svg/icon.sp.svg#name_delete"></use></svg></span></div>
+                        <div class="itm">某某某<span class="name-del"><svg><use xlink:href="../res/svg/icon.sp.svg#name_delete"></use></svg></span></div>
+                        <input type="text" style="width:50px;">
+                    </div>
+                </div>
+                <div class="list s-scroll">
+                    <ul>
+                        <li class="z-sel">
+                            <span class="u-face u-face-2"><img src="http://nec.netease.com/img/s/1.jpg"></span>
+                            <div class="name">我不是某某某</div>
+                            <span class="u-icn u-icn-selected"><svg><use xlink:href="../res/svg/icon.sp.svg#selected"></use></svg></span>
+                        </li>
+                        <li class="z-sel">
+                            <span class="u-face u-face-2"><img src="http://nec.netease.com/img/s/1.jpg"></span>
+                            <div class="name">我不是某某某我不是某某某我不是某某某我不是某某某</div>
+                            <span class="u-icn u-icn-selected"><svg><use xlink:href="../res/svg/icon.sp.svg#selected"></use></svg></span>
+                        </li>
+                        <li>
+                            <span class="u-face u-face-2"><img src="http://nec.netease.com/img/s/1.jpg"></span>
+                            <div class="name">我不是某某某</div>
+                            <span class="u-icn u-icn-selected"><svg><use xlink:href="../res/svg/icon.sp.svg#selected"></use></svg></span>
+                        </li>
+                        <li class="z-sel">
+                            <span class="u-face u-face-2"><img src="http://nec.netease.com/img/s/1.jpg"></span>
+                            <div class="name">我不是某某某</div>
+                            <span class="u-icn u-icn-selected"><svg><use xlink:href="../res/svg/icon.sp.svg#selected"></use></svg></span>
+                        </li>
+                        <li>
+                            <span class="u-face u-face-2"><img src="http://nec.netease.com/img/s/1.jpg"></span>
+                            <div class="name">我不是某某某</div>
+                            <span class="u-icn u-icn-selected"><svg><use xlink:href="../res/svg/icon.sp.svg#selected"></use></svg></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="lybt">
+            <button type="button" class="u-ibtn1 u-ibtnsz1">下一步</button>
+        </div>
+    </div>
+    <span class="zcls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+</div>
+
+
+<!-- 匿名登录  -->
+<div class="m-layer z-show" style="left:10px;">
+    <div class="zbar"><div class="zttl">登录</div></div>
+     <div class="zcnt">
+        <div class="lyct lyct-1">
+            <p><strong class="f-fwb">你已创建n个歌单</strong><span class="s-fc3">（包括默认的喜欢歌单)</span></p>
+            <p style="margin-top:10px;">现在登录，歌单永久保存，手机但闹多端同步</p>
+        </div>
+        <div class="lybt">
+            <button type="button" class="u-ibtn1 u-ibtnsz1">立即登录</button><button type="button" class="u-ibtn5 u-ibtnsz1">稍后再说</button>
+        </div>
+    </div>
+    <span class="zcls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+</div>
+
+
+<!-- 标题内容居中 -->
+<div class="m-layer z-show">
+    <div class="zbar"><div class="zttl">标题内容居中</div></div>
+    <div class="zcnt">
+        <div class="lyct lyct-1">
+            <p>内容</p>
+            <p>内容</p>
+        </div>
+        <div class="lybt">
+            <button type="button" class="u-ibtn1 u-ibtnsz1">确 认</button><button type="button" class="u-ibtn5 u-ibtnsz1">取 消</button>
+        </div>
+    </div>
+    <span class="zcls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+</div>
+
+<!-- 退出登录  -->
+<div class="m-layer z-show" style="left:10px;">
+    <div class="zbar"><div class="zttl">退出登录</div></div>
+     <div class="zcnt">
+        <div class="lyct lyct-1">
+            <p>确定要退出系统吗？</p>
+            <p class="s-fc3">已登录帐号：<span>hadaiye@163.com</span></p>
+        </div>
+        <div class="lybt">
+            <button type="button" class="u-ibtn1 u-ibtnsz1">退 出</button><button type="button" class="u-ibtn5 u-ibtnsz1">取 消</button>
+        </div>
+    </div>
+    <span class="zcls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+</div>
+<!-- 订阅电台 -->
+<div class="m-layer z-show">
+    <div class="zbar">
+        <div class="zttl">订阅电台</div>
+    </div>
+    <div class="zcnt">
+         <div class="lyct lyct-1">
+            <p>喜欢本电台的节目吗？收藏后更方便收听</p>
+         </div>
+         <div class="lybt">
+                <button type="button" class="j-flag u-ibtn1 u-ibtnsz1">立即收藏</button>
+                <button type="button" class="j-flag u-ibtn5 u-ibtnsz1" >暂不收藏</button>
+                <button type="button" class="j-flag u-ibtn5 u-ibtnsz1" >不再提醒</button>
+            </div>
+    </div>
+    <span class="zcls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+</div>
+
+
+<!-- 关闭提示 -->
+<div class="m-layer m-layer-close z-show">
+    <div class="zbar"><div class="zttl">关闭提示</div></div>
+    <div class="zcnt u-cklist">
+        <div class="lyct">
+           <div class="m-lytxt">
+                <form class="j-flag">
+                    <p>点击关闭按钮时：</p>
+                    <label><input type="radio" name="close" value="tray"/><span><svg><use xlink:href="../../res/svg/icon.sp.svg#radio"></use></svg></span>最小化到系统托盘</label>
+                    <label><input type="radio" name="close" value="exit"/><span><svg><use xlink:href="../../res/svg/icon.sp.svg#radio"></use></svg></span>退出网易云音乐</label>
+                </form>
+           </div>
+        </div>
+        <div class="lybt f-cb">
+            <label><input type="checkbox" class="j-flag" name="remind"/><span><svg><use xlink:href="../../res/svg/icon.sp.svg#checkbox"></use></svg></span>不再提醒</label>
+            <button type="button" class="j-flag u-ibtn1 u-ibtnsz1">确定</button>
+        </div>
+    </div>
+    <span class="zcls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+</div>
+
+<!-- 更新提示 -->
+<div class="m-layer z-show">
+    <div class="zbar"><div class="zttl">已完成更新</div></div>
+    <div class="zcnt">
+        <div class="lyct">
+            <div class="m-updated">
+                <h3>1.1.0版新增特色：</h3>
+                <ol>
+                    <li>修复了若干用户反馈bug</li>
+                    <li>新增了xxx功能模块</li>
+                    <li>优化了发现页面的交互，体验更流畅</li>
+                </ol>
+            </div>
+        </div>
+        <div class="lybt">
+            <button type="button" class="u-ibtn1 u-ibtnsz1">知道了</button>
+        </div>
+    </div>
+    <span class="zcls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+</div>
+<!-- 歌单页下载 -->
+<!-- <div class="u-arrlay" style="position:static; margin-left:100px;">
+    <ol class="m-laylist">
+        <li><i class="u-icn5 u-icn5-dld"></i>下载全部(L)</li>
+        <li><i class="u-icn5 u-icn5-copy"></i>复制已下载的mp3文件</li>
+    </ol>
+</div> -->
+
+<!-- 绑定窗口 -->
+<div class="m-layer m-layer-bind z-show">
+    <div class="zbar">
+        <div class="zttl">绑定腾讯微博</div>
+    </div>
+    <div class="zcnt">
+         <div class="lyct">
+            <div class="m-bind">
+                <iframe style="display:none"></iframe><!--出错时隐藏-->
+                <div class="error">
+                    <p class="txt s-fc1 f-ff2">绑定失败</p>
+                    <p class="s-fc3">该微博帐号已被绑定至网易云音乐用户：<a href="" class="s-fc2">何小小</a></p>
+                    <button type="button" class="u-ibtn1 u-ibtnsz1">确&nbsp;定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <span class="zcls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+</div>
+<!-- 个人头像  -->
+<div class="m-layer m-layer-edt z-show">
+    <div class="zbar"><div class="zttl">个人头像</div></div>
+    <div class="zcnt">
+        <div class="lyct">
+            <div class="m-edtimg f-cb">
+                <div class="left">
+                    <div class="img f-pr">
+                        <span class="cov"></span>
+                        <div class="u-load">载入中...</div>
+                        <p class="tip s-fc6">请选择不大于3M的图片!</p><!--没有出错时不加 f-hide-->
+                        <img/>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="covb f-pr">
+                        <span class="cov"></span>
+                        <div class="bpre"><img/></div>
+                    </div>
+                    <p class="s-fc4">大尺寸头像</p>
+                    <div class="covs f-pr">
+                        <span class="cov"></span>
+                        <div class="spre"><img/></div>
+                    </div>
+                    <p class="s-fc4">小尺寸头像</p>
+                </div>
+            </div>
+        </div>
+        <div class="lybt">
+            <button type="button" class="u-ibtn1 u-ibtnsz1">保存并关闭</button>
+            <button type="button" class="u-ibtn5 u-ibtnsz1">重新选择</button>
+        </div>
+    </div>
+    <span class="zcls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+</div>
+
+<!-- 更改配色方案 -->
+<div class="m-layer m-matchcolor z-show">
+    <div class="zbar"><div class="zttl">更改配色方案</div></div>
+    <div class="zcnt">
+        <div class="lyct">
+            <p class="s-fc3 j-flag">已播放</p>
+            <div class="col">
+                <div class="pre j-flag"></div>
+                <div class="c1">
+                    <input type="color"/>
+                    <button class="u-ibtn5"><span></span>颜色1</button>
+                </div>
+                <div class="c2">
+                    <input type="color"/>
+                    <button class="u-ibtn5"><span></span>颜色2</button>
+                </div>
+            </div>
+        </div>
+        <div class="lybt">
+            <button type="button" class="u-ibtn1 u-ibtnsz1">确认</button>
+            <button type="button" class="u-ibtn5 u-ibtnsz1">取消</button>
+        </div>
+    </div>
+    <span class="zcls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+</div>
+
+<div class="m-layer m-layer-comment">
+    <div class="zbar"><div class="zttl">添加评论(歌曲：A Head Full Of Dreams Head Full Of Dreams Head Full Of Dreams Head Full Of Dreams)</div></div>
+    <div class="zcnt">
+        <div class="lyct m-editor">
+          <div class="u-txt u-txt-area textarea">
+            <div class="copy">
+              <div class="copytxtwrap">
+                <div class="copytxt"></div>
+              </div>
+            </div>
+            <span class="place"><svg><use xlink:href="../res/svg/icon.sp.svg#cmt_pen"></use></svg><em></em></span>
+            <textarea class="edttxt"></textarea>
+            <span class="remain">140</span>
+          </div>
+          <div class="f-cb">
+            <div class="insert f-fl f-pr f-cb">
+                <span class="icn emt"><svg><use xlink:href="../res/svg/icon.sp.svg#cmt_emt"></use></svg></span>
+                <span class="icn at"><svg><use xlink:href="../res/svg/icon.sp.svg#cmt_at"></use></svg></span>
+            </div>  
+          </div>
+        </div>
+        <div class="lybt f-cb">
+            <button class="u-ibtn1 u-ibtnsz1 f-fr">评 论</button>
+        </div>
+    </div>
+  <span class="zcls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+</div>
+<!-- 改版引导 
+<div class="m-notelay m-guiderdi" style="position:static; -webkit-transform:translate(0,0); float:left;">
+    <div class="pic pic-1"></div>
+   <article>
+        <h3 class="tit f-ff2">播电台全新改版</h3>
+        <p class="s-fc3">订阅电台能在及时收到更新通知，不再苦苦寻找</p>
+   </article>
+    <div class="btns">
+        <button class="btn f-ff2">我知道了</button>
+    </div>
+    <span class="cls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+</div>
+
+<!-- 付费提示 
+<div class="m-notelay m-paynote" style="position:static; -webkit-transform:translate(0,0); float:left;">
+    <div class="pic"></div>
+   <article>
+        <p class="s-fc3 f-fs1">唱片公司要求，当前MV须付费使用订购付费音乐包即可自由畅享</p>
+   </article>
+    <div class="btns">
+        <button class="btn btn-red f-ff2">包月购买</button>
+        <div class="byone"><a href="#" class="s-fc2 f-tdu">单首购买</a></div>
+    </div>
+    <span class="cls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+</div>
+
+<!-- 专辑付费提示 
+<div class="m-notelay m-paynote" style="position:static; -webkit-transform:translate(0,0); float:left;">
+    <div class="albcover"></div>
+    <div class="pic pic-alb"></div>
+   <article>
+        <p class="s-fc3 f-fs1">唱片公司要求，当前MV须付费使用订购付费音乐包即可自由畅享</p>
+   </article>
+    <div class="btns">
+        <button class="btn btn-red f-ff2">包月购买</button>
+    </div>
+    <span class="cls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+</div>
+<!-- 我的电台订阅升级 
+<div class="m-notelay m-guiderdi">
+    <div class="pic pic-2"></div>
+   <article>
+        <h3 class="tit f-ff2">我的电台订阅升级</h3>
+        <p class="s-fc3">订阅电台能在及时收到更新通知，不再苦苦寻找</p>
+   </article>
+    <div class="btns">
+        <button class="btn f-ff2">我知道了</button>
+    </div>
+</div>
+-->
+
+</body>
+</html>

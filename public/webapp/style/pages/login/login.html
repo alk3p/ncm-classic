@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>登录-网易云音乐</title>
+    <link rel="stylesheet" href="../../css/base.ls.css"/>
+	<link rel="stylesheet" href="../../css/grid.ls.css"/>
+	<link rel="stylesheet" href="../../css/unit.ls.css"/>
+	<link rel="stylesheet" href="../../css/module.ls.css"/>
+	<link rel="stylesheet" href="../../css/login.ls.css"/>
+    <style>
+    html, body{overflow: auto;}
+    	.n-login{position:relative; float:left; margin:10px 0 0 10px; box-shadow: 0 0 2px rgba(0,0,0,0.3); border:1px solid rgba(0,0,0,0.2);}
+	</style>
+<script src="../replace.js"></script>
+</head>
+<body class="f-cb">
+<div class="n-login z-noback" style="display:;">
+	<div class="iner">
+		<a class="back" href="javascript:void(0);"><em class="f-ff1">&lt;</em>&nbsp;返回登录</a>
+		<span class="zcls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+	</div>
+	<div class="cnt cnt-2">
+		<div class="btnwrap"><a href="#" class="btn btn-tag">手机号登录</a></div>
+		<div class="btnwrap f-mgt10"><a href="#" class="btn btn-tag">注 册</a></div>
+		<div class="others-login">
+			<div class="tit f-tc">其他登录方式</div>
+			<div class="line"></div>
+			<ul class="f-cb">
+				<li class="f-cp itm wx">
+					<div class="logo"></div>
+					<div class="f-tc text">微信</div>
+				</li>
+				<li class="f-cp itm qq">
+					<div class="logo"></div>
+					<div class="f-tc text">QQ</div>
+				</li>
+				<li class="f-cp itm sn">
+					<div class="logo"></div>
+					<div class="f-tc text">新浪微博</div>
+				</li>
+				<li class="f-cp itm wy">
+					<div class="logo"></div>
+					<div class="f-tc text">网易邮箱</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="n-login n-login-reg" style="display:;">
+	<div class="iner">
+		<a class="back" href="javascript:void(0);"><em class="f-ff1">&lt;</em>&nbsp;返回登录</a>
+		<span class="zcls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+	</div>
+	<div class="cnt cnt-5">
+		<p class="stip f-tc">该手机号已与云音乐账号【昵称】绑定，以后你可以直接用该手机号+密码登录</p>
+		<div class="btnwrap">
+			<a href="#" class="btn btn-dark">知道了</a>
+		</div>
+	</div>
+</div>
+<div class="n-login n-login-reg" style="display:;">
+	<div class="iner">
+		<a class="back" href="javascript:void(0);"><em class="f-ff1">&lt;</em>&nbsp;返回登录</a>
+		<span class="zcls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+	</div>
+	<div class="cnt cnt-4">
+		<p class="stip f-tc">该手机号尚未注册，取个昵称马上开通</p>
+		<div class="iptwrap-sigle">
+			<div class="itm itm-nick">
+				<input type="text" placeholder="昵称">
+			</div>
+		</div>
+		<div class="err err-div f-thide"></div>
+		<div class="btnwrap">
+			<a href="#" class="btn btn-dark">开启云音乐</a>
+		</div>
+	</div>
+</div>
+<div class="n-login n-login-reg" style="display:;">
+	<div class="iner">
+		<a class="back" href="javascript:void(0);"><em class="f-ff1">&lt;</em>&nbsp;返回登录</a>
+		<span class="zcls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+	</div>
+	<div class="cnt cnt-4">
+		<p class="stip f-tc">取一个昵称，让大家记住您</p>
+		<div class="iptwrap-sigle">
+			<div class="itm itm-nick">
+				<input type="text" placeholder="昵称">
+			</div>
+		</div>
+		<div class="err err-div f-thide"></div>
+		<div class="btnwrap">
+			<a href="#" class="btn btn-dark">开启云音乐</a>
+		</div>
+	</div>
+</div>
+<div class="n-login n-login-phone" style="display:;">
+	<div class="iner">
+		<a class="back" href="javascript:void(0);"><em class="f-ff1">&lt;</em>&nbsp;返回登录</a>
+		<span class="zcls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_close"></use></svg></span>	</div>
+	<div class="cnt cnt-4">
+		<p class="stip">为了安全，我们会向你的手机发送短信校验码</p>
+		<div class="iptwrap-sigle">
+			<div class="itm itm-phone">
+				<input type="text" placeholder="手机">
+			</div>
+		</div>
+		<div class="capt f-mgt10">
+			<div class="iptwrap-sigle">
+				<div class="itm itm-capt">
+					<input type="text" placeholder="请输入验证码">
+				</div>
+			</div>
+			<a href="#" class="btn btn-dark f-ff3">获取验证码</a>
+		</div>
+		
+		<div class="err err-div f-thide">验证码错误</div>
+		<div class="btnwrap">
+			<a href="#" class="btn btn-dark">下一步</a>
+		</div>
+		<div class="jump-div">
+	        <a class="j-flag">跳过</a>
+	    </div>
+	</div>
+</div>
+<div class="n-login n-login-phone" style="display:;">
+	<div class="iner">
+		<a class="back" href="javascript:void(0);"><em class="f-ff1">&lt;</em>&nbsp;返回登录</a>
+		<span class="zcls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+	</div>
+	<div class="cnt cnt-4">
+		<p class="stip">为了安全，我们会向你的手机发送短信校验码</p>
+		<div class="capt">
+			<div class="iptwrap-sigle">
+				<div class="itm itm-capt">
+					<input type="text" placeholder="请输入验证码">
+				</div>
+			</div>
+			<a href="#" class="btn btn-dark f-ff3 z-dis">00:56</a>
+		</div>
+		<div class="err err-div f-thide">验证码错误</div>
+		<div class="btnwrap">
+			<a href="#" class="btn btn-dark">下一步</a>
+		</div>
+	</div>
+</div>
+<div class="n-login n-login-phone" style="display:;">
+	<div class="iner">
+		<a class="back" href="javascript:void(0);"><em class="f-ff1">&lt;</em>&nbsp;返回登录</a>
+		<span class="zcls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+	</div>
+	<div class="cnt cnt-2">
+		<div class="iptwrap">
+			<div class="itm itm-1 itm-1-1">
+				<input name="account" type="text" placeholder="手机">
+			</div>
+			<div class="itm itm-2">
+				<input name="password" type="password" placeholder="设置登录密码，不少于6位">
+			</div>
+		</div>
+		<div class="err err-div f-thide">密码错误</div>
+		<div class="btnwrap"><a href="#" class="btn btn-dark">注 册</a></div>
+		<div class="others-login">
+			<div class="tit f-tc">其他登录方式</div>
+			<div class="line"></div>
+			<ul class="f-cb">
+				<li class="f-cp itm wx">
+					<div class="logo"></div>
+					<div class="f-tc f-mgt5 text">微信</div>
+				</li>
+				<li class="f-cp itm qq">
+					<div class="logo"></div>
+					<div class="f-tc f-mgt5 text">QQ</div>
+				</li>
+				<li class="f-cp itm sn">
+					<div class="logo"></div>
+					<div class="f-tc f-mgt5 text">新浪微博</div>
+				</li>
+				<li class="f-cp itm wy">
+					<div class="logo"></div>
+					<div class="f-tc f-mgt5 text">网易邮箱</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="n-login n-login-phone" style="display:;">
+	<div class="iner">
+		<a class="back" href="javascript:void(0);"><em class="f-ff1">&lt;</em>&nbsp;返回登录</a>
+		<span class="zcls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+	</div>
+	<div class="cnt cnt-2">
+		<div class="iptwrap">
+			<div class="itm itm-1 itm-1-1">
+				<input name="account" type="text" placeholder="手机">
+			</div>
+			<div class="itm itm-2">
+				<input name="password" type="password" placeholder="密码">
+				<a href="#" class="fgt">重设密码</a>
+			</div>
+		</div>
+		<div class="auto">
+			<label>
+				<input type="checkbox" class="check j-flag" checked="">
+				<span>自动登录</span>
+			</label>
+			<span class="err f-fr f-tr f-thide">密码错误</span>
+		</div>
+		<div class="btnwrap"><a href="#" class="btn btn-dark">登 陆</a></div>
+	</div>
+</div>
+
+<div class="n-login n-login-mail" style="display:;">
+	<div class="iner">
+		<a class="back" href="javascript:void(0);"><em class="f-ff1">&lt;</em>&nbsp;返回登录</a>
+		<span class="zcls u-icn u-icn-laycls" title="关闭窗体"><svg><use xlink:href="../../res/svg/icon.sp.svg#btn_close"></use></svg></span>
+	</div>
+	<div class="cnt cnt-2">
+		<div class="iptwrap">
+			<div class="itm itm-1">
+				<input type="text" placeholder="邮箱帐号">
+			</div>
+			<div class="itm itm-2">
+				<input type="password" placeholder="密码">
+				<a href="#" class="fgt">忘记密码？</a>
+			</div>
+		</div>
+		<div class="auto">
+			<label>
+				<input type="checkbox" class="check j-flag" checked="">
+				<span>自动登录</span>
+			</label>
+			<span class="err f-fr f-tr f-thide">密码错误</span>
+		</div>
+		<div class="btnwrap"><a href="#" class="btn btn-dark">登 陆</a></div>
+	</div>
+</div>
+</body>
+</html>

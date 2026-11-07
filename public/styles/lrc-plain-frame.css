@@ -1,0 +1,12 @@
+/** Used in LrcPlainFrame **/
+
+QLabel,
+QScrollArea,
+QScrollArea::viewport {
+  background-color: transparent;
+}
+
+QLabel#lrc-label {
+  color: #ffffff;
+  font-size: 12px;
+}

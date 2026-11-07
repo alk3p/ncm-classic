@@ -1,0 +1,26 @@
+/** Used in MiniPlayer **/
+
+/* Remove borders in FlatButtons */
+QPushButton[flat="true"] {
+  border: none;
+  outline: none;
+}
+
+QFrame#top-panel-background {
+  /*Cropped the image's blank border area*/
+  border-width: 2px 3px 4px 2px;
+  border-image: url(SKIN_ROOT/mini/main/panel.png) 2 3 4 2 stretch;
+}
+
+QFrame#top-panel-gradient {
+  border-image: url(SKIN_ROOT/mini/main/gradient.png) 0 0 0 0 stretch;
+}
+
+QLabel#top-panel-highlight {
+  border-width: 1px;
+  border-image: url(SKIN_ROOT/mini/main/highlight.png) stretch;
+}
+
+QLabel#top-panel-vertical-separator {
+  border-image: url(SKIN_ROOT/mini/main/separator.png);
+}

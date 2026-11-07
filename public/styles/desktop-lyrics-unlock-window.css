@@ -1,0 +1,19 @@
+/** Used in DesktopLyricsUnlockWindow **/
+
+QLabel#background-label {
+  background-image: url(SKIN_ROOT/lrc/desk_btn_unlock.png);
+}
+
+/* Remove borders in FlatButtons */
+QPushButton[flat="true"] {
+  border: none;
+  outline: none;
+}
+
+QPushButton#unlock-button {
+  background-image: url(SKIN_ROOT/lrc/desk_icn_unlock.png);
+}
+
+QPushButton#unlock-button:hover {
+  background-image: url(SKIN_ROOT/lrc/desk_icn_unlock_hvr.png);
+}

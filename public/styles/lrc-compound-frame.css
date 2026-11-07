@@ -1,0 +1,7 @@
+/** Used in LrcCompoundFrame **/
+
+QLabel,
+QScrollArea,
+QScrollArea::viewport {
+  background-color: transparent;
+}
