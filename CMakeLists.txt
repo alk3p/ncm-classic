@@ -3,12 +3,10 @@ cmake_minimum_required(VERSION 3.25)
 # PackageProject). A vcpkg toolchain wraps add_library() under the policies in effect here,
 # so keep duplicate aliases legal for them.
 cmake_policy(SET CMP0107 OLD)
-project(ncm-classic VERSION 1.2.1 LANGUAGES CXX)
+project(ncm-classic VERSION 1.2.1 LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
 include(GNUInstallDirs)
 include(FetchContent)
 
@@ -24,9 +22,43 @@ endif()
 
 find_package(Qt6 6.8 REQUIRED COMPONENTS Core Gui Widgets Network Core5Compat)
 find_package(SQLite3 REQUIRED)
-find_package(OpenSSL REQUIRED)
 find_package(ZLIB REQUIRED)
 find_package(PkgConfig QUIET)
+
+# bearssl: AES and RSA operations
+FetchContent_Declare(bearssl
+    GIT_REPOSITORY https://www.bearssl.org/git/BearSSL
+    GIT_TAG 7bea48e5e850ab4cafbe68d3765cdaba13a86d6f
+)
+FetchContent_MakeAvailable(bearssl)
+set(bearssl_sources
+    codec/ccopy.c
+    int/i31_add.c
+    int/i31_bitlen.c
+    int/i31_decmod.c
+    int/i31_decode.c
+    int/i31_encode.c
+    int/i31_fmont.c
+    int/i31_modpow2.c
+    int/i31_montmul.c
+    int/i31_muladd.c
+    int/i31_ninv31.c
+    int/i31_sub.c
+    int/i31_tmont.c
+    int/i32_div32.c
+    rsa/rsa_i31_pub.c
+    symcipher/aes_ct.c
+    symcipher/aes_ct_cbcdec.c
+    symcipher/aes_ct_cbcenc.c
+    symcipher/aes_ct_dec.c
+    symcipher/aes_ct_enc.c
+)
+list(TRANSFORM bearssl_sources PREPEND "${bearssl_SOURCE_DIR}/src/")
+add_library(bearssl STATIC ${bearssl_sources})
+target_include_directories(bearssl SYSTEM
+    PUBLIC "${bearssl_SOURCE_DIR}/inc"
+    PRIVATE "${bearssl_SOURCE_DIR}/src"
+)
 
 # saucer: System webview (WebView2 / WebKitGTK / WKWebView)
 set(saucer_exceptions OFF CACHE BOOL "" FORCE)
@@ -52,6 +84,7 @@ FetchContent_Declare(qtkeychain
 FetchContent_MakeAvailable(qtkeychain)
 target_compile_definitions(qt6keychain PUBLIC QT6KEYCHAIN_STATIC_DEFINE)
 
+set(CMAKE_AUTOMOC ON)
 add_executable(${PROJECT_NAME}
     src/app/main.cpp
     src/bridge/Bridge.cpp
@@ -173,7 +206,7 @@ endif()
 target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt6::Core Qt6::Gui Qt6::Widgets Qt6::Network Qt6::Core5Compat
     saucer::saucer qt6keychain
-    ${sqlite} ${taglib} ${vlc} OpenSSL::Crypto ZLIB::ZLIB
+    ${sqlite} ${taglib} ${vlc} bearssl ZLIB::ZLIB
 )
 
 set(schema_dir "${CMAKE_CURRENT_SOURCE_DIR}/src/services/persistence")

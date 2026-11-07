@@ -1,5 +1,7 @@
 #include "MusicTags.h"
 
+#include "services/crypto/Crypto.h"
+
 #include <memory>
 
 #include <QDateTime>
@@ -9,7 +11,6 @@
 #include <QMimeDatabase>
 #include <QMutex>
 
-#include <openssl/evp.h>
 #include <taglib/fileref.h>
 #include <taglib/mp4file.h>
 #include <taglib/tag.h>
@@ -51,45 +52,14 @@ std::shared_ptr<QMutex> fileMutex(const QString &path)
 }
 
 const QString markerPrefix = QStringLiteral("163 key(Don't modify):");
-
-std::optional<QByteArray> markerCrypt(const QByteArray &bytes, bool encrypt)
-{
-    const QByteArray key("#14ljk_!\\]&0U<'(");
-    auto ctx = EVP_CIPHER_CTX_new();
-    if (!ctx)
-        return std::nullopt;
-    QByteArray out(bytes.size() + EVP_MAX_BLOCK_LENGTH, Qt::Uninitialized);
-    int first = 0, last = 0;
-    bool ok
-        = EVP_CipherInit_ex(
-              ctx,
-              EVP_aes_128_ecb(),
-              nullptr,
-              reinterpret_cast<const unsigned char *>(key.constData()),
-              nullptr,
-              encrypt ? 1 : 0)
-              == 1
-          && EVP_CipherUpdate(
-                 ctx,
-                 reinterpret_cast<unsigned char *>(out.data()),
-                 &first,
-                 reinterpret_cast<const unsigned char *>(bytes.constData()),
-                 bytes.size())
-                 == 1
-          && EVP_CipherFinal_ex(ctx, reinterpret_cast<unsigned char *>(out.data() + first), &last)
-                 == 1;
-    EVP_CIPHER_CTX_free(ctx);
-    if (!ok)
-        return std::nullopt;
-    out.resize(first + last);
-    return out;
-}
+const QByteArray markerKey = "#14ljk_!\\]&0U<'(";
 
 QString decodedComment(const QString &s)
 {
     if (!s.startsWith(markerPrefix))
         return s;
-    auto decoded = markerCrypt(QByteArray::fromBase64(s.mid(markerPrefix.size()).toLatin1()), false);
+    auto decoded = crypto::aesEcbDecrypt(
+        QByteArray::fromBase64(s.mid(markerPrefix.size()).toLatin1()), markerKey);
     return decoded && !decoded->isEmpty() ? QString::fromUtf8(*decoded) : s;
 }
 
@@ -97,9 +67,10 @@ std::optional<QString> encodedComment(const QString &s)
 {
     if (!s.startsWith("music:") && !s.startsWith("dj:") && !s.startsWith("mv:"))
         return s;
-    return markerCrypt(s.toUtf8(), true).transform([](const QByteArray &bytes) {
-        return markerPrefix + QString::fromLatin1(bytes.toBase64());
-    });
+    auto encrypted = crypto::aesEcbEncrypt(s.toUtf8(), markerKey);
+    if (!encrypted)
+        return std::nullopt;
+    return markerPrefix + QString::fromLatin1(encrypted->toBase64());
 }
 
 QString qs(const TagLib::String &s)
