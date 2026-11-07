@@ -40,12 +40,12 @@ jobs:
       - uses: actions/cache@v6
         with:
           path: .vcpkg-cache
-          key: vcpkg-${{ steps.vcpkg.outputs.revision }}-zlib-taglib
+          key: vcpkg-${{ steps.vcpkg.outputs.revision }}-taglib
           restore-keys: vcpkg-
 
       - name: Install libraries (vcpkg)
         run: >
-          & "$env:VCPKG_INSTALLATION_ROOT\vcpkg.exe" install zlib taglib
+          & "$env:VCPKG_INSTALLATION_ROOT\vcpkg.exe" install taglib
           --triplet x64-windows "--x-install-root=$env:GITHUB_WORKSPACE\vcpkg_installed"
 
       - name: Fetch SDKs

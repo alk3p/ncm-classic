@@ -244,7 +244,7 @@ void StreamCache::accept()
                 bool writer = false;
                 qint64 down = 0, total = -1, offset = 0;
             };
-            QList<QPair<QByteArray, QByteArray>> headers;
+            NativeNetwork::Headers headers{{"Accept-Encoding", "gzip, deflate"}};
             for (auto line : lines) {
                 const auto colon = line.indexOf(':');
                 if (colon <= 0)

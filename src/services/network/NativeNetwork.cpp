@@ -19,8 +19,6 @@
 #include <QTimer>
 #include <QUrlQuery>
 
-#include <zlib.h>
-
 namespace ncm {
 
 namespace {
@@ -84,26 +82,6 @@ QList<QNetworkCookie> setCookieHeaders(const QNetworkReply *reply)
         if (name.toLower() == "set-cookie")
             cookies.append(QNetworkCookie::parseCookies(value));
     return cookies;
-}
-
-QByteArray inflate(const QByteArray &data, int windowBits)
-{
-    z_stream stream{};
-    stream.next_in = reinterpret_cast<Bytef *>(const_cast<char *>(data.data()));
-    stream.avail_in = uInt(data.size());
-    if (inflateInit2(&stream, windowBits) != Z_OK)
-        return {};
-    QByteArray output;
-    int status = Z_OK;
-    char buffer[65536];
-    while (status == Z_OK && output.size() < maxResponseBody) {
-        stream.next_out = reinterpret_cast<Bytef *>(buffer);
-        stream.avail_out = sizeof buffer;
-        status = ::inflate(&stream, Z_NO_FLUSH);
-        output.append(buffer, qsizetype(sizeof(buffer) - stream.avail_out));
-    }
-    inflateEnd(&stream);
-    return status == Z_STREAM_END ? output : QByteArray();
 }
 
 }
@@ -221,17 +199,9 @@ std::expected<QNetworkReply *, QString> NativeNetwork::send(
 
 QByteArray NativeNetwork::readBody(QNetworkReply *reply)
 {
-    if (!reply->isOpen())
+    if (!reply->isOpen() || reply->bytesAvailable() > maxResponseBody)
         return {};
-    auto data = reply->readAll();
-    const auto encoding = reply->rawHeader("Content-Encoding").trimmed().toLower();
-    if (reply->attribute(QNetworkRequest::OriginalContentLengthAttribute).isValid()
-        || (encoding != "gzip" && encoding != "deflate"))
-        return data;
-    auto decoded = inflate(data, encoding == "gzip" ? 31 : 15);
-    if (decoded.isEmpty() && encoding == "deflate")
-        decoded = inflate(data, -15);
-    return decoded;
+    return reply->readAll();
 }
 
 QNetworkRequest NativeNetwork::prepare(const QUrl &url, const Headers &headers) const
@@ -249,10 +219,10 @@ QNetworkRequest NativeNetwork::prepare(const QUrl &url, const Headers &headers) 
     request.setAttribute(
         QNetworkRequest::RedirectPolicyAttribute, QNetworkRequest::NoLessSafeRedirectPolicy);
     request.setTransferTimeout(60000);
+    request.setDecompressedSafetyCheckThreshold(maxResponseBody);
     request.setAttribute(QNetworkRequest::CookieSaveControlAttribute, QNetworkRequest::Manual);
     request.setAttribute(QNetworkRequest::Http2AllowedAttribute, false);
     request.setRawHeader("User-Agent", "Mozilla/5.0");
-    request.setRawHeader("Accept-Encoding", "gzip, deflate");
     std::optional<QByteArray> explicitCookie;
     for (const auto &[name, value] : headers) {
         request.setRawHeader(name, value);
@@ -338,7 +308,11 @@ void NativeNetwork::registerRequestHandlers()
         Headers headers;
         for (const auto header : spec.value("headers").toArray()) {
             const auto pair = header.toArray();
-            headers.append({pair.at(0).toString().toLatin1(), pair.at(1).toString().toLatin1()});
+            const auto name = pair.at(0).toString().toLatin1();
+            const auto value = pair.at(1).toString().toLatin1();
+            if (name.compare("Accept-Encoding", Qt::CaseInsensitive) != 0
+                || value.trimmed().compare("identity", Qt::CaseInsensitive) == 0)
+                headers.append({name, value});
         }
         request(
             spec.value("id").toString(),

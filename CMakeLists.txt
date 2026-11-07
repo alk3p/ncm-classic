@@ -22,7 +22,6 @@ endif()
 
 find_package(Qt6 6.8 REQUIRED COMPONENTS Core Gui Widgets Network Core5Compat)
 find_package(SQLite3 REQUIRED)
-find_package(ZLIB REQUIRED)
 find_package(PkgConfig QUIET)
 
 # bearssl: AES and RSA operations
@@ -206,7 +205,7 @@ endif()
 target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt6::Core Qt6::Gui Qt6::Widgets Qt6::Network Qt6::Core5Compat
     saucer::saucer qt6keychain
-    ${sqlite} ${taglib} ${vlc} bearssl ZLIB::ZLIB
+    ${sqlite} ${taglib} ${vlc} bearssl
 )
 
 set(schema_dir "${CMAKE_CURRENT_SOURCE_DIR}/src/services/persistence")
