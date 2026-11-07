@@ -2,7 +2,7 @@
 	<PlayListContainerEelement height="28">
 	  	<HorizontalLayout>
 	  		<Container width="20" height="28">
-	  			<MaskButton name="list_play" width="16" height="28" normalimage="file='btn/color_btns.png' dest='4,8,14,21' source='70,100,80,113' trans_change='false' mask='#FFFFFFFF' " focusedimage="file='btn/color_btns.png' dest='4,8,14,21' source='70,100,80,113' trans_change='false' mask='#FFFFFFFF' " pushedimage="file='btn/color_btns.png' dest='4,8,14,21' source='70,100,80,113' trans_change='false' mask='#FFFFFFFF' " normalimage="file='btn/color_btns.png' dest='4,8,14,21' source='70,100,80,113' trans_change='false' mask='#FFFFFFFF' " visible="true"/>
+	  			<MaskButton name="list_play" width="16" height="28" normalimage="file='btn/color_btns.png' dest='4,8,14,21' source='70,100,80,113' trans_change='false' mask='#FFFFFFFF' " focusedimage="file='btn/color_btns.png' dest='4,8,14,21' source='70,100,80,113' trans_change='false' mask='#FFFFFFFF' " pushedimage="file='btn/color_btns.png' dest='4,8,14,21' source='70,100,80,113' trans_change='false' mask='#FFFFFFFF' " visible="true"/>
 	  			<MaskButton name="list_pause" width="16" height="28" normalimage="file='btn/color_btns.png' dest='5,9,14,20' source='103,160,112,171' trans_change='false' mask='#FFFFFFFF' " visible="false"/>
 	  		</Container>
 	    	<Label name="list_title" endellipsis="true" align="left" transtext="255" showhtml="true" visible="true"/>

@@ -56,7 +56,7 @@
 
   			<HorizontalLayout name="main_panel">
 	    		<Container width="48">
-	    			<ImageFrame  name="small_album" width="42" height="42" float="true" pos="3,2,45,44" enabled="true"  default_image="mini/album/default.png" default_image="mini/album/default.png" hight_light_image="mini/album/highlight.png" bitmap_padding="0,0,0,0" highlight_padding="0,0,0,0"/>
+	    			<ImageFrame  name="small_album" width="42" height="42" float="true" pos="3,2,45,44" enabled="true"  default_image="mini/album/default.png" hight_light_image="mini/album/highlight.png" bitmap_padding="0,0,0,0" highlight_padding="0,0,0,0"/>
 				</Container>
 
 				<Container name="mid_panel">

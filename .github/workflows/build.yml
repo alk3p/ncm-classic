@@ -1,0 +1,113 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  windows:
+    name: Windows (MSVC 2026)
+    runs-on: windows-2025-vs2026
+    env:
+      QT_VERSION: 6.8.3
+      SQLITE_VERSION: '3540100'
+      VLC_VERSION: 3.0.24
+      VCPKG_BINARY_SOURCES: clear;files,${{ github.workspace }}\.vcpkg-cache,readwrite
+    steps:
+      - run: git config --global core.autocrlf false
+
+      - name: Checkout source code
+        uses: actions/checkout@v6
+
+      - name: Setup MSVC devcmd
+        uses: ilammy/msvc-dev-cmd@v1
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: ${{ env.QT_VERSION }}
+          modules: qt5compat
+          cache: true
+
+      - name: Record vcpkg revision
+        id: vcpkg
+        run: |
+          New-Item -ItemType Directory -Force .vcpkg-cache | Out-Null
+          "revision=$(git -C $env:VCPKG_INSTALLATION_ROOT rev-parse HEAD)" >> $env:GITHUB_OUTPUT
+
+      - uses: actions/cache@v6
+        with:
+          path: .vcpkg-cache
+          key: vcpkg-${{ steps.vcpkg.outputs.revision }}-zlib-taglib
+          restore-keys: vcpkg-
+
+      - name: Install libraries (vcpkg)
+        run: >
+          & "$env:VCPKG_INSTALLATION_ROOT\vcpkg.exe" install zlib taglib
+          --triplet x64-windows "--x-install-root=$env:GITHUB_WORKSPACE\vcpkg_installed"
+
+      - name: Fetch SDKs
+        working-directory: ${{ runner.temp }}
+        run: |
+          $PSNativeCommandUseErrorActionPreference = $true
+          $amalgamation = "sqlite-amalgamation-$env:SQLITE_VERSION.zip"
+          $sqliteDll = "sqlite-dll-win-x64-$env:SQLITE_VERSION.zip"
+          $vlc = "vlc-$env:VLC_VERSION"
+          & "$env:SystemRoot\System32\curl.exe" -fsSL --fail-early --retry 3 --proto-redir '=https' --remote-name-all `
+            "https://www.sqlite.org/2026/$amalgamation" `
+            "https://www.sqlite.org/2026/$sqliteDll" `
+            "https://download.videolan.org/pub/videolan/vlc/$env:VLC_VERSION/win64/$vlc-win64.7z"
+
+          7z x $amalgamation -osqlite -y | Out-Null
+          7z x $sqliteDll -osqlite -y | Out-Null
+          lib.exe /nologo /machine:x64 /name:sqlite3.dll /def:sqlite\sqlite3.def /out:sqlite\sqlite3.lib
+          7z x "$vlc-win64.7z" -y | Out-Null
+          "SQLITE_ROOT=$env:RUNNER_TEMP\sqlite" >> $env:GITHUB_ENV
+          "VLC_ROOT=$env:RUNNER_TEMP\$vlc" >> $env:GITHUB_ENV
+
+      - name: Run configure
+        run: >
+          cmake -Bbuild -GNinja -DCMAKE_BUILD_TYPE=Release
+          "-DCMAKE_PREFIX_PATH=$($env:QT_ROOT_DIR -replace '\\', '/')"
+          "-DSQLite3_INCLUDE_DIR=$($env:SQLITE_ROOT -replace '\\', '/')/sqlite-amalgamation-$env:SQLITE_VERSION"
+          "-DSQLite3_LIBRARY=$($env:SQLITE_ROOT -replace '\\', '/')/sqlite3.lib"
+          "-DOPENSSL_ROOT_DIR=$($env:ProgramFiles -replace '\\', '/')/OpenSSL"
+          "-DCMAKE_TOOLCHAIN_FILE=$($env:VCPKG_INSTALLATION_ROOT -replace '\\', '/')/scripts/buildsystems/vcpkg.cmake"
+          -DVCPKG_MANIFEST_MODE=OFF
+          "-DVCPKG_INSTALLED_DIR=$($env:GITHUB_WORKSPACE -replace '\\', '/')/vcpkg_installed"
+          -DVCPKG_TARGET_TRIPLET=x64-windows
+
+      - name: Run build
+        run: ninja -Cbuild -j6
+
+      - name: Run deploy
+        run: |
+          $PSNativeCommandUseErrorActionPreference = $true
+          cmake --install build --prefix packaging
+          $bin = 'packaging\bin'
+          Copy-Item build\*.dll $bin
+          Copy-Item "$env:SQLITE_ROOT\sqlite3.dll" $bin
+          windeployqt --release --no-compiler-runtime --no-opengl-sw --no-system-d3d-compiler `
+            --no-system-dxc-compiler --skip-plugin-types generic --translations zh_CN `
+            --openssl-root "$env:ProgramFiles\OpenSSL" "$bin\ncm-classic.exe"
+          Copy-Item "$env:VCToolsRedistDir\x64\Microsoft.VC*.CRT\*.dll" $bin
+          Copy-Item "$env:VLC_ROOT\libvlc.dll", "$env:VLC_ROOT\libvlccore.dll" $bin
+
+          # LibVLC plays audio, and the system webview handles music videos.
+          $vlcPlugins = @(
+            'access', 'audio_filter', 'audio_mixer', 'audio_output', 'codec', 'demux',
+            'meta_engine', 'packetizer', 'stream_extractor', 'stream_filter'
+          )
+          New-Item -ItemType Directory -Path "$bin\plugins" -Force | Out-Null
+          foreach ($plugin in $vlcPlugins) {
+            Copy-Item -LiteralPath "$env:VLC_ROOT\plugins\$plugin" -Destination "$bin\plugins" -Recurse
+          }
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: ncm-classic-win64
+          path: packaging/bin/
+          compression-level: 9
