@@ -75,10 +75,14 @@ std::expected<QByteArray, QString> aesEcbDecrypt(const QByteArray &ciphertext, c
     auto out = ciphertext;
     br_aes_ct_cbcdec_keys ctx;
     br_aes_ct_cbcdec_init(&ctx, key.constData(), key.size());
-    for (qsizetype offset = 0; offset < out.size(); offset += aesBlockSize) {
-        char iv[aesBlockSize]{};
-        br_aes_ct_cbcdec_run(&ctx, iv, out.data() + offset, aesBlockSize);
-    }
+    char iv[aesBlockSize]{};
+    auto *plain = reinterpret_cast<unsigned char *>(out.data());
+    br_aes_ct_cbcdec_run(&ctx, iv, plain, out.size());
+
+    const auto *orig = reinterpret_cast<const unsigned char *>(ciphertext.constData());
+    for (qsizetype offset = aesBlockSize; offset < out.size(); ++offset)
+        plain[offset] ^= orig[offset - aesBlockSize];
+
     const auto padding = static_cast<unsigned char>(out.back());
     if (padding == 0 || padding > aesBlockSize
         || !std::all_of(out.cend() - padding, out.cend(), [padding](char byte) {
