@@ -178,7 +178,7 @@ int main(int argc, char **argv)
         web.resources().grantFile(launch.audioFile);
 
     ncm::PersistenceService persistence(bridge, paths);
-    ncm::MediaService media(bridge, paths);
+    ncm::MediaService media(bridge, paths, web);
     auto &network = media.network();
     web.resources().setKnownFileHandler(
         [&persistence](const QString &path) { return persistence.containsMusicFile(path); });

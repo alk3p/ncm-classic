@@ -1,20 +1,14 @@
 #include "AudioService.h"
 
-#include "StreamCache.h"
-#include "VlcRuntime.h"
-#include "app/LegacyIdentity.h"
-#include "app/RuntimePaths.h"
 #include "bridge/Bridge.h"
+#include "web/WebHost.h"
 
 #include <algorithm>
 #include <cmath>
-#include <iterator>
+#include <utility>
 
-#include <QDir>
 #include <QFile>
-#include <QFileInfo>
 #include <QJsonDocument>
-#include <QSettings>
 
 namespace ncm {
 
@@ -27,24 +21,17 @@ constexpr int invalidMedia = 2;
 }
 
 AudioService::AudioService(
-    Bridge &bridge, NativeNetwork &network, const RuntimePaths &paths, QObject *parent)
+    Bridge &bridge, NativeNetwork &network, const RuntimePaths &paths, WebHost &web, QObject *parent)
     : QObject(parent)
     , bridge_(bridge)
-    , cache_(std::make_unique<StreamCache>(bridge, network, paths))
-    , cacheRoot_(paths.storageCache)
-    , settingsPath_(paths.settingsFile)
+    , cache_(bridge, network, paths)
 {
-    const char *args[]
-        = {"--no-video", "--no-media-library", "--no-osd", "--quiet", "--network-caching=1500"};
-    instance_ = createVlcInstance(int(std::size(args)), args);
-    if (instance_) {
-        libvlc_set_user_agent(instance_, legacy::vlcUserAgent, legacy::vlcHttpUserAgent);
-        libvlc_set_app_id(instance_, legacy::applicationId, legacy::version, legacy::applicationId);
-    }
-
     poll_.setInterval(pollMs);
-    connect(&poll_, &QTimer::timeout, this, &AudioService::poll);
-    poll_.start();
+    connect(&poll_, &QTimer::timeout, this, [this] { send({"sample"}); });
+
+    endTimer_.setSingleShot(true);
+    endTimer_.setTimerType(Qt::PreciseTimer);
+    connect(&endTimer_, &QTimer::timeout, this, [this] { end(0); });
 
     fade_.setDuration(fadeMs);
     connect(&fade_, &QVariantAnimation::valueChanged, this, [this](const QVariant &factor) {
@@ -52,23 +39,12 @@ AudioService::AudioService(
         applyVolume();
     });
     connect(&fade_, &QVariantAnimation::finished, this, [this] {
-        if (wantPlay_ || !player_ || ended_)
-            return;
-        libvlc_media_player_set_pause(player_, 1);
-        acknowledgeState();
+        if (!wantPlay_)
+            send({"pause"});
     });
 
     registerHandlers();
-}
-
-AudioService::~AudioService()
-{
-    poll_.stop();
-    stop();
-    if (player_)
-        libvlc_media_player_release(player_);
-    if (instance_)
-        libvlc_release(instance_);
+    startPlayer(web);
 }
 
 void AudioService::registerHandlers()
@@ -77,7 +53,7 @@ void AudioService::registerHandlers()
         bridge_.addHandler(name, [](const QJsonArray &, Bridge::Reply done) { done({}); });
 
     const auto current = [this](const QJsonArray &a) {
-        return stringArg(a, 0) == id_ && player_ && !ended_;
+        return !id_.isEmpty() && stringArg(a, 0) == id_;
     };
     bridge_.addHandler("audioplayer.load", [this](const QJsonArray &a, Bridge::Reply done) {
         load(stringArg(a, 0), a.at(1).toObject());
@@ -93,23 +69,27 @@ void AudioService::registerHandlers()
             pause(stringArg(a, 1));
         done({});
     });
-    bridge_.addHandler("audioplayer.stop", [this](const QJsonArray &a, Bridge::Reply done) {
-        if (stringArg(a, 0) == id_)
+    bridge_.addHandler("audioplayer.stop", [this, current](const QJsonArray &a, Bridge::Reply done) {
+        if (current(a))
             stop();
         done({});
     });
     bridge_.addHandler("audioplayer.seek", [this, current](const QJsonArray &a, Bridge::Reply done) {
         if (current(a)) {
-            const double t = std::clamp(numberArg(a, 2), 0., duration_ > 0 ? duration_ : 1e9);
-            const int code = libvlc_media_player_is_seekable(player_) ? 0 : -1;
-            if (!code)
-                libvlc_media_player_set_time(player_, qint64((t + offset_) * 1000));
-            bridge_.publish("audioplayer.onSeek", {id_, a.at(1), code, t});
+            auto position = std::max(0., numberArg(a, 2));
+            if (duration_ > 0)
+                position = std::min(position, duration_);
+            if (loaded_) {
+                endTimer_.stop();
+                send({"seek", position + offset_});
+            }
+            bridge_.publish("audioplayer.onSeek", {id_, a.at(1), loaded_ ? 0 : -1, position});
         }
         done({});
     });
     bridge_.addHandler("audioplayer.setVolume", [this](const QJsonArray &a, Bridge::Reply done) {
-        setVolume(numberArg(a, 2));
+        volume_ = std::clamp(numberArg(a, 2), 0., 1.);
+        applyVolume();
         bridge_.publish("audioplayer.onVolume", {a.at(0), a.at(1), 0, volume_});
         done({});
     });
@@ -118,86 +98,93 @@ void AudioService::registerHandlers()
             if (const auto option = value.toObject(); option.value("name") == "fade")
                 fadeEnabled_ = option.value("on").toBool();
         if (!fadeEnabled_ && fade_.state() == QAbstractAnimation::Running) {
-            fade_.stop();
-            fadeFactor_ = wantPlay_ ? 1 : 0;
-            applyVolume();
-            if (!wantPlay_ && player_ && !ended_)
-                libvlc_media_player_set_pause(player_, 1);
-            acknowledgeState();
+            fadeTo(wantPlay_ ? 1 : 0);
+            if (!wantPlay_)
+                send({"pause"});
         }
         done({});
     });
 }
 
+void AudioService::startPlayer(WebHost &web)
+{
+    const auto page = cache_.playerPage();
+    QFile script(":/ncm/assets/channel/audio.js");
+    if (page.isEmpty() || !script.open(QIODevice::ReadOnly))
+        return;
+    auto view = web.createHiddenView();
+    if (!view)
+        return;
+    player_.emplace(std::move(*view));
+
+    using enum saucer::webview::event;
+    player_->on<navigate>([page](const saucer::navigation &nav) {
+        const QUrl url(QString::fromStdString(nav.url().string()));
+        return !nav.new_window() && url == page ? saucer::policy::allow : saucer::policy::block;
+    });
+    player_->on<message>([this](std::string_view message) { return receive(message); });
+    player_->inject({.code = script.readAll().toStdString(), .run_at = saucer::script::time::ready});
+    player_->set_url(page.toString(QUrl::FullyEncoded).toStdString());
+}
+
+saucer::status AudioService::receive(std::string_view raw)
+{
+    const auto message
+        = QJsonDocument::fromJson(QByteArray(raw.data(), qsizetype(raw.size()))).array();
+    const auto event = message.at(0).toString();
+    if (event.isEmpty())
+        return saucer::status::unhandled;
+    if (event == "ready") {
+        if (!std::exchange(playerReady_, true) && !source_.isEmpty())
+            open();
+    } else if (source_.isEmpty() || message.at(1).toString() != source_.toString()) {
+        return saucer::status::handled;
+    } else if (event == "sample") {
+        update(message.at(2).toObject());
+    } else if (event == "ended") {
+        end(0);
+    } else if (event == "error") {
+        end(invalidMedia);
+    }
+    return saucer::status::handled;
+}
+
+void AudioService::send(const QJsonArray &command)
+{
+    if (player_ && playerReady_)
+        player_->execute(("window.__ncmAudio(" + jsLiteral(command) + ");").toStdString());
+}
+
 void AudioService::load(const QString &id, const QJsonObject &info)
 {
     stop();
-    cacheRoot_ = QSettings(settingsPath_, QSettings::IniFormat)
-                     .value("ServiceStorage/cache-path", cacheRoot_)
-                     .toString();
     id_ = id;
-    ended_ = false;
-    segment_ = info.contains("duration");
-    offset_ = info.value("starttime").toVariant().toDouble();
-    duration_ = info.value("duration").toVariant().toDouble();
-    buffering_ = -1;
-    buffered_ = 0;
-    reportedPosition_ = reportedBuffered_ = -1;
+    offset_ = info.value("starttime").toDouble();
+    duration_ = info.value("duration").toDouble();
 
-    path_ = info.value("path").toString();
-    if (path_.isEmpty())
-        path_ = info.value("musicurl").toString();
-    if (path_ == "cacheurl" || path_.isEmpty()) {
-        const auto songId = info.value("songId").toVariant().toString();
-        const auto md5 = info.value("md5").toString();
-        const auto bitrate = info.value("bitrate").toVariant().toInt();
-        path_.clear();
-        for (const auto &name : QDir(cacheRoot_).entryList({"*.cache.json"}, QDir::Files)) {
-            QFile file(cacheRoot_ + '/' + name);
-            if (!file.open(QIODevice::ReadOnly))
-                continue;
-            const auto entry = QJsonDocument::fromJson(file.readAll()).object();
-            if (entry.value("songId").toVariant().toString() == songId
-                && entry.value("cached").toInt() == 100
-                && (md5.isEmpty() || entry.value("md5") == md5)
-                && (bitrate == 0 || entry.value("bitrate").toVariant().toInt() == bitrate)) {
-                path_ = entry.value("path").toString();
-                break;
-            }
-        }
-    }
+    auto path = info.value("path").toString();
+    if (path.isEmpty())
+        path = info.value("musicurl").toString();
+    if (path.isEmpty() || path == "cacheurl")
+        path = cache_.cached(info);
+    const QUrl url(path);
+    if (player_ && !path.isEmpty())
+        source_ = url.scheme() == "http" || url.scheme() == "https"
+                      ? cache_.stream(path, info)
+                      : cache_.file(url.isLocalFile() ? url.toLocalFile() : path);
 
-    if (!player_ && instance_)
-        player_ = libvlc_media_player_new(instance_);
-    if (!player_ || path_.isEmpty()) {
+    if (source_.isEmpty())
         end(invalidMedia);
-        return;
-    }
-    const QUrl source(path_);
-    if (source.scheme() == "http" || source.scheme() == "https") {
-        cachedSource_ = cache_->source(path_, info);
-        media_ = libvlc_media_new_location(instance_, cachedSource_.toEncoded().constData());
-    } else {
-        const QFileInfo file(source.isLocalFile() ? source.toLocalFile() : path_);
-        bridge_.setProperty("ncm.activeMediaPaths", QStringList{file.absoluteFilePath()});
-        media_ = openLocalMedia(instance_, file.absoluteFilePath());
-    }
-    if (!media_) {
-        end(invalidMedia);
-        return;
-    }
-    libvlc_media_add_option(media_, ":start-paused");
-    if (offset_ > 0)
-        libvlc_media_add_option(
-            media_, QString(":start-time=%1").arg(offset_, 0, 'f', 3).toUtf8().constData());
-    if (segment_ && duration_ > 0)
-        libvlc_media_add_option(
-            media_,
-            QString(":stop-time=%1").arg(offset_ + duration_, 0, 'f', 3).toUtf8().constData());
-    libvlc_media_player_set_media(player_, media_);
+    else if (playerReady_)
+        open();
+}
+
+void AudioService::open()
+{
+    send({"open", source_.toString(), offset_});
     applyVolume();
-    if (libvlc_media_player_play(player_) != 0)
-        end(invalidMedia);
+    setBuffering(true);
+    poll_.start();
 }
 
 void AudioService::play(const QString &command)
@@ -205,10 +192,10 @@ void AudioService::play(const QString &command)
     wantPlay_ = true;
     command_ = command;
     statePending_ = true;
-    if (loaded_)
-        fadeTo(1);
-    libvlc_media_player_set_pause(player_, 0);
-    acknowledgeState();
+    if (!loaded_)
+        return;
+    fadeTo(1);
+    send({"play"});
 }
 
 void AudioService::pause(const QString &command)
@@ -216,116 +203,88 @@ void AudioService::pause(const QString &command)
     wantPlay_ = false;
     command_ = command;
     statePending_ = true;
-    if (fadeEnabled_ && libvlc_media_player_is_playing(player_) && fadeFactor_ > 0) {
+    if (fadeEnabled_ && playing_ && fadeFactor_ > 0) {
         fadeTo(0);
         return;
     }
     fade_.stop();
     fadeFactor_ = 0;
     applyVolume();
-    libvlc_media_player_set_pause(player_, 1);
-    acknowledgeState();
+    send({"pause"});
 }
 
 void AudioService::stop()
 {
-    const auto source = cachedSource_;
-    cachedSource_ = QUrl();
-    id_.clear();
-    path_.clear();
-    duration_ = 0;
-    offset_ = 0;
-    segment_ = false;
-    loaded_ = false;
-    ended_ = true;
-    wantPlay_ = false;
-    statePending_ = false;
+    poll_.stop();
+    endTimer_.stop();
     fade_.stop();
+    id_.clear();
+    loaded_ = playing_ = wantPlay_ = statePending_ = false;
     fadeFactor_ = 0;
-    bridge_.setProperty("ncm.activeMediaPaths", QStringList());
-    if (player_)
-        libvlc_media_player_stop(player_);
-    if (media_) {
-        libvlc_media_release(media_);
-        media_ = nullptr;
+    buffering_ = -1;
+    reportedPosition_ = reportedBuffered_ = -1;
+    if (const auto source = std::exchange(source_, QUrl()); !source.isEmpty()) {
+        send({"close"});
+        cache_.release(source);
     }
-    if (!source.isEmpty())
-        cache_->release(source);
 }
 
 void AudioService::end(int code)
 {
-    if (ended_ || id_.isEmpty())
+    const auto id = id_;
+    if (id.isEmpty())
         return;
-    ended_ = true;
-    path_.clear();
-    wantPlay_ = false;
-    statePending_ = false;
-    fade_.stop();
-    if (!cachedSource_.isEmpty())
-        cache_->release(cachedSource_);
-    cachedSource_ = QUrl();
-    bridge_.setProperty("ncm.activeMediaPaths", QStringList());
+    stop();
     bridge_.publish(
-        code == 0 ? "audioplayer.onEnd" : "audioplayer.onLoad", {id_, QJsonObject{{"code", code}}});
+        code == 0 ? "audioplayer.onEnd" : "audioplayer.onLoad", {id, QJsonObject{{"code", code}}});
 }
 
-void AudioService::poll()
+void AudioService::update(const QJsonObject &sample)
 {
-    if (!player_ || id_.isEmpty() || ended_)
+    const bool loaded = loaded_ || sample.value("loaded").toBool();
+    setBuffering(!loaded || sample.value("waiting").toBool());
+    if (!loaded)
         return;
-    const auto state = libvlc_media_player_get_state(player_);
-    if (state == libvlc_Error || state == libvlc_Ended) {
-        end(state == libvlc_Error ? invalidMedia : 0);
-        return;
-    }
-    const int buffering = state == libvlc_Opening || state == libvlc_Buffering ? 1 : 0;
-    if (buffering != buffering_) {
-        buffering_ = buffering;
-        bridge_.publish("audioplayer.onBuffering", {id_, buffering});
-    }
-    if (!loaded_ && (state == libvlc_Playing || state == libvlc_Paused)) {
-        if (duration_ <= 0)
-            duration_ = std::max(0., libvlc_media_player_get_length(player_) / 1000. - offset_);
+    if (!loaded_) {
         loaded_ = true;
-        libvlc_media_player_set_pause(player_, wantPlay_ ? 0 : 1);
-        if (wantPlay_)
-            fadeTo(1);
+        if (duration_ <= 0)
+            duration_ = std::max(0., sample.value("duration").toDouble() - offset_);
         bridge_
             .publish("audioplayer.onLoad", {id_, QJsonObject{{"code", 0}, {"duration", duration_}}});
+        if (wantPlay_)
+            play(command_);
     }
-    acknowledgeState();
-    if (!loaded_)
-        return;
 
-    buffered_ = cachedSource_.isEmpty() ? 1 : cache_->bufferedFraction(cachedSource_);
-    const auto position = std::max(0., libvlc_media_player_get_time(player_) / 1000. - offset_);
-    if (position != reportedPosition_ || buffered_ != reportedBuffered_) {
+    const bool paused = sample.value("paused").toBool();
+    playing_ = !paused && !buffering_;
+    if (statePending_ && (wantPlay_ ? playing_ : paused)) {
+        statePending_ = false;
+        bridge_.publish("audioplayer.onPlayState", {id_, command_, wantPlay_ ? 1 : 2});
+    }
+
+    const auto position = std::max(0., sample.value("position").toDouble() - offset_);
+    const auto buffered
+        = duration_ > 0
+              ? std::clamp((sample.value("buffered").toDouble() - offset_) / duration_, 0., 1.)
+              : 0.;
+    if (position != reportedPosition_ || buffered != reportedBuffered_) {
         reportedPosition_ = position;
-        reportedBuffered_ = buffered_;
-        bridge_.publish("audioplayer.onPlayProgress", {id_, position, buffered_});
+        reportedBuffered_ = buffered;
+        bridge_.publish("audioplayer.onPlayProgress", {id_, position, buffered});
     }
-    if (segment_ && duration_ > 0 && position >= duration_) {
-        libvlc_media_player_stop(player_);
-        end(0);
-    }
+
+    if (playing_ && duration_ > 0)
+        endTimer_.start(int(std::ceil((duration_ - std::min(position, duration_)) * 1000)));
+    else
+        endTimer_.stop();
 }
 
-void AudioService::acknowledgeState()
+void AudioService::setBuffering(bool buffering)
 {
-    if (!statePending_ || !loaded_ || !player_ || ended_ || id_.isEmpty())
+    if (buffering_ == int(buffering))
         return;
-    const auto state = libvlc_media_player_get_state(player_);
-    if (state != (wantPlay_ ? libvlc_Playing : libvlc_Paused))
-        return;
-    statePending_ = false;
-    bridge_.publish("audioplayer.onPlayState", {id_, command_, wantPlay_ ? 1 : 2});
-}
-
-void AudioService::setVolume(double volume)
-{
-    volume_ = std::isfinite(volume) ? std::clamp(volume, 0., 1.) : 0.;
-    applyVolume();
+    buffering_ = buffering;
+    bridge_.publish("audioplayer.onBuffering", {id_, buffering_});
 }
 
 void AudioService::fadeTo(double factor)
@@ -343,8 +302,8 @@ void AudioService::fadeTo(double factor)
 
 void AudioService::applyVolume()
 {
-    if (player_)
-        libvlc_audio_set_volume(player_, int(std::lround(volume_ * fadeFactor_ * 100)));
+    if (!source_.isEmpty())
+        send({"volume", volume_ * fadeFactor_});
 }
 
 }

@@ -32,6 +32,8 @@ public:
     Bridge &bridge() { return bridge_; }
     ResourceHandler &resources() { return resources_; }
 
+    std::optional<saucer::webview> createHiddenView();
+
     WebWindow *createWindow(const QString &name, const QUrl &url, bool visible = true);
     WebWindow *window(const QString &name = {}) const;
     QList<WebWindow *> windows() const;
@@ -41,6 +43,7 @@ public:
     void mirrorCookie(const QNetworkCookie &, bool removed);
 
 private:
+    std::optional<saucer::webview> makeView(const std::shared_ptr<saucer::window> &);
     std::unique_ptr<WebWindow> makeWindow(const QString &name, const QUrl &url);
     void attachCookieStore(WebWindow &);
 

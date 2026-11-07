@@ -132,6 +132,35 @@ void WebHost::mirrorCookie(const QNetworkCookie &cookie, bool removed)
         native::setCookie(view, cookie);
 }
 
+std::optional<saucer::webview> WebHost::createHiddenView()
+{
+    if (!app_)
+        return std::nullopt;
+    auto window = saucer::window::create(std::addressof(*app_));
+    if (!window) {
+        qWarning().noquote() << "Cannot create a hidden window" << errorText(window.error());
+        return std::nullopt;
+    }
+    return makeView(*window);
+}
+
+std::optional<saucer::webview> WebHost::makeView(const std::shared_ptr<saucer::window> &window)
+{
+    auto view = saucer::webview::create({
+        .window = window,
+        .attributes = false,
+        .persistent_cookies = true,
+        .storage_path = std::filesystem::path(paths_.webViewData.toStdWString()),
+        .user_agent = std::string(legacy::browserUserAgent),
+        .browser_flags = {"--autoplay-policy=no-user-gesture-required"},
+    });
+    if (!view) {
+        qWarning().noquote() << "Cannot create a webview" << errorText(view.error());
+        return std::nullopt;
+    }
+    return std::move(*view);
+}
+
 std::unique_ptr<WebWindow> WebHost::makeWindow(const QString &name, const QUrl &url)
 {
     if (!app_)
@@ -144,18 +173,9 @@ std::unique_ptr<WebWindow> WebHost::makeWindow(const QString &name, const QUrl &
     (*window)->set_decorations(saucer::window::decoration::partial);
     (*window)->set_size({1050, 720});
 
-    auto view = saucer::webview::create({
-        .window = *window,
-        .attributes = false,
-        .persistent_cookies = true,
-        .storage_path = std::filesystem::path(paths_.webViewData.toStdWString()),
-        .user_agent = std::string(legacy::browserUserAgent),
-        .browser_flags = {"--autoplay-policy=no-user-gesture-required"},
-    });
-    if (!view) {
-        qWarning().noquote() << "Cannot create webview" << name << errorText(view.error());
+    auto view = makeView(*window);
+    if (!view)
         return nullptr;
-    }
     view->set_context_menu(false);
     if (qEnvironmentVariableIsSet("NCM_WEB_DEVTOOLS"))
         view->set_dev_tools(true);

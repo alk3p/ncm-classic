@@ -22,7 +22,6 @@ endif()
 
 find_package(Qt6 6.8 REQUIRED COMPONENTS Core Gui Widgets Network Core5Compat)
 find_package(SQLite3 REQUIRED)
-find_package(PkgConfig QUIET)
 
 # bearssl: AES and RSA operations
 FetchContent_Declare(bearssl
@@ -97,7 +96,6 @@ add_executable(${PROJECT_NAME}
     src/services/media/AudioService.cpp
     src/services/media/MediaService.cpp
     src/services/media/StreamCache.cpp
-    src/services/media/VlcRuntime.cpp
     src/services/network/MultipartServices.cpp
     src/services/network/CookieVault.cpp
     src/services/network/NativeNetwork.cpp
@@ -173,29 +171,6 @@ else()
     set(taglib PkgConfig::TAGLIB)
 endif()
 
-find_package(VLC CONFIG QUIET)
-if(TARGET VLC::vlc)
-    set(vlc VLC::vlc)
-elseif(TARGET VLC::VLC)
-    set(vlc VLC::VLC)
-else()
-    if(PkgConfig_FOUND)
-        pkg_check_modules(VLC QUIET IMPORTED_TARGET libvlc)
-    endif()
-    if(TARGET PkgConfig::VLC)
-        set(vlc PkgConfig::VLC)
-    else()
-        find_path(NCM_VLC_INCLUDE_DIR vlc/vlc.h HINTS ENV VLC_ROOT PATH_SUFFIXES include sdk/include)
-        # libvlc first: the Windows SDK's vlc.lib is a GNU ld INPUT() stub MSVC cannot link.
-        find_library(NCM_VLC_LIBRARY NAMES libvlc vlc HINTS ENV VLC_ROOT PATH_SUFFIXES lib sdk/lib)
-        if(NOT NCM_VLC_INCLUDE_DIR OR NOT NCM_VLC_LIBRARY)
-            message(FATAL_ERROR "libVLC 3 headers and library required. Set VLC_ROOT to the VLC SDK directory.")
-        endif()
-        target_include_directories(${PROJECT_NAME} PRIVATE "${NCM_VLC_INCLUDE_DIR}")
-        set(vlc "${NCM_VLC_LIBRARY}")
-    endif()
-endif()
-
 if(TARGET SQLite3::SQLite3)
     set(sqlite SQLite3::SQLite3)
 else()
@@ -205,7 +180,7 @@ endif()
 target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt6::Core Qt6::Gui Qt6::Widgets Qt6::Network Qt6::Core5Compat
     saucer::saucer qt6keychain
-    ${sqlite} ${taglib} ${vlc} bearssl
+    ${sqlite} ${taglib} bearssl
 )
 
 set(schema_dir "${CMAKE_CURRENT_SOURCE_DIR}/src/services/persistence")

@@ -13,7 +13,6 @@ jobs:
     env:
       QT_VERSION: 6.8.3
       SQLITE_VERSION: '3540100'
-      VLC_VERSION: 3.0.24
       VCPKG_BINARY_SOURCES: clear;files,${{ github.workspace }}\.vcpkg-cache,readwrite
     steps:
       - run: git config --global core.autocrlf false
@@ -48,24 +47,20 @@ jobs:
           & "$env:VCPKG_INSTALLATION_ROOT\vcpkg.exe" install taglib
           --triplet x64-windows "--x-install-root=$env:GITHUB_WORKSPACE\vcpkg_installed"
 
-      - name: Fetch SDKs
+      - name: Fetch SQLite
         working-directory: ${{ runner.temp }}
         run: |
           $PSNativeCommandUseErrorActionPreference = $true
           $amalgamation = "sqlite-amalgamation-$env:SQLITE_VERSION.zip"
           $sqliteDll = "sqlite-dll-win-x64-$env:SQLITE_VERSION.zip"
-          $vlc = "vlc-$env:VLC_VERSION"
           & "$env:SystemRoot\System32\curl.exe" -fsSL --fail-early --retry 3 --proto-redir '=https' --remote-name-all `
             "https://www.sqlite.org/2026/$amalgamation" `
-            "https://www.sqlite.org/2026/$sqliteDll" `
-            "https://download.videolan.org/pub/videolan/vlc/$env:VLC_VERSION/win64/$vlc-win64.7z"
+            "https://www.sqlite.org/2026/$sqliteDll"
 
           7z x $amalgamation -osqlite -y | Out-Null
           7z x $sqliteDll -osqlite -y | Out-Null
           lib.exe /nologo /machine:x64 /name:sqlite3.dll /def:sqlite\sqlite3.def /out:sqlite\sqlite3.lib
-          7z x "$vlc-win64.7z" -y | Out-Null
           "SQLITE_ROOT=$env:RUNNER_TEMP\sqlite" >> $env:GITHUB_ENV
-          "VLC_ROOT=$env:RUNNER_TEMP\$vlc" >> $env:GITHUB_ENV
 
       - name: Run configure
         run: >
@@ -92,17 +87,6 @@ jobs:
             --no-system-dxc-compiler --skip-plugin-types generic --translations zh_CN `
             --exclude-plugins qopensslbackend "$bin\ncm-classic.exe"
           Copy-Item "$env:VCToolsRedistDir\x64\Microsoft.VC*.CRT\*.dll" $bin
-          Copy-Item "$env:VLC_ROOT\libvlc.dll", "$env:VLC_ROOT\libvlccore.dll" $bin
-
-          # LibVLC plays audio, and the system webview handles music videos.
-          $vlcPlugins = @(
-            'access', 'audio_filter', 'audio_mixer', 'audio_output', 'codec', 'demux',
-            'meta_engine', 'packetizer', 'stream_extractor', 'stream_filter'
-          )
-          New-Item -ItemType Directory -Path "$bin\plugins" -Force | Out-Null
-          foreach ($plugin in $vlcPlugins) {
-            Copy-Item -LiteralPath "$env:VLC_ROOT\plugins\$plugin" -Destination "$bin\plugins" -Recurse
-          }
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v7
