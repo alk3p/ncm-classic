@@ -1,0 +1,44 @@
+pkgname=ncm-classic-git
+pkgver=1.2.1
+pkgrel=1
+pkgdesc='NetEase Cloud Music (Classic)'
+arch=('x86_64')
+url='https://github.com/alk3p/ncm-classic'
+license=('GPL-3.0-or-later')
+depends=(
+  'gtk4'
+  'libadwaita'
+  'libsecret'
+  'qt6-5compat'
+  'qt6-base'
+  'qt6-svg'
+  'sqlite'
+  'taglib'
+  'webkitgtk-6.0'
+)
+makedepends=('cmake' 'git' 'ninja' 'qt6-tools')
+optdepends=(
+  'xdg-desktop-portal: global shortcuts'
+)
+provides=('ncm-classic')
+conflicts=('ncm-classic')
+source=()
+sha256sums=()
+
+pkgver() {
+  cd "${startdir}/.."
+  printf '%s.r%s.g%s' "$pkgver" "$(git rev-list --count HEAD)" "$(git rev-parse --short=8 HEAD)"
+}
+
+build() {
+  cmake -S "${startdir}/.." -Bbuild -GNinja \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -Wno-dev
+  cmake --build build
+}
+
+package() {
+  DESTDIR="$pkgdir" cmake --install build
+  install -Dm644 "${startdir}/../LICENSE" -t "${pkgdir}/usr/share/licenses/${pkgname}"
+}
