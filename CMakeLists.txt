@@ -124,6 +124,7 @@ add_executable(${PROJECT_NAME}
     src/ui/VolumeWindow.cpp
     src/ui/WindowCommands.cpp
     src/web/ResourceHandler.cpp
+    src/web/SignInWindow.cpp
     src/web/WebHost.cpp
     src/web/WebWindow.cpp
 )
@@ -141,6 +142,7 @@ if(WIN32)
         src/platform/DesktopIntegration_win.cpp
         src/platform/GlobalHotkeys_win.cpp
         src/web/NativeView_win.cpp
+        src/web/SignInWindow_win.cpp
     )
     target_compile_definitions(${PROJECT_NAME} PRIVATE NOMINMAX)
 elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux")
@@ -150,6 +152,7 @@ elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux")
         src/platform/GlobalHotkeys_linux.cpp
         src/platform/Mpris.cpp
         src/web/NativeView_generic.cpp
+        src/web/SignInWindow_gtk.cpp
     )
     target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::DBus)
 else()

@@ -491,7 +491,7 @@ void NativeNetwork::sessionChangedIfNeeded()
     emit sessionChanged();
 }
 
-void NativeNetwork::importSession(QString value, QObject *owner, SessionImportReply done)
+void NativeNetwork::importSession(QString value, QObject *owner, SessionReply done)
 {
     value = value.trimmed();
     if (value.startsWith("MUSIC_U="))
@@ -506,14 +506,36 @@ void NativeNetwork::importSession(QString value, QObject *owner, SessionImportRe
     QNetworkCookie cookie("MUSIC_U", value.toLatin1());
     cookie.setDomain(".music.163.com");
     cookie.setPath("/");
-    cookie.setSecure(true);
-    cookie.setHttpOnly(true);
+    importSession({cookie}, owner, std::move(done));
+}
+
+void NativeNetwork::importSession(QList<QNetworkCookie> cookies, QObject *owner, SessionReply done)
+{
+    cookies.removeIf([](const QNetworkCookie &cookie) {
+        return !isMusicCookie(cookie) || (cookie.name() != "MUSIC_U" && cookie.name() != "__csrf")
+               || cookie.value().isEmpty() || !isCookieValue(QString::fromLatin1(cookie.value()));
+    });
+    for (auto &cookie : cookies) {
+        cookie.setSecure(true);
+        if (cookie.name() == "MUSIC_U")
+            cookie.setHttpOnly(true);
+    }
     SessionCookies candidate;
-    if (!candidate.setCookiesFromUrl({cookie}, sessionAccountUrl)) {
-        done(std::unexpected(tr("无法读取此 cookie")));
+    candidate.setCookiesFromUrl(cookies, sessionAccountUrl);
+    cookies = candidate.cookiesForUrl(sessionAccountUrl);
+    if (std::ranges::none_of(cookies, [](const auto &c) { return c.name() == "MUSIC_U"; })) {
+        done(std::unexpected(tr("无法读取登录会话")));
         return;
     }
-    const auto encrypted = crypto::weapi(R"({"csrf_token":""})");
+    QList<QByteArray> parts;
+    QString csrf;
+    for (const auto &cookie : cookies) {
+        parts.append(cookie.toRawForm(QNetworkCookie::NameAndValueOnly));
+        if (cookie.name() == "__csrf" && csrf.isEmpty())
+            csrf = QString::fromLatin1(cookie.value());
+    }
+    const auto encrypted = crypto::weapi(
+        QJsonDocument(QJsonObject{{"csrf_token", csrf}}).toJson(QJsonDocument::Compact));
     if (!encrypted) {
         done(std::unexpected(tr("无法准备账号验证请求")));
         return;
@@ -530,7 +552,7 @@ void NativeNetwork::importSession(QString value, QObject *owner, SessionImportRe
         QNetworkRequest::RedirectPolicyAttribute, QNetworkRequest::ManualRedirectPolicy);
     request.setAttribute(QNetworkRequest::CookieLoadControlAttribute, QNetworkRequest::Manual);
     request.setAttribute(KeepsCookiesOut, true);
-    request.setRawHeader("Cookie", cookie.toRawForm(QNetworkCookie::NameAndValueOnly));
+    request.setRawHeader("Cookie", parts.join("; "));
     request.setTransferTimeout(10000);
 
     auto *reply = manager_.post(request, body);
@@ -542,7 +564,11 @@ void NativeNetwork::importSession(QString value, QObject *owner, SessionImportRe
         reply,
         &QNetworkReply::finished,
         this,
-        [this, reply, owner = QPointer(owner), cookie, done = std::move(done)] {
+        [this,
+         reply,
+         owner = QPointer(owner),
+         cookies = std::move(cookies),
+         done = std::move(done)]() mutable {
             reply->deleteLater();
             if (!owner)
                 return;
@@ -557,11 +583,10 @@ void NativeNetwork::importSession(QString value, QObject *owner, SessionImportRe
             if (result.value("code").toVariant().toInt() != 200
                 || account.value("id").toVariant().toLongLong() <= 0
                 || profile.value("userId").toVariant().toLongLong() <= 0) {
-                done(std::unexpected(tr("此 cookie 无效")));
+                done(std::unexpected(tr("无法确认账号信息")));
                 return;
             }
 
-            QList<QNetworkCookie> cookies{cookie};
             for (const auto &c : setCookieHeaders(reply))
                 if (c.name() == "__csrf")
                     cookies.append(c);
@@ -569,12 +594,10 @@ void NativeNetwork::importSession(QString value, QObject *owner, SessionImportRe
 
             SessionCookies normalized;
             normalized.setCookiesFromUrl(cookies, sessionAccountUrl);
-            const auto adopted = std::ranges::any_of(
-                normalized.cookiesForUrl(sessionAccountUrl), [&](const auto &saved) {
-                    return saved.name() == "MUSIC_U" && saved.value() == cookie.value();
-                });
-            if (!adopted) {
-                done(std::unexpected(tr("无法导入此 cookie")));
+            if (std::ranges::none_of(normalized.cookiesForUrl(sessionAccountUrl), [](const auto &c) {
+                    return c.name() == "MUSIC_U";
+                })) {
+                done(std::unexpected(tr("无法获取会话凭证")));
                 return;
             }
 
@@ -584,11 +607,14 @@ void NativeNetwork::importSession(QString value, QObject *owner, SessionImportRe
                     staged.cookies.append(old);
             staged.cookies.append(normalized.snapshot());
             vault_.save(
-                staged, [this, owner, cookies, imported, done](std::expected<void, QString> saved) {
-                    if (!owner)
+                staged,
+                [this, alive = QPointer(&saveTimer_), owner, cookies, imported, done](
+                    std::expected<void, QString> saved) {
+                    if (!alive)
                         return;
                     if (!saved) {
-                        done(std::unexpected(tr("无法保存此会话")));
+                        if (owner)
+                            done(std::unexpected(tr("无法保存会话凭证")));
                         return;
                     }
                     for (const auto &old : jar_->snapshot())
@@ -597,7 +623,8 @@ void NativeNetwork::importSession(QString value, QObject *owner, SessionImportRe
                     importedAccount_ = imported;
                     jar_->setCookiesFromUrl(cookies, sessionAccountUrl);
                     bridge_.publishTo("main", "app.onimportedsession", {imported});
-                    done({});
+                    if (owner)
+                        done({});
                 });
         });
 }

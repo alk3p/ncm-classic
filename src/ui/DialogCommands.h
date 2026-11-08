@@ -1,7 +1,5 @@
 #pragma once
 
-#include "SessionImportDialog.h"
-
 #include <functional>
 
 #include <QJsonArray>
@@ -14,12 +12,15 @@ class QFileDialog;
 namespace ncm {
 
 class Bridge;
+class NativeNetwork;
+class SessionImportDialog;
 class WebHost;
 
 class DialogCommands final : public QObject
 {
 public:
-    DialogCommands(Bridge &, WebHost &, SessionImportDialog::Importer, QObject *parent = nullptr);
+    DialogCommands(Bridge &, WebHost &, NativeNetwork &, QObject *parent = nullptr);
+    ~DialogCommands() override;
 
     void openSignIn();
 
@@ -30,7 +31,7 @@ private:
 
     Bridge &bridge_;
     WebHost &web_;
-    SessionImportDialog::Importer importer_;
+    NativeNetwork &network_;
     QPointer<SessionImportDialog> signIn_;
 };
 

@@ -39,7 +39,7 @@ class NativeNetwork final : public QObject
 
 public:
     using Headers = QList<QPair<QByteArray, QByteArray>>;
-    using SessionImportReply = std::function<void(std::expected<void, QString>)>;
+    using SessionReply = std::function<void(std::expected<void, QString>)>;
     using CookieObserver = std::function<void(const QNetworkCookie &, bool removed)>;
 
     NativeNetwork(Bridge &, const RuntimePaths &, QObject *parent = nullptr);
@@ -58,7 +58,8 @@ public:
     void setCookieObserver(CookieObserver observer) { observer_ = std::move(observer); }
     QString cookieValue(const QUrl &, const QByteArray &name, const QByteArray &supplied = {}) const;
 
-    void importSession(QString value, QObject *owner, SessionImportReply done);
+    void importSession(QString value, QObject *owner, SessionReply done);
+    void importSession(QList<QNetworkCookie>, QObject *owner, SessionReply done);
 
 signals:
     void sessionChanged();

@@ -1,6 +1,7 @@
 #include "WebHost.h"
 
 #include "NativeView.h"
+#include "SignInWindow.h"
 #include "app/LegacyIdentity.h"
 #include "bridge/Bridge.h"
 
@@ -63,7 +64,17 @@ std::expected<void, QString> WebHost::start()
 
 void WebHost::shutdown()
 {
+    delete signIn_.data();
     windows_.clear();
+}
+
+SignInWindow *WebHost::createSignInWindow(NativeNetwork &network)
+{
+    if (!signIn_) {
+        if (auto *owner = window("main"))
+            signIn_ = SignInWindow::create(owner->view(), network);
+    }
+    return signIn_;
 }
 
 WebWindow *WebHost::createWindow(const QString &name, const QUrl &url, bool visible)

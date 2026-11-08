@@ -1,5 +1,6 @@
 #include "DialogCommands.h"
 
+#include "SessionImportDialog.h"
 #include "bridge/Bridge.h"
 #include "web/WebHost.h"
 
@@ -30,12 +31,11 @@ QString fileDialogFilter(const QString &windows)
 
 }
 
-DialogCommands::DialogCommands(
-    Bridge &bridge, WebHost &web, SessionImportDialog::Importer importer, QObject *parent)
+DialogCommands::DialogCommands(Bridge &bridge, WebHost &web, NativeNetwork &network, QObject *parent)
     : QObject(parent)
     , bridge_(bridge)
     , web_(web)
-    , importer_(std::move(importer))
+    , network_(network)
 {
     const auto add = [&bridge](const QString &name, Bridge::Handler handler) {
         bridge.addHandler("app." + name, std::move(handler));
@@ -93,14 +93,18 @@ DialogCommands::DialogCommands(
     });
 }
 
+DialogCommands::~DialogCommands()
+{
+    delete signIn_.data();
+}
+
 void DialogCommands::openSignIn()
 {
     if (signIn_) {
-        signIn_->raise();
-        signIn_->activateWindow();
+        signIn_->activate();
         return;
     }
-    signIn_ = new SessionImportDialog(importer_);
+    signIn_ = new SessionImportDialog(web_, network_);
     signIn_->setAttribute(Qt::WA_DeleteOnClose);
     open(signIn_);
 }

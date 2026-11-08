@@ -13,12 +13,15 @@
 #include <QList>
 #include <QNetworkCookie>
 #include <QObject>
+#include <QPointer>
 
 #include <saucer/app.hpp>
 
 namespace ncm {
 
 class Bridge;
+class NativeNetwork;
+class SignInWindow;
 
 class WebHost final : public QObject
 {
@@ -33,6 +36,7 @@ public:
     ResourceHandler &resources() { return resources_; }
 
     std::optional<saucer::webview> createHiddenView();
+    SignInWindow *createSignInWindow(NativeNetwork &);
 
     WebWindow *createWindow(const QString &name, const QUrl &url, bool visible = true);
     WebWindow *window(const QString &name = {}) const;
@@ -53,6 +57,7 @@ private:
     std::optional<saucer::application> app_;
     QString bridgeScript_;
     std::map<QString, std::unique_ptr<WebWindow>> windows_;
+    QPointer<SignInWindow> signIn_;
     std::function<QList<QNetworkCookie>()> cookieSource_;
     bool cookieStoreAttached_ = false;
 };

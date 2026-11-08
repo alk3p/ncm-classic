@@ -1,33 +1,43 @@
 #pragma once
 
-#include <expected>
-#include <functional>
+#include <memory>
 
 #include <QDialog>
+#include <QPointer>
 
-class QLabel;
 class QLineEdit;
+class QMessageBox;
 class QPushButton;
 
 namespace ncm {
 
+class NativeNetwork;
+class SignInWindow;
+class WebHost;
+
 class SessionImportDialog final : public QDialog
 {
 public:
-    using Result = std::expected<void, QString>;
-    using Importer
-        = std::function<void(QString cookie, QObject *attempt, std::function<void(Result)> done)>;
+    SessionImportDialog(WebHost &, NativeNetwork &);
+    void activate();
 
-    explicit SessionImportDialog(Importer, QWidget *parent = nullptr);
+protected:
+    void done(int result) override;
 
 private:
     void submit();
-    void finished(Result);
+    void loginOnline();
+    void setPending(bool pending);
+    void warn(const QString &message);
 
-    Importer import_;
+    WebHost &web_;
+    NativeNetwork &network_;
     QLineEdit *input_;
-    QLabel *status_;
     QPushButton *submit_;
+    QPushButton *online_;
+    std::unique_ptr<QObject> attempt_;
+    QPointer<SignInWindow> signIn_;
+    QPointer<QMessageBox> warning_;
 };
 
 }

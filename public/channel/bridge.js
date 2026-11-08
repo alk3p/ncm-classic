@@ -78,9 +78,6 @@
     }));
   }
 
-  // The sign-in page is a native dialog here, which keeps itself single. The pages mark a window
-  // open until its page clears the mark on closing; the dialog never does, so its mark would
-  // keep it from opening again.
   function forgetSignInWindow(call) {
     if (call.name !== "winhelper.launchWindow" || !/\/login\.html\b/.test(call.args[0])) return;
     try {
@@ -139,10 +136,6 @@
     });
 
   // ---- imported sessions -----------------------------------------------------------------
-  //
-  // The port signs in with a MUSIC_U cookie the user supplies instead of the original login
-  // flows. The cookie stays in the native jar, out of the pages' reach as on the real site. Once
-  // core.js has loaded, teach its host controller to adopt that session.
 
   if (windowId !== "main") return;
 

@@ -191,9 +191,7 @@ int main(int argc, char **argv)
     ncm::PlayerWindows players(bridge, paths, web.resources(), skin);
     ncm::TrayIcon tray(bridge, icon, web.resources(), menuStyle);
     ncm::PopupMenus menus(bridge, web.resources(), menuStyle, tray);
-    ncm::DialogCommands dialogs(bridge, web, [&network](QString cookie, QObject *attempt, auto done) {
-        network.importSession(std::move(cookie), attempt, std::move(done));
-    });
+    ncm::DialogCommands dialogs(bridge, web, network);
     ncm::WindowCommands windows(bridge, web, players, dialogs);
     ncm::AppCommands appCommands(bridge, paths, web, skin);
     ncm::SystemCommands system(bridge, paths);
