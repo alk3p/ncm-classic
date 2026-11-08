@@ -12,7 +12,9 @@
 #include <QMutex>
 
 #include <taglib/fileref.h>
+#include <taglib/id3v2header.h>
 #include <taglib/mp4file.h>
+#include <taglib/mpegfile.h>
 #include <taglib/tag.h>
 #include <taglib/tfilestream.h>
 #include <taglib/tpropertymap.h>
@@ -101,10 +103,41 @@ TagLib::FileRef openTags(
 
 bool MusicTags::supported(const QString &p)
 {
+    return supportedSuffix(QFileInfo(p).suffix());
+}
+
+bool MusicTags::supportedSuffix(const QString &suffix)
+{
     static const QStringList suffixes = {"mp3", "flac", "ogg",  "oga",  "opus", "m4a", "mp4",
                                          "aac", "wav",  "wave", "aiff", "aif",  "ape", "wv",
                                          "mpc", "wma",  "tta",  "spx",  "dsf",  "dff"};
-    return suffixes.contains(QFileInfo(p).suffix().toLower());
+    return suffixes.contains(suffix, Qt::CaseInsensitive);
+}
+
+QString MusicTags::contentSuffix(const QString &path)
+{
+    if (isMp4(path))
+        return QStringLiteral("m4a");
+
+    QFile file(path);
+    if (!file.open(QIODevice::ReadOnly))
+        return {};
+
+    const auto prefix = file.peek(TagLib::ID3v2::Header::size());
+    if (prefix.size() == TagLib::ID3v2::Header::size() && prefix.startsWith("ID3")) {
+        const TagLib::ID3v2::Header tag(
+            TagLib::ByteVector(prefix.constData(), TagLib::ID3v2::Header::size()));
+        if (!file.seek(tag.completeTagSize()))
+            return {};
+    }
+
+    const auto mime = QMimeDatabase().mimeTypeForData(&file);
+    for (const auto &suffix : mime.suffixes())
+        if (supportedSuffix(suffix))
+            return suffix;
+
+    TagLib::FileStream probe(TAGPATH(path), true);
+    return TagLib::MPEG::File::isSupported(&probe) ? QStringLiteral("mp3") : QString();
 }
 
 std::optional<QJsonObject> MusicTags::read(const QString &p)

@@ -2,6 +2,7 @@
 
 #include "app/RuntimePaths.h"
 #include "bridge/Bridge.h"
+#include "services/library/MusicTags.h"
 #include "services/network/NativeNetwork.h"
 
 #include <algorithm>
@@ -16,6 +17,7 @@
 #include <QPointer>
 #include <QRegularExpression>
 #include <QSettings>
+#include <QUrl>
 
 namespace ncm {
 
@@ -256,9 +258,22 @@ void TransferService::finish(Task &t, int code)
         code = fileFailure;
     t.file.close();
     if (code == succeeded) {
-        auto target = t.target;
+        auto dest = t.target;
+        const bool audio = t.id.startsWith("offline-") && !t.id.startsWith("offline-mv-")
+                           && !t.id.endsWith("-image");
+        if (audio) {
+            auto suffix = MusicTags::contentSuffix(t.partial);
+            if (suffix.isEmpty())
+                suffix = QFileInfo(QUrl(t.url).path()).suffix().toLower();
+            if (MusicTags::supportedSuffix(suffix)) {
+                const QFileInfo file(dest);
+                const auto stem = file.completeBaseName();
+                dest = file.dir().filePath((stem.isEmpty() ? file.fileName() : stem) + '.' + suffix);
+            }
+        }
+        auto target = dest;
         for (int n = 1; QFileInfo::exists(target); ++n)
-            target = numbered(t.target, n);
+            target = numbered(dest, n);
         if (QFile::rename(t.partial, target)) {
             QFile::remove(t.partial + ".info");
             t.target = target;
