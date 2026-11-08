@@ -12,6 +12,14 @@
 
 [GitHub Actions](https://github.com/alk3p/ncm-classic/actions) | [Windows x64](https://nightly.link/alk3p/ncm-classic/workflows/build/master/ncm-classic-setup.exe)
 
+## Screenshots
+
+<div align="center">
+
+<img src="https://proxy.duckduckgo.com/iu/?u=https://gist.github.com/user-attachments/assets/67c9a336-0587-4d09-bb76-ef2ed4a58c28" alt="NCM Classic Screenshot" width="640">
+
+</div>
+
 ## Login
 
 [music.163.com](https://music.163.com/) 登录后 F12 > Application，左侧 Cookies 展开选中，搜索 `MUSIC_U` 复制粘贴至对话框即可。
