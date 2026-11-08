@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CookieVault.h"
+#include "CustomProxy.h"
 
 #include <expected>
 #include <functional>
@@ -87,6 +88,8 @@ private:
 
     Bridge &bridge_;
     QNetworkAccessManager manager_;
+    CustomProxy customProxy_;
+    QNetworkProxy proxy_;
     SessionCookies *jar_;
     CookieVault vault_;
     CookieObserver observer_;

@@ -21,6 +21,14 @@ void quit()
     QTimer::singleShot(0, qApp, [] { QCoreApplication::exit(0); });
 }
 
+bool isExtraOptions(const QString &group, const QString &key)
+{
+    QString path = group + '/' + key;
+    path.replace('\\', '/');
+    const auto section = path.split('/', Qt::SkipEmptyParts).value(0);
+    return section.compare("Unblock", Qt::CaseInsensitive) == 0;
+}
+
 }
 
 AppCommands::AppCommands(
@@ -54,16 +62,22 @@ void AppCommands::registerSettings()
     };
 
     add("getLocalConfig", [this](const QJsonArray &a, Bridge::Reply reply) {
-        const auto key = stringArg(a, 1);
-        reply({QJsonValue::fromVariant(
-            settings_.get(stringArg(a, 0), key.isEmpty() ? "default-key" : key))});
+        const auto group = stringArg(a, 0), key = stringArg(a, 1);
+        if (isExtraOptions(group, key)) {
+            reply({QJsonValue()});
+            return;
+        }
+        reply({QJsonValue::fromVariant(settings_.get(group, key.isEmpty() ? "default-key" : key))});
     });
     add("setLocalConfig", [this](const QJsonArray &a, Bridge::Reply reply) {
         const auto group = stringArg(a, 0), key = stringArg(a, 1);
+        if (isExtraOptions(group, key)) {
+            reply({false});
+            return;
+        }
         const bool saved
             = settings_.set(group, key.isEmpty() ? "default-key" : key, a.at(2).toVariant());
-        QFile::setPermissions(
-            paths_.settingsFile, QFile::ReadOwner | QFile::WriteOwner);
+        QFile::setPermissions(paths_.settingsFile, QFile::ReadOwner | QFile::WriteOwner);
         if (group == "Proxy")
             emit proxyChanged(proxyConfig());
         reply({saved});

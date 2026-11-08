@@ -15,6 +15,8 @@
 #include <QNetworkProxyFactory>
 #include <QNetworkReply>
 #include <QSet>
+#include <QSslConfiguration>
+#include <QSslError>
 #include <QThread>
 #include <QTimer>
 #include <QUrlQuery>
@@ -112,7 +114,7 @@ void SessionCookies::importCookie(const QNetworkCookie &cookie, bool removed)
         insertCookie(cookie);
 }
 
-NativeNetwork::NativeNetwork(Bridge &bridge, const RuntimePaths &, QObject *parent)
+NativeNetwork::NativeNetwork(Bridge &bridge, const RuntimePaths &paths, QObject *parent)
     : QObject(parent)
     , bridge_(bridge)
     , manager_(this)
@@ -120,6 +122,23 @@ NativeNetwork::NativeNetwork(Bridge &bridge, const RuntimePaths &, QObject *pare
 {
     manager_.setCookieJar(jar_);
     manager_.setTransferTimeout(60000);
+    if (customProxy_.start(paths.settingsFile)) {
+        manager_.setProxy(customProxy_.proxy());
+        connect(&customProxy_, &CustomProxy::stopped, this, [this] {
+            manager_.setProxy(proxy_);
+            manager_.clearConnectionCache();
+        });
+        connect(
+            &manager_,
+            &QNetworkAccessManager::sslErrors,
+            this,
+            [this](QNetworkReply *reply, const QList<QSslError> &errors) {
+                if (!isMusicHost(reply->url().host()))
+                    return;
+                if (customProxy_.isAccepted(reply->sslConfiguration().peerCertificate()))
+                    reply->ignoreSslErrors(errors);
+            });
+    }
     saveTimer_.setSingleShot(true);
     saveTimer_.setInterval(0);
     connect(&saveTimer_, &QTimer::timeout, this, &NativeNetwork::persist);
@@ -165,17 +184,15 @@ void NativeNetwork::setProxy(const QJsonObject &input)
             config = parsed.object();
     }
     const auto type = config.value("Type").toString(config.value("proxytype").toString());
-    if (type == "ie" || type == "system") {
-        QNetworkProxyFactory::setUseSystemConfiguration(true);
-        manager_.setProxy(QNetworkProxy::DefaultProxy);
-        return;
-    }
-    QNetworkProxyFactory::setUseSystemConfiguration(false);
-    const auto values = config.value(type).isObject() ? config.value(type).toObject() : config;
+    const bool useSystem = type == "ie" || type == "system";
+    QNetworkProxyFactory::setUseSystemConfiguration(useSystem);
     QNetworkProxy proxy;
-    if (type.isEmpty() || type == "none") {
+    if (useSystem) {
+        proxy.setType(QNetworkProxy::DefaultProxy);
+    } else if (type.isEmpty() || type == "none") {
         proxy.setType(QNetworkProxy::NoProxy);
     } else {
+        const auto values = config.value(type).isObject() ? config.value(type).toObject() : config;
         const auto port = values.value("Port").toVariant().toUInt();
         proxy.setType(
             type.startsWith("socks") ? QNetworkProxy::Socks5Proxy : QNetworkProxy::HttpProxy);
@@ -184,8 +201,11 @@ void NativeNetwork::setProxy(const QJsonObject &input)
         proxy.setUser(values.value("UserName").toString(values.value("username").toString()));
         proxy.setPassword(values.value("Password").toString(values.value("password").toString()));
     }
-    manager_.setProxy(proxy);
-    QNetworkProxy::setApplicationProxy(proxy);
+    proxy_ = proxy;
+    if (!customProxy_.isActive())
+        manager_.setProxy(proxy);
+    if (!useSystem)
+        QNetworkProxy::setApplicationProxy(proxy);
 }
 
 std::expected<QNetworkReply *, QString> NativeNetwork::send(

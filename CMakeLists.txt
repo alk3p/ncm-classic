@@ -100,6 +100,7 @@ add_executable(${PROJECT_NAME}
     src/services/network/MultipartServices.cpp
     src/services/network/CookieVault.cpp
     src/services/network/NativeNetwork.cpp
+    src/services/network/CustomProxy.cpp
     src/services/persistence/DatabaseExecutor.cpp
     src/services/persistence/PersistenceService.cpp
     src/services/persistence/Profile.cpp
