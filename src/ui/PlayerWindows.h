@@ -41,8 +41,8 @@ private:
     void showLyricsMessage(const QString &);
     void loadCover(const QUrl &);
     void tick();
-    void restorePosition(QWidget *, const QString &group);
-    void savePosition(QWidget *, const QString &group);
+    void restoreGeometry(QWidget *, const QString &group);
+    void saveGeometry(QWidget *, const QString &group);
 
     Bridge &bridge_;
     RuntimePaths paths_;

@@ -182,7 +182,7 @@ std::unique_ptr<WebWindow> WebHost::makeWindow(const QString &name, const QUrl &
         return nullptr;
     }
     (*window)->set_decorations(saucer::window::decoration::partial);
-    (*window)->set_size({1050, 720});
+    (*window)->set_size({1280, 800});
 
     auto view = makeView(*window);
     if (!view)

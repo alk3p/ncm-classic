@@ -8,6 +8,8 @@
 #include "services/persistence/Profile.h"
 #include "web/ResourceHandler.h"
 
+#include <algorithm>
+
 #include <QFontMetrics>
 #include <QGuiApplication>
 #include <QImage>
@@ -69,8 +71,8 @@ PlayerWindows::PlayerWindows(
     , volume_(skin)
     , slogan_(tr("网易云音乐  听见好时光"))
 {
-    restorePosition(&mini_, miniGroup);
-    restorePosition(&lyrics_, lyricsGroup);
+    restoreGeometry(&mini_, miniGroup);
+    restoreGeometry(&lyrics_, lyricsGroup);
     ticker_.setInterval(tickMs);
     connect(&ticker_, &QTimer::timeout, this, &PlayerWindows::tick);
 
@@ -100,8 +102,8 @@ PlayerWindows::PlayerWindows(
 
 PlayerWindows::~PlayerWindows()
 {
-    savePosition(&mini_, miniGroup);
-    savePosition(&lyrics_, lyricsGroup);
+    saveGeometry(&mini_, miniGroup);
+    saveGeometry(&lyrics_, lyricsGroup);
 }
 
 QWidget *PlayerWindows::window(const QString &name)
@@ -119,7 +121,7 @@ void PlayerWindows::setVisible(const QString &name, bool visible)
     if (!window)
         return;
     if (!visible) {
-        savePosition(window, name == "mini_player" ? miniGroup : lyricsGroup);
+        saveGeometry(window, name == "mini_player" ? miniGroup : lyricsGroup);
         window->hide();
     } else {
         window->show();
@@ -389,21 +391,29 @@ void PlayerWindows::loadCover(const QUrl &url)
     });
 }
 
-void PlayerWindows::restorePosition(QWidget *window, const QString &group)
+void PlayerWindows::restoreGeometry(QWidget *window, const QString &group)
 {
     const auto position = settings_.get(group, "window-position").toPoint();
     const auto *screen = QGuiApplication::screenAt(position + QPoint(20, 20));
     if (!screen)
         screen = QGuiApplication::primaryScreen();
+    if (window == &lyrics_) {
+        const int width = settings_.get(group, "window-width").toInt();
+        if (width > 0)
+            window->resize(
+                std::min(width, screen->availableVirtualGeometry().width()), window->height());
+    }
     const auto area = screen->availableGeometry();
     window->move(
         std::clamp(position.x(), area.left(), std::max(area.left(), area.right() - window->width())),
         std::clamp(position.y(), area.top(), std::max(area.top(), area.bottom() - window->height())));
 }
 
-void PlayerWindows::savePosition(QWidget *window, const QString &group)
+void PlayerWindows::saveGeometry(QWidget *window, const QString &group)
 {
     settings_.set(group, "window-position", window->pos());
+    if (window == &lyrics_)
+        settings_.set(group, "window-width", window->width());
 }
 
 }
