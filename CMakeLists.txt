@@ -4,6 +4,7 @@ cmake_minimum_required(VERSION 3.25)
 # so keep duplicate aliases legal for them.
 cmake_policy(SET CMP0107 OLD)
 project(ncm-classic VERSION 1.2.1 LANGUAGES C CXX)
+set(NCM_DISPLAY_NAME "NetEase Cloud Music (Classic)")
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -133,6 +134,7 @@ if(WIN32)
     set(app_icon "${CMAKE_CURRENT_SOURCE_DIR}/public/webapp/style/res/ico/cloud_music.ico")
     set(app_resource "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}.rc")
     configure_file("contrib/${PROJECT_NAME}.rc.in" "${app_resource}" @ONLY)
+    configure_file("contrib/${PROJECT_NAME}.nsi.in" "${PROJECT_NAME}.nsi" @ONLY)
     set_property(SOURCE "${app_resource}" PROPERTY OBJECT_DEPENDS "${app_icon}")
     target_sources(${PROJECT_NAME} PRIVATE
         "${app_resource}"
@@ -190,7 +192,6 @@ qt_add_resources(${PROJECT_NAME} persistence_schema
     FILES "${schema_dir}/online-schema.sql" "${schema_dir}/offline-schema.sql"
 )
 
-set(NCM_DISPLAY_NAME "NetEase Cloud Music (Classic)")
 target_compile_definitions(${PROJECT_NAME} PRIVATE
     NCM_APP_ID="${PROJECT_NAME}"
     NCM_DISPLAY_NAME="${NCM_DISPLAY_NAME}"

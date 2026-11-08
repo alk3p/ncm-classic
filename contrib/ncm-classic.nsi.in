@@ -1,0 +1,249 @@
+Unicode true
+RequestExecutionLevel user
+SetCompressor /SOLID lzma
+
+!include "MUI2.nsh"
+!include "nsDialogs.nsh"
+!include "x64.nsh"
+!include "Win\WinError.nsh"
+!include "Win\WinNT.nsh"
+
+!define APP_ID "@PROJECT_NAME@"
+!define APP_NAME "@NCM_DISPLAY_NAME@"
+!define APP_VERSION "@PROJECT_VERSION@"
+!define APP_EXE "${APP_ID}.exe"
+!define UNINSTALL_EXE "uninst.exe"
+!define INSTALL_DIR "$LOCALAPPDATA\Programs\${APP_ID}"
+!define PROFILE_DIR "$LOCALAPPDATA\${APP_ID}"
+!define CURRENT_VERSION_KEY "Software\Microsoft\Windows\CurrentVersion"
+!define UNINSTALL_KEY "${CURRENT_VERSION_KEY}\Uninstall\${APP_ID}"
+
+!ifndef PAYLOAD_DIR
+  !error "Set PAYLOAD_DIR to the deployed bin directory."
+!endif
+!ifndef SETUP_EXE
+  !error "Set SETUP_EXE to the output installer path."
+!endif
+!if ! /FileExists "${PAYLOAD_DIR}\${APP_EXE}"
+  !error "The deployed bin directory must contain ${APP_EXE}."
+!endif
+
+Name "${APP_NAME}"
+OutFile "${SETUP_EXE}"
+VIProductVersion "@PROJECT_VERSION_MAJOR@.@PROJECT_VERSION_MINOR@.@PROJECT_VERSION_PATCH@.0"
+VIAddVersionKey "ProductName" "${APP_NAME}"
+VIAddVersionKey "FileDescription" "${APP_NAME} Setup"
+VIAddVersionKey "FileVersion" "${APP_VERSION}"
+VIAddVersionKey "ProductVersion" "${APP_VERSION}"
+VIAddVersionKey "LegalCopyright" ""
+
+!define MUI_ICON "@app_icon@"
+!insertmacro MUI_PAGE_WELCOME
+!insertmacro MUI_PAGE_INSTFILES
+!insertmacro MUI_PAGE_FINISH
+
+UninstPage custom un.ConfirmUninstall un.ReadUninstallOptions
+!insertmacro MUI_UNPAGE_INSTFILES
+!insertmacro MUI_UNPAGE_FINISH
+!insertmacro MUI_LANGUAGE "English"
+
+Var removeUserDataCheckbox
+Var removeUserData
+
+!macro Fail message
+  MessageBox MB_OK|MB_ICONSTOP "${message}" /SD IDOK
+  SetErrorLevel 1
+  Abort "${message}"
+!macroend
+
+!macro RequireAppClosed
+  ; Qt holds instance.lock without sharing write access.
+  System::Call 'kernel32::CreateFileW(w "${PROFILE_DIR}\instance.lock", i ${GENERIC_WRITE}, i 7, p0, i 3, i0, p0) p.r0 ?e'
+  Pop $1
+  ${If} $0 != -1
+    System::Call 'kernel32::CloseHandle(p r0)'
+  ${ElseIf} $1 != ${ERROR_FILE_NOT_FOUND}
+  ${AndIf} $1 != ${ERROR_PATH_NOT_FOUND}
+    !insertmacro Fail "Exit ${APP_NAME} and try again."
+  ${EndIf}
+!macroend
+
+Function .onInit
+  ${IfNot} ${RunningX64}
+    !insertmacro Fail "This build requires 64-bit Windows."
+  ${EndIf}
+  SetRegView 64
+  StrCpy $INSTDIR "${INSTALL_DIR}"
+  System::Call 'kernel32::GetFileAttributesW(w "$INSTDIR") i.r0'
+  ${If} $0 != -1
+    ${IfNot} $0 & ${FILE_ATTRIBUTE_DIRECTORY}
+    ${OrIf} $0 & ${FILE_ATTRIBUTE_REPARSE_POINT}
+      !insertmacro Fail "The installation destination must be a regular directory."
+    ${EndIf}
+    ReadRegStr $0 HKCU "${UNINSTALL_KEY}" "InstallLocation"
+    ${If} $0 != $INSTDIR
+      !insertmacro Fail "Please remove your previous installation first."
+    ${EndIf}
+  ${EndIf}
+FunctionEnd
+
+Section "Program files"
+  !insertmacro RequireAppClosed
+  ClearErrors
+  SetOutPath "$INSTDIR"
+  WriteRegStr HKCU "${UNINSTALL_KEY}" "InstallLocation" "$INSTDIR"
+  WriteUninstaller "$INSTDIR\${UNINSTALL_EXE}"
+  ${If} ${Errors}
+    !insertmacro Fail "Could not create the uninstaller."
+  ${EndIf}
+
+  WriteRegStr HKCU "${UNINSTALL_KEY}" "DisplayName" "${APP_NAME}"
+  WriteRegStr HKCU "${UNINSTALL_KEY}" "DisplayVersion" "${APP_VERSION}"
+  WriteRegStr HKCU "${UNINSTALL_KEY}" "DisplayIcon" '"$INSTDIR\${APP_EXE}",0'
+  WriteRegStr HKCU "${UNINSTALL_KEY}" "UninstallString" '"$INSTDIR\${UNINSTALL_EXE}"'
+  WriteRegStr HKCU "${UNINSTALL_KEY}" "QuietUninstallString" '"$INSTDIR\${UNINSTALL_EXE}" /S'
+  WriteRegDWORD HKCU "${UNINSTALL_KEY}" "NoModify" 1
+  WriteRegDWORD HKCU "${UNINSTALL_KEY}" "NoRepair" 1
+  ${If} ${Errors}
+    !insertmacro Fail "Could not register the uninstaller."
+  ${EndIf}
+
+  File /r /x "*.tmp" "${PAYLOAD_DIR}\*"
+  CreateShortcut "$SMPROGRAMS\${APP_NAME}.lnk" "$INSTDIR\${APP_EXE}"
+  ${If} ${Errors}
+    !insertmacro Fail "Could not install the shortcut."
+  ${EndIf}
+SectionEnd
+
+Function un.onInit
+  SetRegView 64
+  ReadRegStr $0 HKCU "${UNINSTALL_KEY}" "InstallLocation"
+  ${If} $INSTDIR != "${INSTALL_DIR}"
+  ${OrIf} $0 != $INSTDIR
+    !insertmacro Fail "Please run the uninstaller from the installation directory."
+  ${EndIf}
+FunctionEnd
+
+Function un.ConfirmUninstall
+  !insertmacro MUI_HEADER_TEXT "Uninstall ${APP_NAME}" "Remove ${APP_NAME} from your computer."
+  nsDialogs::Create 1018
+  Pop $0
+  ${If} $0 == error
+    SetErrorLevel 1
+    Quit
+  ${EndIf}
+
+  ${NSD_CreateLabel} 0 0 100% 10u "$(^UninstallingSubText)"
+  Pop $0
+  ${NSD_CreateText} 0 12u 100% 13u "$INSTDIR"
+  Pop $0
+  ${NSD_Edit_SetReadOnly} $0 1
+  ${NSD_CreateCheckbox} 0 31u 100% 12u "Remove user data"
+  Pop $removeUserDataCheckbox
+
+  GetDlgItem $0 $HWNDPARENT 1
+  ${NSD_SetText} $0 "$(^UninstallBtn)"
+  nsDialogs::Show
+FunctionEnd
+
+Function un.ReadUninstallOptions
+  ${NSD_GetState} $removeUserDataCheckbox $removeUserData
+FunctionEnd
+
+; Remove junctions and directory symlinks without descending into their targets.
+Function un.RemoveTree
+  Exch $0
+  Push $1
+  Push $2
+  Push $3
+  ClearErrors
+  System::Call 'kernel32::GetFileAttributesW(w r0) i.r1 ?e'
+  Pop $2
+  ${If} $1 == -1
+    ${If} $2 != ${ERROR_FILE_NOT_FOUND}
+    ${AndIf} $2 != ${ERROR_PATH_NOT_FOUND}
+      SetErrors
+    ${EndIf}
+    Goto done
+  ${EndIf}
+  ${IfNot} $1 & ${FILE_ATTRIBUTE_DIRECTORY}
+    Delete "$0"
+    Goto done
+  ${EndIf}
+  ${If} $1 & ${FILE_ATTRIBUTE_REPARSE_POINT}
+    Goto rm_dir
+  ${EndIf}
+
+  FindFirst $2 $3 "$0\*"
+  IfErrors rm_dir
+  ${While} $3 != ""
+    ${If} $3 != "."
+    ${AndIf} $3 != ".."
+    ${AndIf} "$0\$3" != "$INSTDIR\${UNINSTALL_EXE}"
+      Push "$0\$3"
+      Call un.RemoveTree
+      ${If} ${Errors}
+        FindClose $2
+        SetErrors
+        Goto done
+      ${EndIf}
+    ${EndIf}
+    FindNext $2 $3
+  ${EndWhile}
+  FindClose $2
+  ClearErrors
+
+  ; Keep the uninstaller available until the other files are gone.
+  ${If} $0 == $INSTDIR
+    Delete "$INSTDIR\${UNINSTALL_EXE}"
+  ${EndIf}
+rm_dir:
+  RMDir "$0"
+done:
+  Pop $3
+  Pop $2
+  Pop $1
+  Pop $0
+FunctionEnd
+
+Function un.RemoveUserData
+  Push "${PROFILE_DIR}"
+  Call un.RemoveTree
+  ${If} ${Errors}
+    DetailPrint "Could not remove the user profile at ${PROFILE_DIR}."
+  ${EndIf}
+
+  ; QtKeychain stores generic credentials as key@service.
+  System::Call 'advapi32::CredDeleteW(w "session@${APP_ID}", i 1, i 0) i.r0 ?e'
+  Pop $1
+  ${If} $0 = 0
+  ${AndIf} $1 != ${ERROR_NOT_FOUND}
+    DetailPrint "Could not remove the saved sign-in from Windows Credential Manager (error $1)."
+  ${EndIf}
+  DeleteRegKey HKCU "Software\${APP_ID}"
+FunctionEnd
+
+Section "Uninstall"
+  !insertmacro RequireAppClosed
+  SetOutPath "$TEMP"
+
+  Push "$INSTDIR"
+  Call un.RemoveTree
+  ${If} ${Errors}
+    System::Call 'kernel32::GetFileAttributesW(w "$INSTDIR") i.r0'
+    ${If} $0 & ${FILE_ATTRIBUTE_DIRECTORY}
+    ${AndIfNot} $0 & ${FILE_ATTRIBUTE_REPARSE_POINT}
+      ; The folder itself can still be open in a terminal after its files are removed.
+      System::Call 'kernel32::CopyFileW(w "$EXEPATH", w "$INSTDIR\${UNINSTALL_EXE}", i 1)'
+    ${EndIf}
+    !insertmacro Fail "Please close any applications using the installation directory and try again."
+  ${EndIf}
+  Delete "$SMPROGRAMS\${APP_NAME}.lnk"
+  DeleteRegValue HKCU "${CURRENT_VERSION_KEY}\Run" "${APP_ID}"
+  DeleteRegValue HKCU "${CURRENT_VERSION_KEY}\Explorer\StartupApproved\Run" "${APP_ID}"
+  DeleteRegKey HKCU "${UNINSTALL_KEY}"
+
+  ${If} $removeUserData = ${BST_CHECKED}
+    Call un.RemoveUserData
+  ${EndIf}
+SectionEnd

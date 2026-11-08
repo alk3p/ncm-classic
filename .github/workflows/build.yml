@@ -94,3 +94,20 @@ jobs:
           name: ncm-classic-win64
           path: packaging/bin/
           compression-level: 9
+
+      - name: Install NSIS
+        run: choco install nsis --yes --no-progress
+
+      - name: Build installer
+        run: |
+          $PSNativeCommandUseErrorActionPreference = $true
+          $makensis = Join-Path ${env:ProgramFiles(x86)} 'NSIS\Bin\makensis.exe'
+          $payload = Join-Path $env:GITHUB_WORKSPACE 'packaging\bin'
+          $setup = Join-Path $env:GITHUB_WORKSPACE 'packaging\ncm-classic-setup.exe'
+          & $makensis /WX "/DPAYLOAD_DIR=$payload" "/DSETUP_EXE=$setup" build\ncm-classic.nsi
+
+      - name: Upload installer
+        uses: actions/upload-artifact@v7
+        with:
+          path: packaging/ncm-classic-setup.exe
+          archive: false
