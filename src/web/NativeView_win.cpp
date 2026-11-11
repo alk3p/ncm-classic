@@ -48,6 +48,8 @@ double scaleFactor(const saucer::window &window)
     return dpi ? dpi / double(USER_DEFAULT_SCREEN_DPI) : 1;
 }
 
+void styleMainWindow(const saucer::window &) {}
+
 void setCookie(saucer::webview &view, const QNetworkCookie &c)
 {
     const auto manager = cookieManager(view);

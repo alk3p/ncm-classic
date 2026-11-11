@@ -18,6 +18,7 @@ bool attachToQtLoop(saucer::application &);
 
 WId windowId(const saucer::window &);
 double scaleFactor(const saucer::window &);
+void styleMainWindow(const saucer::window &);
 
 void setCookie(saucer::webview &, const QNetworkCookie &);
 void removeCookie(saucer::webview &, const QNetworkCookie &);
