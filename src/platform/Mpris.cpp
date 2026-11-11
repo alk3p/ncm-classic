@@ -99,10 +99,10 @@ public:
 public slots:
     void Next() { action("next"); }
     void Previous() { action("prev"); }
-    void Pause();
+    void Pause() { setPlayback(false); }
     void PlayPause() { action("play"); }
     void Stop() { action("stop"); }
-    void Play();
+    void Play() { setPlayback(true); }
     void Seek(qlonglong offset);
     void SetPosition(const QDBusObjectPath &track, qlonglong position);
     void OpenUri(const QString &uri);
@@ -113,7 +113,11 @@ signals:
 private:
     void called(const QString &method, const QJsonArray &args);
     void observed(const QString &name, const QJsonArray &args);
-    void action(const QString &name) { bridge_.publish("player.onaction", {name}); }
+    void action(const QString &name) { bridge_.publishTo("main", "player.onaction", {name}); }
+    void setPlayback(bool playing)
+    {
+        bridge_.publishTo("main", "player.onmprisplayback", {playing});
+    }
     void menuClick(const char *id) { bridge_.publish("winhelper.onmenuclick", {id, false}); }
     void setStatus(const QString &status);
     void changed(const QVariantMap &properties);
@@ -235,18 +239,6 @@ void MprisPlayer::setShuffle(bool on)
 void MprisPlayer::setVolume(double volume)
 {
     bridge_.publish("player.onminivolumechange", {std::clamp(volume, 0., 1.)});
-}
-
-void MprisPlayer::Pause()
-{
-    if (status_ == "Playing")
-        action("pause");
-}
-
-void MprisPlayer::Play()
-{
-    if (status_ != "Playing")
-        action("play");
 }
 
 void MprisPlayer::Seek(qlonglong offset)

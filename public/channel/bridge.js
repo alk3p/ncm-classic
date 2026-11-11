@@ -135,9 +135,18 @@
       };
     });
 
-  // ---- imported sessions -----------------------------------------------------------------
-
   if (windowId !== "main") return;
+
+  channel.registerCall("player.onmprisplayback", function (playing) {
+    var player = window.ctl && ctl.player && ctl.player.bHr();
+    if (!player) return;
+    if (playing)
+      player.biR(); // Start a stopped queue or resume the current track.
+    else
+      player.bvY("pause");
+  });
+
+  // ---- imported sessions -----------------------------------------------------------------
 
   document.addEventListener("load", function attachSession(event) {
     if (event.target.tagName !== "SCRIPT" || !event.target.src) return;

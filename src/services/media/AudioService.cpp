@@ -9,6 +9,7 @@
 
 #include <QFile>
 #include <QJsonDocument>
+#include <QSignalBlocker>
 
 namespace ncm {
 
@@ -98,9 +99,9 @@ void AudioService::registerHandlers()
             if (const auto option = value.toObject(); option.value("name") == "fade")
                 fadeEnabled_ = option.value("on").toBool();
         if (!fadeEnabled_ && fade_.state() == QAbstractAnimation::Running) {
-            fadeTo(wantPlay_ ? 1 : 0);
             if (!wantPlay_)
                 send({"pause"});
+            fadeTo(1);
         }
         done({});
     });
@@ -181,35 +182,36 @@ void AudioService::load(const QString &id, const QJsonObject &info)
 
 void AudioService::open()
 {
-    send({"open", source_.toString(), offset_});
-    applyVolume();
+    send({"open", source_.toString(), offset_, volume_});
     setBuffering(true);
     poll_.start();
 }
 
 void AudioService::play(const QString &command)
 {
-    wantPlay_ = true;
+    const bool requested = std::exchange(wantPlay_, true);
     command_ = command;
     statePending_ = true;
-    if (!loaded_)
+    if (!loaded_ || (started_ && requested))
         return;
-    fadeTo(1);
-    send({"play"});
+    if (started_)
+        fadeTo(1);
+    started_ = true;
+    send({"play", volume_ * fadeFactor_});
 }
 
 void AudioService::pause(const QString &command)
 {
-    wantPlay_ = false;
+    const bool requested = std::exchange(wantPlay_, false);
     command_ = command;
     statePending_ = true;
+    if (!requested || !loaded_)
+        return;
     if (fadeEnabled_ && playing_ && fadeFactor_ > 0) {
         fadeTo(0);
         return;
     }
     fade_.stop();
-    fadeFactor_ = 0;
-    applyVolume();
     send({"pause"});
 }
 
@@ -219,8 +221,8 @@ void AudioService::stop()
     endTimer_.stop();
     fade_.stop();
     id_.clear();
-    loaded_ = playing_ = wantPlay_ = statePending_ = false;
-    fadeFactor_ = 0;
+    loaded_ = started_ = playing_ = wantPlay_ = statePending_ = false;
+    fadeFactor_ = 1;
     buffering_ = -1;
     reportedPosition_ = reportedBuffered_ = -1;
     if (const auto source = std::exchange(source_, QUrl()); !source.isEmpty()) {
@@ -295,8 +297,11 @@ void AudioService::fadeTo(double factor)
         applyVolume();
         return;
     }
-    fade_.setStartValue(fadeFactor_);
-    fade_.setEndValue(factor);
+    {
+        const QSignalBlocker blocker(fade_);
+        fade_.setStartValue(fadeFactor_);
+        fade_.setEndValue(factor);
+    }
     fade_.start();
 }
 

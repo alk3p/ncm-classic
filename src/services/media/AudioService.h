@@ -57,11 +57,12 @@ private:
     double offset_ = 0;
     double duration_ = 0;
     double volume_ = 1;
-    double fadeFactor_ = 0;
+    double fadeFactor_ = 1;
     double reportedPosition_ = -1;
     double reportedBuffered_ = -1;
     int buffering_ = -1;
     bool loaded_ = false;
+    bool started_ = false;
     bool playing_ = false;
     bool wantPlay_ = false;
     bool statePending_ = false;

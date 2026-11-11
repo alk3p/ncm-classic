@@ -22,16 +22,21 @@
   }
 
   var commands = {
-    open: function (source, start) {
+    open: function (source, start, level) {
       commands.close();
       var element = new Audio();
       var track = current = {element: element, source: source, loaded: false, time: 0, movedAt: 0};
       element.preload = "auto";
-      element.volume = 0;
+      // WebKit restores the previous stream's volume unless the element's volume was
+      // changed explicitly. Set it before assigning the source, even at the default level.
+      if (element.volume === level) element.volume = 0.5;
+      element.volume = level;
       element.addEventListener("loadedmetadata", function () {
+        if (track !== current) return;
         if (start > 0) element.currentTime = start;
         track.loaded = true;
-      });
+        commands.sample();
+      }, {once: true});
       element.addEventListener("ended", function () { report(track, "ended"); });
       element.addEventListener("error", function () { report(track, "error"); });
       element.src = source;
@@ -46,8 +51,9 @@
       element.load(); // drops the connection
     },
 
-    play: function () {
+    play: function (level) {
       var track = current;
+      track.element.volume = level;
       track.movedAt = performance.now();
       track.element.play().catch(function (error) {
         if (error.name !== "AbortError") report(track, "error");
